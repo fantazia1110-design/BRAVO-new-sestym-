@@ -2487,3 +2487,38 @@ html[data-theme='dark'] .nav-item.active::after {
 .sidebar-footer {
   padding: 0.9rem 0.85rem 1.1rem;
 }
+
+/* ============================================================
+   بطاقات القوائم المتجاورة — ارتفاع متساوٍ وتوزيع متناسق
+   تُستخدم عندما يحتوي كل عمود على عدد مختلف من الصفوف
+   (مثل "الأكثر مبيعاً" 5 عناصر و"آخر التركيبات" 4 عناصر)
+   ============================================================ */
+.list-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list-card > .card-header {
+  flex-shrink: 0;
+}
+
+/* جسم البطاقة يتمدد ليملأ الارتفاع المتبقي */
+.list-card > .card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* الصفوف توزّع المساحة بينها بالتساوي فتتطابق حواف البطاقتين.
+   نستثني الجداول لأن لها تخطيطها الخاص. */
+.list-card > .card-body > *:not(table):not(.table-container) {
+  flex: 1 1 0;
+  min-height: 4.75rem;
+}
+
+/* الجدول داخل بطاقة قائمة يملأ الارتفاع بدل تمديد كل صف */
+.list-card > .card-body > table,
+.list-card > .card-body > .table-container {
+  flex: 1 1 auto;
+}
