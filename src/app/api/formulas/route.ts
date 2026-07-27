@@ -4,6 +4,9 @@ import { formulas, formulaVersions, formulaIngredients, formulaSteps, categories
 import { eq, desc, sql } from 'drizzle-orm';
 import { v4 as uuidv4 } from 'uuid';
 
+// هذه الواجهة تحتاج قاعدة بيانات وقت التشغيل ولا يمكن توليدها مسبقاً وقت البناء
+export const dynamic = 'force-dynamic';
+
 // الحصول على جميع التركيبات
 export async function GET(request: NextRequest) {
   try {
