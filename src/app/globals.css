@@ -84,10 +84,25 @@
   --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* إعادة الضبط داخل @layer base حتى لا تتغلّب على أدوات Tailwind.
+   كانت مكتوبة بدون طبقة، فكانت margin:0/padding:0 تُلغي كل أدوات
+   التباعد (mb-6 و p-4 و space-y-*) وتجعل العناصر ملتصقة ببعضها. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body,
+  h1, h2, h3, h4, h5, h6,
+  p, figure, blockquote, dl, dd {
+    margin: 0;
+  }
+
+  ul[class], ol[class] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 }
 
 html {
@@ -1195,12 +1210,14 @@ html[data-theme='dark'] .topbar {
   border-bottom: 1px solid var(--border-soft);
 }
 
-/* الجانب الأيسر من الشريط (زر الوضع الليلي) */
+/* الشريط في وضع RTL: نجبر الترتيب بحيث يكون زر الوضع في أقصى اليسار بصرياً.
+   order + margin-inline-start:auto يدفعان العنصر لأقصى الطرف الأيسر. */
 .topbar-left {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-inline-end: auto;
+  /* آخر عنصر في ترتيب RTL => يظهر في أقصى اليسار */
+  order: 2;
 }
 
 /* الجانب الأيمن (مساحة لزر قائمة الموبايل) */
@@ -1208,6 +1225,7 @@ html[data-theme='dark'] .topbar {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  order: 1;
 }
 
 /* زر فتح القائمة الجانبية (يظهر فقط على الشاشات الصغيرة) */
@@ -2344,4 +2362,71 @@ html[data-theme='dark'] .hover\:to-white:hover { --tw-gradient-to: rgba(30, 37, 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ============================================================
+   تباعد عام متّسق — يضمن وجود مسافات حتى لو لم تحدّدها الصفحة
+   ============================================================ */
+
+/* مسافة رأسية افتراضية بين الأقسام المباشرة داخل الصفحة */
+.main-content > * > * + * {
+  margin-block-start: 1.75rem;
+}
+
+/* الكروت والبطاقات لا تلتصق ببعضها أبداً */
+.card + .card,
+.card + .stat-card,
+.stat-card + .card {
+  margin-block-start: 1.5rem;
+}
+
+/* تباعد افتراضي داخل الشبكات إن لم يُحدَّد gap */
+.grid:not([class*='gap-']) {
+  gap: 1.5rem;
+}
+
+/* تباعد افتراضي بين عناصر الصفوف المرنة إن لم يُحدَّد gap */
+.flex:not([class*='gap-']):not(.topbar):not(.page-header) {
+  gap: 0.75rem;
+}
+
+/* رأس الصفحة: مسافة أوضح أسفله */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+/* عناوين الأقسام داخل الصفحة */
+.main-content h2 {
+  margin-block-end: 0.25rem;
+}
+
+/* تنفّس داخلي أكبر للكروت */
+.card-body {
+  padding: 1.75rem;
+}
+
+.card-header,
+.card-footer {
+  padding: 1.35rem 1.75rem;
+}
+
+/* الحقول داخل النماذج */
+.input-group + .input-group {
+  margin-block-start: 1.15rem;
+}
+
+/* الأزرار المتجاورة */
+.btn + .btn {
+  margin-inline-start: 0.65rem;
+}
+
+/* صفوف الجداول: ارتفاع أريح */
+.table th,
+.table td {
+  padding-block: 1.15rem;
+}
+
+/* آخر عنصر داخل الصفحة لا يحتاج هامشاً سفلياً زائداً */
+.main-content > *:last-child {
+  margin-block-end: 0;
 }
