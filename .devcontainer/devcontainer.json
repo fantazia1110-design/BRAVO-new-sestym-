@@ -1,6 +1,11 @@
 {
   "name": "BRAVO Formula & Factory",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
   "postCreateCommand": "npm install",
   "postAttachCommand": {
     "server": "npm run dev"
