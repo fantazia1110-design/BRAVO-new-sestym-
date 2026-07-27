@@ -66,19 +66,20 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* زر فتح القائمة للموبايل */}
+      {/* زر فتح القائمة للموبايل — داخل ارتفاع الشريط العلوي حتى لا يتداخل معه */}
       <button
-        className="fixed top-4 right-4 z-50 btn btn-icon btn-outline lg:hidden"
+        className="sidebar-toggle btn btn-icon btn-outline"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="القائمة"
+        aria-label={isOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+        aria-expanded={isOpen}
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       {/* الخلفية المعتمة للموبايل */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="sidebar-overlay"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -118,9 +119,8 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* تبديل الوضع الليلي / النهاري + تسجيل الخروج */}
-        <div className="p-4 border-t border-[var(--border)] space-y-3">
-          <ThemeToggle className="w-full justify-center" />
+        {/* تسجيل الخروج — زر الوضع الليلي أصبح في الشريط العلوي */}
+        <div className="sidebar-footer">
           <button className="nav-item w-full text-red-500 hover:bg-red-50 rounded-lg">
             <LogOut size={20} />
             <span className="font-bold">تسجيل الخروج</span>

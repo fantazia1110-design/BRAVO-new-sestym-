@@ -117,7 +117,7 @@ export default function SalesPage() {
   return (
     <div>
       {/* الهيدر */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="page-header">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
             <ShoppingCart className="text-white" size={28} />

@@ -228,7 +228,7 @@ export default function InvoicesPage() {
   return (
     <div>
       {/* الهيدر */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="page-header">
         <div>
           <h1 className="page-title">{t('invoices.title')}</h1>
           <p className="text-sm text-[var(--text-secondary)] mt-1">

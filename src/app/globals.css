@@ -73,6 +73,10 @@
   --radius-2xl: 2rem;
   --radius-3xl: 2.5rem;
   
+  /* أبعاد التخطيط */
+  --sidebar-width: 300px;
+  --topbar-height: 68px;
+
   /* التحولات */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -537,7 +541,7 @@ a:hover {
 
 /* ===== القائمة الجانبية ===== */
 .sidebar {
-  width: 300px;
+  width: var(--sidebar-width);
   height: 100vh;
   background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
   backdrop-filter: blur(20px);
@@ -545,10 +549,34 @@ a:hover {
   position: fixed;
   right: 0;
   top: 0;
-  overflow-y: auto;
   z-index: 40;
   transition: transform var(--transition-slow);
   box-shadow: var(--shadow-xl);
+  /* عمود مرن: الهيدر ثابت، القائمة تتمدد وتُمرَّر، والتذييل ملتصق بالأسفل */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* القائمة وحدها هي التي تُمرَّر — يمنع تداخل التذييل مع الروابط */
+.sidebar-nav {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+}
+
+.sidebar-header,
+.sidebar-footer {
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .sidebar-header {
@@ -633,9 +661,18 @@ a:hover {
 
 /* ===== المحتوى الرئيسي ===== */
 .main-content {
-  margin-right: 300px;
+  margin-right: var(--sidebar-width);
   min-height: 100vh;
-  padding: 2.5rem;
+  /* مساحة علوية تكفي للشريط العلوي الثابت حتى لا يغطي عناوين الصفحات */
+  padding: calc(var(--topbar-height) + 1.5rem) 2rem 2.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* حاوية موحّدة تمنع المحتوى من الالتصاق بالحواف على الشاشات العريضة */
+.main-content > * {
+  max-width: 1600px;
+  margin-inline: auto;
 }
 
 /* ===== عناوين الصفحات ===== */
@@ -648,10 +685,15 @@ a:hover {
   display: inline-block;
 }
 
+.page-title {
+  /* مساحة أسفل العنوان للخط المتدرّج حتى لا يلتصق بالنص التالي */
+  padding-bottom: 0.65rem;
+}
+
 .page-title::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: 0;
   right: 0;
   width: 60px;
   height: 4px;
@@ -1126,97 +1168,243 @@ a:hover {
   background: linear-gradient(180deg, #64748b 0%, #475569 100%);
 }
 
-/* ===== Responsive ===== */
+/* ============================================================
+   الشريط العلوي الثابت (يحتوي زر الوضع الليلي على اليسار)
+   ============================================================ */
+.topbar {
+  position: fixed;
+  top: 0;
+  right: var(--sidebar-width);
+  left: 0;
+  height: var(--topbar-height);
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-normal), border-color var(--transition-normal);
+}
+
+html[data-theme='dark'] .topbar {
+  background: rgba(9, 13, 38, 0.78);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* الجانب الأيسر من الشريط (زر الوضع الليلي) */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-inline-end: auto;
+}
+
+/* الجانب الأيمن (مساحة لزر قائمة الموبايل) */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* زر فتح القائمة الجانبية (يظهر فقط على الشاشات الصغيرة) */
+.sidebar-toggle {
+  position: fixed;
+  top: calc((var(--topbar-height) - 44px) / 2);
+  right: 1.25rem;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 22, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 39;
+  animation: fade-in 0.2s ease-out;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-toggle { display: inline-flex; }
+}
+
+@media (min-width: 1025px) {
+  .sidebar-overlay { display: none; }
+}
+
+/* ============================================================
+   الاستجابة للشاشات المختلفة
+   ============================================================ */
+
+/* أجهزة لوحية وشاشات أصغر: القائمة الجانبية تنزلق */
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(100%);
   }
-  
+
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .main-content {
     margin-right: 0;
   }
+
+  .topbar {
+    right: 0;
+    padding: 0 1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    padding: 1.25rem;
+  :root {
+    --topbar-height: 60px;
   }
-  
+
+  .main-content {
+    padding: calc(var(--topbar-height) + 1rem) 1.15rem 2rem;
+  }
+
   .page-title {
     font-size: 1.5rem;
   }
-  
+
   .stat-value {
-    font-size: 2rem;
+    font-size: 1.85rem;
   }
-  
-  .card-body {
+
+  .stat-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .card-body,
+  .card-header,
+  .card-footer {
+    padding: 1.15rem;
+  }
+
+  .stat-card {
     padding: 1.25rem;
   }
-}
 
-/* ===== Grid System ===== */
-.grid {
-  display: grid;
-  gap: 1.5rem;
-}
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
 
-.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-.grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
-.grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .btn-lg {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
+  }
 
-@media (max-width: 1280px) {
-  .grid-cols-5, .grid-cols-6 { grid-template-columns: repeat(4, 1fr); }
-}
-
-@media (max-width: 1024px) {
-  .grid-cols-4, .grid-cols-5, .grid-cols-6 { grid-template-columns: repeat(3, 1fr); }
-  .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .grid-cols-3, .grid-cols-4, .grid-cols-5, .grid-cols-6 { grid-template-columns: repeat(2, 1fr); }
+  /* الجداول تُمرَّر أفقياً بدل أن تتداخل */
+  .table th,
+  .table td {
+    padding: 0.85rem 1rem;
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 640px) {
-  .grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5, .grid-cols-6 { grid-template-columns: 1fr; }
+  .main-content {
+    padding: calc(var(--topbar-height) + 0.85rem) 0.9rem 1.75rem;
+  }
+
+  .sidebar {
+    width: min(88vw, var(--sidebar-width));
+  }
+
+  .page-title {
+    font-size: 1.3rem;
+  }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  /* إخفاء نص زر الوضع على الشاشات الصغيرة والاكتفاء بالأيقونة */
+  .theme-toggle .theme-toggle-label {
+    display: none;
+  }
+
+  .theme-toggle {
+    padding: 0.6rem;
+  }
 }
 
-/* ===== Flexbox ===== */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.items-start { align-items: flex-start; }
-.items-end { align-items: flex-end; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-end { justify-content: flex-end; }
-.flex-wrap { flex-wrap: wrap; }
-.flex-1 { flex: 1; }
-.gap-1 { gap: 0.25rem; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-4 { gap: 1rem; }
-.gap-5 { gap: 1.25rem; }
-.gap-6 { gap: 1.5rem; }
-.gap-8 { gap: 2rem; }
+/* ===== Grid System =====
+   ملاحظة: لا نعرّف .grid أو gap هنا إطلاقاً حتى لا نلغي أدوات Tailwind
+   (مثل gap-3 و gap-4). نكتفي بجعل الأعمدة الثابتة تتجاوب مع حجم الشاشة،
+   ونستخدم minmax(0,1fr) بدل 1fr لمنع تمدّد المحتوى وتداخل العناصر.
+   ============================================================ */
+@layer utilities {
+  .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+  /* منع أي عنصر داخل الشبكة من دفع إخوته أو الخروج عن حدوده */
+  .grid > * { min-width: 0; }
+
+  @media (max-width: 1400px) {
+    .grid-cols-6 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 1280px) {
+    .grid-cols-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-cols-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 1024px) {
+    .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-4, .grid-cols-5, .grid-cols-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 640px) {
+    .grid-cols-2, .grid-cols-3, .grid-cols-4,
+    .grid-cols-5, .grid-cols-6 { grid-template-columns: minmax(0, 1fr); }
+  }
+}
+
+/* ===== Flexbox =====
+   حُذفت التعريفات اليدوية (flex / gap / items / justify) لأنها كانت نسخة
+   مكرّرة من أدوات Tailwind ومكتوبة خارج @layer، فكانت تتغلّب عليها وتلغي
+   أي gap مخصص وتسبّب التصاق العناصر ببعضها. Tailwind يوفّرها أصلاً.
+   ============================================================ */
 
 /* ===== معمل التركيبات ===== */
 .formula-lab-container {
   display: grid;
-  grid-template-columns: 1fr 440px;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 1.75rem;
+  align-items: start;
 }
 
-@media (max-width: 1280px) {
+.formula-lab-container > * {
+  min-width: 0;
+}
+
+@media (max-width: 1400px) {
   .formula-lab-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .formula-lab-container {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -2059,3 +2247,88 @@ html[data-theme='dark'] .hover\:from-gray-50:hover { --tw-gradient-from: rgba(42
 html[data-theme='dark'] .hover\:from-green-50:hover { --tw-gradient-from: rgba(34, 197, 94, 0.16); }
 html[data-theme='dark'] .hover\:from-purple-50:hover { --tw-gradient-from: rgba(168, 85, 247, 0.18); }
 html[data-theme='dark'] .hover\:to-white:hover { --tw-gradient-to: rgba(30, 37, 87, 0.95); }
+
+/* ============================================================
+   تنسيقات تخطيط عامة — تباعد متّسق ومنع التداخل
+   ============================================================ */
+
+/* رأس الصفحة: عنوان على اليمين وأزرار على اليسار، ينكسر لسطرين عند الضيق */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .page-header-actions {
+    width: 100%;
+  }
+  .page-header-actions > * {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* منع خروج المحتوى الطويل من الكروت والخلايا */
+.card,
+.stat-card,
+.product-card {
+  min-width: 0;
+}
+
+.stat-card .stat-value,
+.product-card-title {
+  overflow-wrap: anywhere;
+}
+
+/* الجداول: تمرير أفقي سلس بدل تكسير التخطيط */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.table {
+  min-width: 640px;
+}
+
+/* صفوف معمل التركيبات (شبكة 12 عمود) — تُمرَّر أفقياً على الشاشات الضيقة */
+.lab-rows {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lab-rows > * {
+  min-width: 720px;
+}
+
+/* شرائح التصفية القابلة للالتفاف */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+/* منع الصور/الأيقونات من الانكماش داخل الصفوف المرنة */
+.stat-icon,
+.icon-container {
+  flex-shrink: 0;
+}
+
+/* نصوص طويلة داخل عناصر مرنة */
+.truncate-safe {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

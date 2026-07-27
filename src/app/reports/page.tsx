@@ -111,14 +111,14 @@ export default function ReportsPage() {
   return (
     <div>
       {/* الهيدر */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="page-header">
         <div>
           <h1 className="page-title">{t('reports.title')}</h1>
           <p className="text-sm text-[var(--text-secondary)] mt-1">
             تقارير وتحليلات شاملة للنظام
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="page-header-actions">
           <button className="btn btn-outline">
             <Download size={18} />
             تصدير التقارير

@@ -269,14 +269,14 @@ export default function RawMaterialsPage() {
   return (
     <div>
       {/* الهيدر */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="page-header">
         <div>
           <h1 className="page-title">{t('raw_materials.title')}</h1>
           <p className="text-sm text-[var(--text-secondary)] mt-1">
             إدارة المواد الخام والمكونات
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="page-header-actions">
           <button className="btn btn-outline">
             <Upload size={18} />
             استيراد

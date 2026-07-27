@@ -219,14 +219,14 @@ export default function FormulaLabPage() {
   return (
     <div>
       {/* الهيدر */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="page-header">
         <div>
           <h1 className="page-title">{t('formula_lab.title')}</h1>
           <p className="text-sm text-[var(--text-secondary)] mt-1">
             إنشاء وحساب تكاليف التركيبات
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="page-header-actions">
           <button className="btn btn-outline">
             <Copy size={18} />
             نسخ التركيبة
@@ -320,7 +320,7 @@ export default function FormulaLabPage() {
                   </button>
                 </div>
               ) : (
-                <div>
+                <div className="lab-rows">
                   {/* رأس الجدول */}
                   <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[var(--surface-hover)] text-sm font-medium text-[var(--text-secondary)] border-b border-[var(--border)]">
                     <div className="col-span-4">المادة</div>

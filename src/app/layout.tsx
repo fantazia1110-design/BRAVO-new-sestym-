@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '@/components/ui/Sidebar';
+import TopBar from '@/components/ui/TopBar';
 import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="min-h-screen app-shell">
             <Sidebar />
+            <TopBar />
             <main className="main-content">
               {children}
             </main>
