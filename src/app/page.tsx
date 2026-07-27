@@ -89,10 +89,10 @@ const lowStockItems = [
 
 // الإجراءات السريعة
 const quickActions = [
-  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-blue-500 to-blue-600', glow: 'shadow-blue-500/30' },
-  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-600', glow: 'shadow-purple-500/30' },
-  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-emerald-500 to-green-600', glow: 'shadow-emerald-500/30' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-orange-500 to-red-500', glow: 'shadow-orange-500/30' },
+  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30' },
+  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30' },
+  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30' },
 ];
 
 export default function DashboardPage() {

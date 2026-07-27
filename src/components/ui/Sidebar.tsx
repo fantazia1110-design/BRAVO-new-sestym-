@@ -35,23 +35,23 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'لوحة التحكم', href: '/', icon: <LayoutDashboard size={20} />, color: 'text-blue-500' },
-  { label: 'المواد الخام', href: '/raw-materials', icon: <FlaskConical size={20} />, color: 'text-indigo-500' },
-  { label: 'الموردون', href: '/suppliers', icon: <Truck size={20} />, color: 'text-gray-500' },
+  { label: 'لوحة التحكم', href: '/', icon: <LayoutDashboard size={20} />, color: 'text-violet-500' },
+  { label: 'المواد الخام', href: '/raw-materials', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+  { label: 'الموردون', href: '/suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
   { label: 'التركيبات', href: '/formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
   { label: 'معمل التركيبات', href: '/formula-lab', icon: <Sparkles size={20} />, color: 'text-violet-500' },
-  { label: 'المنتجات', href: '/products', icon: <Package size={20} />, color: 'text-green-500' },
-  { label: 'التصنيع', href: '/production', icon: <Factory size={20} />, color: 'text-amber-500' },
-  { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-teal-500' },
-  { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-emerald-500' },
-  { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-orange-500' },
-  { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-cyan-500' },
-  { label: 'المديونيات', href: '/debts', icon: <CreditCard size={20} />, color: 'text-red-500' },
-  { label: 'المصروفات', href: '/expenses', icon: <Receipt size={20} />, color: 'text-rose-500' },
-  { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-sky-500' },
-  { label: 'الأكاديمية', href: '/academy', icon: <GraduationCap size={20} />, color: 'text-pink-500' },
+  { label: 'المنتجات', href: '/products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+  { label: 'التصنيع', href: '/production', icon: <Factory size={20} />, color: 'text-purple-500' },
+  { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-violet-500' },
+  { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
+  { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
+  { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
+  { label: 'المديونيات', href: '/debts', icon: <CreditCard size={20} />, color: 'text-fuchsia-500' },
+  { label: 'المصروفات', href: '/expenses', icon: <Receipt size={20} />, color: 'text-purple-500' },
+  { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-violet-500' },
+  { label: 'الأكاديمية', href: '/academy', icon: <GraduationCap size={20} />, color: 'text-fuchsia-400' },
   { label: 'الكتب الرقمية', href: '/books', icon: <BookOpen size={20} />, color: 'text-fuchsia-500' },
-  { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-slate-500' },
+  { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
 ];
 
 export default function Sidebar() {
