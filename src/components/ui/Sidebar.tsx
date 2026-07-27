@@ -26,7 +26,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { t } from '@/lib/localization';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 
 interface NavItem {
   label: string;

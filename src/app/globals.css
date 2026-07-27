@@ -2106,6 +2106,19 @@ html[data-theme='dark'] .hover\:bg-red-50:hover { background-color: rgba(239, 68
   box-shadow: 0 8px 22px -8px var(--primary-glow);
 }
 
+/* إبراز الزر قليلاً حتى يكون واضحاً في الشريط العلوي */
+.topbar .theme-toggle {
+  border-width: 2px;
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--info-bg);
+}
+
+html[data-theme='dark'] .topbar .theme-toggle {
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #e8ebff;
+}
+
 .theme-toggle-icon {
   display: inline-flex;
   align-items: center;
