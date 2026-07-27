@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "update": "git pull && npm install && npm run clean && next dev",
+    "update": "git pull && npm install && npm run clean && npm run verify && next dev",
+    "verify": "node scripts/verify.mjs",
     "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\"",
     "restart": "npm run clean && next dev",
     "build": "next build",
