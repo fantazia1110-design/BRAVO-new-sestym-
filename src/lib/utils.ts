@@ -7,12 +7,21 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatCurrency(amount: number | string, currency = 'EGP'): string {
   const num = typeof amount === 'string' ? parseFloat(amount) : amount;
-  return new Intl.NumberFormat('ar-EG', {
-    style: 'currency',
-    currency,
+  const value = new Intl.NumberFormat('ar-EG', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(num);
+  }).format(Number.isFinite(num) ? num : 0);
+
+  // نكتب اسم العملة كاملاً بدل الاختصار (ج.م.)
+  const names: Record<string, string> = {
+    EGP: 'جنيه',
+    SAR: 'ريال',
+    AED: 'درهم',
+    USD: 'دولار',
+    EUR: 'يورو',
+  };
+
+  return `${value} ${names[currency] ?? currency}`;
 }
 
 export function formatNumber(num: number | string, decimals = 2): string {

@@ -15,7 +15,19 @@ interface StatCardProps {
   };
   glowColor?: string;
   delay?: number;
+  /** نغمة لون البطاقة: تعطي كل بطاقة لوناً مميزاً */
+  tone?: StatTone;
 }
+
+export type StatTone =
+  | 'violet'
+  | 'emerald'
+  | 'purple'
+  | 'amber'
+  | 'teal'
+  | 'sky'
+  | 'rose'
+  | 'orange';
 
 export default function StatCard({
   title,
@@ -27,11 +39,12 @@ export default function StatCard({
   trend,
   glowColor,
   delay = 0,
+  tone,
 }: StatCardProps) {
   return (
-    <div 
-      className="stat-card animate-slide-up"
-      style={{ 
+    <div
+      className={`stat-card animate-slide-up${tone ? ` stat-card--${tone}` : ''}`}
+      style={{
         animationDelay: `${delay * 0.1}s`,
         animationFillMode: 'both',
       }}

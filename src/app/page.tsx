@@ -125,6 +125,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-blue-100 to-blue-200"
           iconColor="text-blue-600"
           delay={1}
+          tone="violet"
         />
         <StatCard
           title="المنتجات"
@@ -134,6 +135,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-green-100 to-emerald-200"
           iconColor="text-green-600"
           delay={2}
+          tone="emerald"
         />
         <StatCard
           title="التركيبات"
@@ -143,6 +145,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-purple-100 to-violet-200"
           iconColor="text-purple-600"
           delay={3}
+          tone="purple"
         />
         <StatCard
           title="قيمة المخزون"
@@ -151,6 +154,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-amber-100 to-orange-200"
           iconColor="text-amber-600"
           delay={4}
+          tone="amber"
         />
       </div>
 
@@ -164,6 +168,7 @@ export default function DashboardPage() {
           iconColor="text-emerald-600"
           trend={{ value: 12, isPositive: true }}
           delay={5}
+          tone="teal"
         />
         <StatCard
           title="مبيعات الشهر"
@@ -173,6 +178,7 @@ export default function DashboardPage() {
           iconColor="text-cyan-600"
           trend={{ value: 8, isPositive: true }}
           delay={6}
+          tone="sky"
         />
         <StatCard
           title="إجمالي المديونيات"
@@ -181,6 +187,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-red-100 to-rose-200"
           iconColor="text-red-600"
           delay={7}
+          tone="rose"
         />
         <StatCard
           title="مخزون منخفض"
@@ -190,6 +197,7 @@ export default function DashboardPage() {
           iconBgColor="bg-gradient-to-br from-orange-100 to-amber-200"
           iconColor="text-orange-600"
           delay={8}
+          tone="orange"
         />
       </div>
 
