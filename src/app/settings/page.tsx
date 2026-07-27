@@ -15,8 +15,23 @@ import {
   Receipt,
   Calculator,
   Save,
+  Sun,
+  Moon,
+  Monitor,
 } from 'lucide-react';
 import { t } from '@/lib/localization';
+import { useTheme, type ThemeMode } from '@/components/ThemeProvider';
+
+const themeOptions: {
+  id: ThemeMode;
+  label: string;
+  preview: string;
+  icon: React.ReactNode;
+}[] = [
+  { id: 'light', label: 'فاتح', preview: 'preview-light', icon: <Sun size={16} /> },
+  { id: 'dark', label: 'داكن', preview: 'preview-dark', icon: <Moon size={16} /> },
+  { id: 'system', label: 'تلقائي', preview: 'preview-system', icon: <Monitor size={16} /> },
+];
 
 interface SettingsSection {
   id: string;
@@ -95,6 +110,7 @@ const settingsSections: SettingsSection[] = [
 ];
 
 export default function SettingsPage() {
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('organization');
   const [orgData, setOrgData] = useState({
     name: 'شركة برافو للصناعات الكيميائية',
@@ -323,19 +339,29 @@ export default function SettingsPage() {
                 <div>
                   <label className="input-label mb-3 block">الوضع</label>
                   <div className="flex gap-4">
-                    <button className="flex-1 p-4 border-2 border-[var(--primary)] rounded-lg bg-white">
-                      <div className="h-20 bg-gray-100 rounded mb-2"></div>
-                      <p className="text-center font-medium">فاتح</p>
-                    </button>
-                    <button className="flex-1 p-4 border-2 border-[var(--border)] rounded-lg bg-gray-800">
-                      <div className="h-20 bg-gray-700 rounded mb-2"></div>
-                      <p className="text-center font-medium text-white">داكن</p>
-                    </button>
-                    <button className="flex-1 p-4 border-2 border-[var(--border)] rounded-lg">
-                      <div className="h-20 bg-gradient-to-b from-gray-100 to-gray-700 rounded mb-2"></div>
-                      <p className="text-center font-medium">تلقائي</p>
-                    </button>
+                    {themeOptions.map((option) => (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => setTheme(option.id)}
+                        className={`theme-option ${theme === option.id ? 'selected' : ''}`}
+                        aria-pressed={theme === option.id}
+                      >
+                        <div className={`theme-option-preview ${option.preview}`}></div>
+                        <p className="text-center font-bold flex items-center justify-center gap-2">
+                          {option.icon}
+                          {option.label}
+                        </p>
+                      </button>
+                    ))}
                   </div>
+                  <p className="text-sm text-[var(--text-secondary)] mt-3">
+                    الوضع المُطبّق حالياً:{' '}
+                    <span className="font-bold text-[var(--primary)]">
+                      {resolvedTheme === 'dark' ? 'الوضع الداكن' : 'الوضع الفاتح'}
+                    </span>
+                    {theme === 'system' && ' (حسب إعدادات الجهاز)'}
+                  </p>
                 </div>
 
                 <div>

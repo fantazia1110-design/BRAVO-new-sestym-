@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* ============================================================
+   BRAVO THEME — الوضع النهاري (افتراضي) + الوضع الليلي
+   الوضع الليلي معرّف بالكامل في نهاية الملف تحت [data-theme='dark']
+   ============================================================ */
+
 :root {
   /* الألوان الأساسية */
   --primary: #2563eb;
@@ -1310,3 +1315,747 @@ a:hover {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+
+/* ============================================================
+   ===============  الوضع الليلي — BRAVO NIGHT  ===============
+   لوحة ألوان كحلي/بنفسجي نيون مطابقة لتصميم لوحة التحكم
+   ============================================================ */
+
+html[data-theme='dark'] {
+  /* الألوان الأساسية */
+  --primary: #7c5cff;
+  --primary-light: #a78bfa;
+  --primary-dark: #6d4aff;
+  --primary-glow: rgba(124, 92, 255, 0.55);
+  --secondary: #22d3a5;
+  --secondary-light: #4ade80;
+  --accent: #c026d3;
+  --accent-glow: rgba(192, 38, 211, 0.5);
+
+  /* الأسطح والخلفيات */
+  --background: #070b22;
+  --background-deep: #05081a;
+  --surface: #121738;
+  --surface-2: #161c41;
+  --surface-hover: #1b2250;
+  --surface-glass: rgba(20, 26, 62, 0.75);
+  --border: #2a3170;
+  --border-soft: rgba(124, 92, 255, 0.18);
+  --border-strong: rgba(139, 122, 255, 0.35);
+
+  /* النصوص */
+  --text-primary: #eef1ff;
+  --text-secondary: #a9b1e0;
+  --text-muted: #6f7ab0;
+
+  /* ألوان الحالات */
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.16);
+  --success-glow: rgba(34, 197, 94, 0.45);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.16);
+  --warning-glow: rgba(251, 191, 36, 0.45);
+  --error: #f87171;
+  --error-bg: rgba(248, 113, 113, 0.16);
+  --error-glow: rgba(248, 113, 113, 0.45);
+  --info: #60a5fa;
+  --info-bg: rgba(96, 165, 250, 0.16);
+
+  /* ألوان الأقسام */
+  --detergents: #60a5fa;
+  --detergents-bg: rgba(96, 165, 250, 0.16);
+  --cosmetics: #f472b6;
+  --cosmetics-bg: rgba(244, 114, 182, 0.16);
+  --perfumes: #a78bfa;
+  --perfumes-bg: rgba(167, 139, 250, 0.16);
+  --soap: #34d399;
+  --soap-bg: rgba(52, 211, 153, 0.16);
+  --hair-care: #fbbf24;
+  --hair-care-bg: rgba(251, 191, 36, 0.16);
+  --skin-care: #22d3ee;
+  --skin-care-bg: rgba(34, 211, 238, 0.16);
+  --personal-care: #fb923c;
+  --personal-care-bg: rgba(251, 146, 60, 0.16);
+  --raw-materials: #818cf8;
+  --raw-materials-bg: rgba(129, 140, 248, 0.16);
+
+  /* الظلال — عمق داكن بدل الرمادي */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.55), 0 2px 4px -2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 20px -6px rgba(0, 0, 0, 0.65), 0 4px 8px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 18px 38px -10px rgba(0, 0, 0, 0.7), 0 8px 16px -8px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 28px 55px -14px rgba(0, 0, 0, 0.78), 0 12px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 36px 70px -18px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 45px -8px var(--primary-glow);
+  --shadow-glow-success: 0 0 45px -8px var(--success-glow);
+}
+
+/* ===== الخلفية العامة ===== */
+.app-shell {
+  background: var(--background);
+}
+
+html[data-theme='dark'] body {
+  background:
+    radial-gradient(1100px 620px at 78% -8%, rgba(124, 92, 255, 0.20) 0%, transparent 62%),
+    radial-gradient(900px 560px at 10% 6%, rgba(192, 38, 211, 0.14) 0%, transparent 60%),
+    radial-gradient(1000px 700px at 50% 108%, rgba(59, 130, 246, 0.12) 0%, transparent 62%),
+    linear-gradient(165deg, #080d26 0%, #070b22 45%, #05081a 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+html[data-theme='dark'] .app-shell {
+  background: transparent;
+}
+
+/* ===== الروابط ===== */
+html[data-theme='dark'] a { color: var(--primary-light); }
+html[data-theme='dark'] a:hover { color: #c4b5fd; }
+
+/* ===== البطاقات ===== */
+html[data-theme='dark'] .card {
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme='dark'] .card:not([class*='bg-gradient']) {
+  background: linear-gradient(155deg, rgba(24, 30, 72, 0.92) 0%, rgba(16, 21, 54, 0.94) 100%);
+}
+
+html[data-theme='dark'] .card::before {
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.45), transparent);
+}
+
+html[data-theme='dark'] .card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-xl), 0 0 36px -14px var(--primary-glow);
+}
+
+html[data-theme='dark'] .card-header {
+  background: linear-gradient(to bottom, rgba(31, 38, 88, 0.85), rgba(22, 28, 66, 0.85));
+  border-bottom: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .card-footer {
+  background: linear-gradient(to bottom, rgba(19, 24, 58, 0.85), rgba(14, 19, 48, 0.9));
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ===== بطاقات الإحصائيات ===== */
+html[data-theme='dark'] .stat-card {
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme='dark'] .stat-card:not([class*='bg-gradient']) {
+  background: linear-gradient(150deg, rgba(28, 34, 82, 0.95) 0%, rgba(17, 22, 56, 0.95) 100%);
+}
+
+html[data-theme='dark'] .stat-card::before {
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.22) 0%, transparent 70%);
+}
+
+html[data-theme='dark'] .stat-card::after {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+html[data-theme='dark'] .stat-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-xl), 0 0 45px -12px var(--primary-glow);
+}
+
+html[data-theme='dark'] .stat-value {
+  background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html[data-theme='dark'] .stat-icon {
+  box-shadow: var(--shadow), 0 0 22px -8px var(--primary-glow);
+}
+
+/* ===== القائمة الجانبية ===== */
+html[data-theme='dark'] .sidebar {
+  background:
+    radial-gradient(600px 380px at 100% 0%, rgba(124, 92, 255, 0.16) 0%, transparent 60%),
+    linear-gradient(180deg, #101636 0%, #0b1030 55%, #080c26 100%);
+  border-left: 1px solid var(--border-soft);
+  box-shadow: -8px 0 40px -12px rgba(0, 0, 0, 0.8);
+}
+
+html[data-theme='dark'] .sidebar-header {
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 45%, #1e3a8a 100%);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .nav-item {
+  color: var(--text-secondary);
+  margin: 0.25rem 0.75rem;
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1.15rem;
+  background: linear-gradient(135deg, rgba(35, 42, 95, 0.55) 0%, rgba(24, 30, 72, 0.55) 100%);
+  border: 1px solid rgba(124, 92, 255, 0.12);
+}
+
+html[data-theme='dark'] .nav-item::before {
+  background: linear-gradient(to left, rgba(124, 92, 255, 0.30), transparent);
+}
+
+html[data-theme='dark'] .nav-item:hover {
+  color: #ffffff;
+  border-color: rgba(139, 122, 255, 0.4);
+  box-shadow: 0 6px 20px -8px var(--primary-glow);
+  transform: translateX(-3px);
+}
+
+html[data-theme='dark'] .nav-item.active {
+  color: #ffffff;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.42) 0%, rgba(76, 29, 149, 0.42) 100%);
+  border-color: rgba(167, 139, 250, 0.55);
+  box-shadow: 0 8px 26px -10px var(--primary-glow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ===== الأزرار ===== */
+html[data-theme='dark'] .btn-primary {
+  background: linear-gradient(135deg, #7c5cff 0%, #5b21b6 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 20px -6px var(--primary-glow), var(--shadow);
+}
+
+html[data-theme='dark'] .btn-primary:hover:not(:disabled) {
+  box-shadow: 0 10px 30px -6px var(--primary-glow), var(--shadow-lg);
+}
+
+html[data-theme='dark'] .btn-secondary {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .btn-outline {
+  background: rgba(28, 34, 82, 0.7);
+  border: 2px solid var(--border);
+  color: var(--text-primary);
+}
+
+html[data-theme='dark'] .btn-outline:hover:not(:disabled) {
+  border-color: var(--primary-light);
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.25) 0%, rgba(28, 34, 82, 0.9) 100%);
+  box-shadow: 0 8px 25px -6px var(--primary-glow);
+}
+
+html[data-theme='dark'] .btn-ghost {
+  color: var(--text-secondary);
+}
+
+html[data-theme='dark'] .btn-ghost:hover:not(:disabled) {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.22) 0%, rgba(28, 34, 82, 0.8) 100%);
+}
+
+html[data-theme='dark'] .btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+}
+
+html[data-theme='dark'] .btn-success {
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+}
+
+/* ===== حقول الإدخال ===== */
+html[data-theme='dark'] .input {
+  background: rgba(13, 18, 46, 0.85);
+  border: 2px solid var(--border);
+  color: var(--text-primary);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme='dark'] .input:hover {
+  border-color: rgba(139, 122, 255, 0.5);
+}
+
+html[data-theme='dark'] .input:focus {
+  border-color: var(--primary-light);
+  background: rgba(18, 24, 58, 0.95);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.25), var(--shadow);
+}
+
+html[data-theme='dark'] .input:disabled {
+  background: rgba(10, 14, 36, 0.8);
+  opacity: 0.55;
+}
+
+html[data-theme='dark'] .input::placeholder { color: var(--text-muted); }
+
+html[data-theme='dark'] select.input option {
+  background: #121738;
+  color: var(--text-primary);
+}
+
+html[data-theme='dark'] input[type='date'],
+html[data-theme='dark'] input[type='time'],
+html[data-theme='dark'] input[type='datetime-local'] {
+  color-scheme: dark;
+}
+
+/* ===== الجداول ===== */
+html[data-theme='dark'] .table th {
+  background: linear-gradient(to bottom, rgba(34, 41, 96, 0.95), rgba(24, 30, 74, 0.95));
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .table td {
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(124, 92, 255, 0.12);
+}
+
+html[data-theme='dark'] .table tbody tr:hover {
+  background: linear-gradient(to left, rgba(124, 92, 255, 0.14), transparent);
+}
+
+html[data-theme='dark'] .table tbody tr:hover td {
+  color: #ffffff;
+}
+
+/* ===== الشارات ===== */
+html[data-theme='dark'] .badge { box-shadow: none; }
+
+html[data-theme='dark'] .badge-primary {
+  background: rgba(124, 92, 255, 0.20);
+  color: #c4b5fd;
+  border: 1px solid rgba(124, 92, 255, 0.4);
+}
+
+html[data-theme='dark'] .badge-success {
+  background: rgba(34, 197, 94, 0.18);
+  color: #6ee7a8;
+  border: 1px solid rgba(34, 197, 94, 0.38);
+}
+
+html[data-theme='dark'] .badge-warning {
+  background: rgba(251, 191, 36, 0.18);
+  color: #fcd34d;
+  border: 1px solid rgba(251, 191, 36, 0.38);
+}
+
+html[data-theme='dark'] .badge-error {
+  background: rgba(248, 113, 113, 0.18);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.38);
+}
+
+html[data-theme='dark'] .badge-info {
+  background: rgba(96, 165, 250, 0.18);
+  color: #93c5fd;
+  border: 1px solid rgba(96, 165, 250, 0.38);
+}
+
+/* ===== المودال ===== */
+html[data-theme='dark'] .modal-overlay {
+  background: rgba(4, 7, 22, 0.82);
+}
+
+html[data-theme='dark'] .modal {
+  background: linear-gradient(155deg, rgba(26, 32, 78, 0.98) 0%, rgba(15, 20, 52, 0.99) 100%);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-2xl), 0 0 60px -20px var(--primary-glow);
+}
+
+html[data-theme='dark'] .modal-header {
+  background: linear-gradient(to bottom, rgba(34, 41, 96, 0.9), rgba(24, 30, 74, 0.9));
+  border-bottom: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .modal-footer {
+  background: rgba(14, 19, 48, 0.9);
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ===== التبويبات ===== */
+html[data-theme='dark'] .tabs { border-bottom: 2px solid var(--border-soft); }
+
+html[data-theme='dark'] .tab { color: var(--text-secondary); }
+
+html[data-theme='dark'] .tab::before {
+  background: linear-gradient(to bottom, rgba(124, 92, 255, 0.22), transparent);
+}
+
+html[data-theme='dark'] .tab:hover { color: var(--primary-light); }
+
+html[data-theme='dark'] .tab.active {
+  color: #ffffff;
+  border-bottom-color: var(--primary-light);
+  background: linear-gradient(to bottom, rgba(124, 92, 255, 0.22), transparent);
+}
+
+/* ===== شريط التقدم ===== */
+html[data-theme='dark'] .progress-bar {
+  background: rgba(10, 14, 38, 0.9);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme='dark'] .progress-fill {
+  background: linear-gradient(90deg, #7c5cff 0%, #a78bfa 50%, #c026d3 100%);
+  box-shadow: 0 0 18px -4px var(--primary-glow);
+}
+
+/* ===== بطاقات الأقسام ===== */
+html[data-theme='dark'] .category-card {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: var(--shadow-md);
+}
+
+html[data-theme='dark'] .category-card::before {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
+}
+
+html[data-theme='dark'] .category-detergents { background: linear-gradient(145deg, #1d4ed8 0%, #172554 100%); }
+html[data-theme='dark'] .category-cosmetics { background: linear-gradient(145deg, #be185d 0%, #500724 100%); }
+html[data-theme='dark'] .category-perfumes { background: linear-gradient(145deg, #6d28d9 0%, #2e1065 100%); }
+html[data-theme='dark'] .category-soap { background: linear-gradient(145deg, #059669 0%, #022c22 100%); }
+html[data-theme='dark'] .category-hair-care { background: linear-gradient(145deg, #d97706 0%, #451a03 100%); }
+html[data-theme='dark'] .category-skin-care { background: linear-gradient(145deg, #0891b2 0%, #083344 100%); }
+html[data-theme='dark'] .category-personal-care { background: linear-gradient(145deg, #ea580c 0%, #431407 100%); }
+html[data-theme='dark'] .category-raw-materials { background: linear-gradient(145deg, #4f46e5 0%, #1e1b4b 100%); }
+
+/* ===== بطاقات المنتجات ===== */
+html[data-theme='dark'] .product-card {
+  background: linear-gradient(155deg, rgba(26, 32, 78, 0.95) 0%, rgba(15, 20, 52, 0.96) 100%);
+  border: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .product-card::before {
+  background: linear-gradient(180deg, transparent 55%, rgba(8, 12, 34, 0.85) 100%);
+}
+
+html[data-theme='dark'] .product-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2xl), 0 0 50px -16px var(--primary-glow);
+}
+
+html[data-theme='dark'] .product-card-price {
+  background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== التنبيهات ===== */
+html[data-theme='dark'] .alert-success {
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #86efac;
+}
+
+html[data-theme='dark'] .alert-warning {
+  background: rgba(251, 191, 36, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  color: #fcd34d;
+}
+
+html[data-theme='dark'] .alert-error {
+  background: rgba(248, 113, 113, 0.14);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fca5a5;
+}
+
+html[data-theme='dark'] .alert-info {
+  background: rgba(96, 165, 250, 0.14);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  color: #93c5fd;
+}
+
+/* ===== عناصر متفرقة ===== */
+html[data-theme='dark'] .page-title::after {
+  background: linear-gradient(90deg, var(--primary-light), var(--accent));
+  box-shadow: 0 0 14px -2px var(--primary-glow);
+}
+
+html[data-theme='dark'] .gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 50%, #67e8f9 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html[data-theme='dark'] .glass {
+  background: rgba(20, 26, 62, 0.65);
+  border: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .skeleton {
+  background: linear-gradient(90deg, #151b42 25%, #1e2557 50%, #151b42 75%);
+  background-size: 200% 100%;
+}
+
+html[data-theme='dark'] .loading-spinner {
+  border-color: var(--border);
+  border-top-color: var(--primary-light);
+}
+
+html[data-theme='dark'] .tooltip::after {
+  background: #1e2557;
+  color: #ffffff;
+  border: 1px solid var(--border-soft);
+}
+
+html[data-theme='dark'] .empty-state-icon { color: var(--text-muted); }
+
+/* ===== شريط التمرير ===== */
+html[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #0a0f2a;
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4c3f9e 0%, #322a6d 100%);
+  border: 2px solid #0a0f2a;
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c5cff 0%, #4c3f9e 100%);
+}
+
+html[data-theme='dark'] ::selection {
+  background: rgba(124, 92, 255, 0.45);
+  color: #ffffff;
+}
+
+/* ===== معادلة أدوات Tailwind الفاتحة داخل الوضع الليلي ===== */
+html[data-theme='dark'] .bg-white { background-color: var(--surface) !important; }
+html[data-theme='dark'] .bg-white\/50 { background-color: rgba(30, 37, 87, 0.5) !important; }
+html[data-theme='dark'] .bg-white\/80 { background-color: rgba(18, 23, 56, 0.8) !important; }
+html[data-theme='dark'] .bg-gray-50,
+html[data-theme='dark'] .bg-slate-50 { background-color: rgba(24, 30, 74, 0.6) !important; }
+html[data-theme='dark'] .bg-gray-100,
+html[data-theme='dark'] .bg-slate-100 { background-color: rgba(42, 49, 112, 0.55) !important; }
+html[data-theme='dark'] .bg-gray-200 { background-color: rgba(52, 60, 130, 0.6) !important; }
+html[data-theme='dark'] .bg-gray-700 { background-color: #1b2250 !important; }
+html[data-theme='dark'] .bg-gray-800 { background-color: #121738 !important; }
+
+html[data-theme='dark'] .text-gray-500,
+html[data-theme='dark'] .text-slate-500 { color: var(--text-muted) !important; }
+html[data-theme='dark'] .text-gray-600,
+html[data-theme='dark'] .text-gray-700,
+html[data-theme='dark'] .text-slate-600,
+html[data-theme='dark'] .text-slate-700 { color: var(--text-secondary) !important; }
+html[data-theme='dark'] .text-gray-800,
+html[data-theme='dark'] .text-gray-900 { color: var(--text-primary) !important; }
+
+/* الخلفيات اللونية الفاتحة (bg-*-100) تتحول لشفافية ملونة */
+html[data-theme='dark'] .bg-blue-50 { background-color: rgba(59, 130, 246, 0.12) !important; }
+html[data-theme='dark'] .bg-blue-100 { background-color: rgba(59, 130, 246, 0.18) !important; }
+html[data-theme='dark'] .bg-indigo-100 { background-color: rgba(99, 102, 241, 0.18) !important; }
+html[data-theme='dark'] .bg-purple-100 { background-color: rgba(168, 85, 247, 0.18) !important; }
+html[data-theme='dark'] .bg-violet-100 { background-color: rgba(139, 92, 246, 0.18) !important; }
+html[data-theme='dark'] .bg-fuchsia-100 { background-color: rgba(217, 70, 239, 0.18) !important; }
+html[data-theme='dark'] .bg-pink-100 { background-color: rgba(236, 72, 153, 0.18) !important; }
+html[data-theme='dark'] .bg-rose-100 { background-color: rgba(244, 63, 94, 0.18) !important; }
+html[data-theme='dark'] .bg-red-50 { background-color: rgba(239, 68, 68, 0.12) !important; }
+html[data-theme='dark'] .bg-red-100 { background-color: rgba(239, 68, 68, 0.18) !important; }
+html[data-theme='dark'] .bg-orange-100 { background-color: rgba(249, 115, 22, 0.18) !important; }
+html[data-theme='dark'] .bg-amber-100 { background-color: rgba(245, 158, 11, 0.18) !important; }
+html[data-theme='dark'] .bg-yellow-100 { background-color: rgba(234, 179, 8, 0.18) !important; }
+html[data-theme='dark'] .bg-green-50 { background-color: rgba(34, 197, 94, 0.12) !important; }
+html[data-theme='dark'] .bg-green-100 { background-color: rgba(34, 197, 94, 0.18) !important; }
+html[data-theme='dark'] .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.18) !important; }
+html[data-theme='dark'] .bg-teal-100 { background-color: rgba(20, 184, 166, 0.18) !important; }
+html[data-theme='dark'] .bg-cyan-100 { background-color: rgba(6, 182, 212, 0.18) !important; }
+html[data-theme='dark'] .bg-sky-100 { background-color: rgba(14, 165, 233, 0.18) !important; }
+
+/* تفتيح النصوص اللونية الداكنة لتظل مقروءة */
+html[data-theme='dark'] .text-blue-600, html[data-theme='dark'] .text-blue-700 { color: #93c5fd !important; }
+html[data-theme='dark'] .text-indigo-600 { color: #a5b4fc !important; }
+html[data-theme='dark'] .text-purple-600, html[data-theme='dark'] .text-purple-700 { color: #d8b4fe !important; }
+html[data-theme='dark'] .text-violet-600 { color: #c4b5fd !important; }
+html[data-theme='dark'] .text-fuchsia-600 { color: #f0abfc !important; }
+html[data-theme='dark'] .text-pink-600 { color: #f9a8d4 !important; }
+html[data-theme='dark'] .text-rose-600 { color: #fda4af !important; }
+html[data-theme='dark'] .text-red-600, html[data-theme='dark'] .text-red-700 { color: #fca5a5 !important; }
+html[data-theme='dark'] .text-orange-600 { color: #fdba74 !important; }
+html[data-theme='dark'] .text-amber-600 { color: #fcd34d !important; }
+html[data-theme='dark'] .text-green-600, html[data-theme='dark'] .text-green-700 { color: #86efac !important; }
+html[data-theme='dark'] .text-emerald-600 { color: #6ee7b7 !important; }
+html[data-theme='dark'] .text-teal-600 { color: #5eead4 !important; }
+html[data-theme='dark'] .text-cyan-600 { color: #67e8f9 !important; }
+html[data-theme='dark'] .text-sky-600 { color: #7dd3fc !important; }
+
+html[data-theme='dark'] .border-gray-100,
+html[data-theme='dark'] .border-gray-200,
+html[data-theme='dark'] .border-slate-200 { border-color: var(--border-soft) !important; }
+
+html[data-theme='dark'] .hover\:bg-gray-50:hover { background-color: rgba(42, 49, 112, 0.45) !important; }
+html[data-theme='dark'] .hover\:bg-red-50:hover { background-color: rgba(239, 68, 68, 0.16) !important; }
+
+/* ============================================================
+   زر تبديل الوضع الليلي/النهاري
+   ============================================================ */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -8px var(--primary-glow);
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-bounce);
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+  transform: rotate(-25deg) scale(1.15);
+}
+
+html[data-theme='dark'] .theme-toggle {
+  color: #e8ebff;
+  background: linear-gradient(135deg, rgba(45, 53, 118, 0.85) 0%, rgba(26, 32, 78, 0.85) 100%);
+  border: 1px solid rgba(139, 122, 255, 0.35);
+  box-shadow: 0 6px 20px -10px var(--primary-glow);
+}
+
+html[data-theme='dark'] .theme-toggle:hover {
+  color: #ffffff;
+  border-color: rgba(167, 139, 250, 0.65);
+  box-shadow: 0 10px 28px -8px var(--primary-glow);
+}
+
+html[data-theme='dark'] .theme-toggle .theme-toggle-icon { color: #fcd34d; }
+
+/* بطاقات اختيار الوضع في صفحة الإعدادات */
+.theme-option {
+  flex: 1;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.theme-option:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-light);
+  box-shadow: 0 10px 24px -10px var(--primary-glow);
+}
+
+.theme-option.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow), var(--shadow);
+}
+
+.theme-option-preview {
+  height: 5rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.625rem;
+  border: 1px solid var(--border-soft, rgba(0, 0, 0, 0.06));
+}
+
+.theme-option-preview.preview-light {
+  background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #e2e8f0 100%);
+}
+
+.theme-option-preview.preview-dark {
+  background:
+    radial-gradient(120px 80px at 80% 0%, rgba(124, 92, 255, 0.45) 0%, transparent 65%),
+    linear-gradient(165deg, #101636 0%, #070b22 100%);
+}
+
+.theme-option-preview.preview-system {
+  background: linear-gradient(110deg, #f0f4f8 0%, #e2e8f0 48%, #101636 52%, #070b22 100%);
+}
+
+/* ===== انتقال ناعم عند تبديل الوضع ===== */
+body,
+.card,
+.stat-card,
+.sidebar,
+.nav-item,
+.modal,
+.input,
+.table th,
+.table td,
+.product-card,
+.theme-toggle {
+  transition-property: background-color, background-image, border-color, color, box-shadow, transform;
+  transition-duration: 0.28s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .card, .stat-card, .sidebar, .nav-item, .modal, .input, .product-card, .theme-toggle {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* ===== تدرجات Tailwind الفاتحة (bg-gradient from/to) في الوضع الليلي ===== */
+html[data-theme='dark'] .from-gray-50 { --tw-gradient-from: rgba(30, 37, 87, 0.85); }
+html[data-theme='dark'] .from-gray-100 { --tw-gradient-from: rgba(42, 49, 112, 0.75); }
+html[data-theme='dark'] .from-blue-50 { --tw-gradient-from: rgba(37, 99, 235, 0.16); }
+html[data-theme='dark'] .from-blue-100 { --tw-gradient-from: rgba(37, 99, 235, 0.24); }
+html[data-theme='dark'] .from-green-50 { --tw-gradient-from: rgba(34, 197, 94, 0.16); }
+html[data-theme='dark'] .from-green-100 { --tw-gradient-from: rgba(34, 197, 94, 0.24); }
+html[data-theme='dark'] .from-emerald-100 { --tw-gradient-from: rgba(16, 185, 129, 0.24); }
+html[data-theme='dark'] .from-red-50 { --tw-gradient-from: rgba(239, 68, 68, 0.16); }
+html[data-theme='dark'] .from-red-100 { --tw-gradient-from: rgba(239, 68, 68, 0.24); }
+html[data-theme='dark'] .from-orange-50 { --tw-gradient-from: rgba(249, 115, 22, 0.16); }
+html[data-theme='dark'] .from-orange-100 { --tw-gradient-from: rgba(249, 115, 22, 0.24); }
+html[data-theme='dark'] .from-orange-200 { --tw-gradient-from: rgba(249, 115, 22, 0.3); }
+html[data-theme='dark'] .from-amber-100 { --tw-gradient-from: rgba(245, 158, 11, 0.24); }
+html[data-theme='dark'] .from-purple-50 { --tw-gradient-from: rgba(168, 85, 247, 0.16); }
+html[data-theme='dark'] .from-purple-100 { --tw-gradient-from: rgba(168, 85, 247, 0.24); }
+html[data-theme='dark'] .from-cyan-100 { --tw-gradient-from: rgba(6, 182, 212, 0.24); }
+
+html[data-theme='dark'] .to-white { --tw-gradient-to: rgba(22, 28, 65, 0.9); }
+html[data-theme='dark'] .to-gray-200 { --tw-gradient-to: rgba(52, 60, 130, 0.7); }
+html[data-theme='dark'] .to-blue-100 { --tw-gradient-to: rgba(37, 99, 235, 0.26); }
+html[data-theme='dark'] .to-blue-200 { --tw-gradient-to: rgba(37, 99, 235, 0.34); }
+html[data-theme='dark'] .to-green-100 { --tw-gradient-to: rgba(34, 197, 94, 0.26); }
+html[data-theme='dark'] .to-green-200 { --tw-gradient-to: rgba(34, 197, 94, 0.34); }
+html[data-theme='dark'] .to-emerald-100 { --tw-gradient-to: rgba(16, 185, 129, 0.26); }
+html[data-theme='dark'] .to-emerald-200 { --tw-gradient-to: rgba(16, 185, 129, 0.34); }
+html[data-theme='dark'] .to-red-50 { --tw-gradient-to: rgba(239, 68, 68, 0.16); }
+html[data-theme='dark'] .to-red-100 { --tw-gradient-to: rgba(239, 68, 68, 0.26); }
+html[data-theme='dark'] .to-red-200 { --tw-gradient-to: rgba(239, 68, 68, 0.34); }
+html[data-theme='dark'] .to-rose-100 { --tw-gradient-to: rgba(244, 63, 94, 0.26); }
+html[data-theme='dark'] .to-rose-200 { --tw-gradient-to: rgba(244, 63, 94, 0.34); }
+html[data-theme='dark'] .to-orange-200 { --tw-gradient-to: rgba(249, 115, 22, 0.34); }
+html[data-theme='dark'] .to-amber-200 { --tw-gradient-to: rgba(245, 158, 11, 0.34); }
+html[data-theme='dark'] .to-violet-200 { --tw-gradient-to: rgba(139, 92, 246, 0.34); }
+html[data-theme='dark'] .to-fuchsia-100 { --tw-gradient-to: rgba(217, 70, 239, 0.26); }
+
+/* الحواف الملونة الفاتحة */
+html[data-theme='dark'] .border-blue-200 { border-color: rgba(96, 165, 250, 0.35) !important; }
+html[data-theme='dark'] .border-green-200 { border-color: rgba(34, 197, 94, 0.35) !important; }
+html[data-theme='dark'] .border-red-200 { border-color: rgba(248, 113, 113, 0.35) !important; }
+html[data-theme='dark'] .border-orange-200 { border-color: rgba(251, 146, 60, 0.35) !important; }
+html[data-theme='dark'] .hover\:border-orange-400:hover { border-color: rgba(251, 146, 60, 0.6) !important; }
+html[data-theme='dark'] .border-white { border-color: rgba(167, 139, 250, 0.35) !important; }
+
+/* تدرجات hover الفاتحة */
+html[data-theme='dark'] .hover\:from-gray-50:hover { --tw-gradient-from: rgba(42, 49, 112, 0.75); }
+html[data-theme='dark'] .hover\:from-green-50:hover { --tw-gradient-from: rgba(34, 197, 94, 0.16); }
+html[data-theme='dark'] .hover\:from-purple-50:hover { --tw-gradient-from: rgba(168, 85, 247, 0.18); }
+html[data-theme='dark'] .hover\:to-white:hover { --tw-gradient-to: rgba(30, 37, 87, 0.95); }

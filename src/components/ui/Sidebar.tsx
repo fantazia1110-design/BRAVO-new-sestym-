@@ -26,6 +26,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { t } from '@/lib/localization';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 interface NavItem {
   label: string;
@@ -117,8 +118,9 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* تسجيل الخروج */}
-        <div className="p-4 border-t border-[var(--border)]">
+        {/* تبديل الوضع الليلي / النهاري + تسجيل الخروج */}
+        <div className="p-4 border-t border-[var(--border)] space-y-3">
+          <ThemeToggle className="w-full justify-center" />
           <button className="nav-item w-full text-red-500 hover:bg-red-50 rounded-lg">
             <LogOut size={20} />
             <span className="font-bold">تسجيل الخروج</span>
