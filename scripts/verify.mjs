@@ -9,6 +9,9 @@ const checks = [
   ['خلفية الموف الغامق',           'src/app/globals.css',   '#120830'],
   ['تساوي ارتفاع البطاقات',        'src/app/globals.css',   '.list-card'],
   ['مكوّن الشريط العلوي',          'src/components/ui/TopBar.tsx', 'topbar-left'],
+  ['أيقونات الأقسام SVG',         'src/components/ui/CategoryIcon.tsx', 'detergents'],
+  ['نصوص أزرار الإجراءات',        'src/app/globals.css',        'attr(title)'],
+  ['مشغّل التطوير التفاعلي',       'scripts/dev.mjs',            'next'],
 ];
 
 let ok = 0;
