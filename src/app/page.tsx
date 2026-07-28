@@ -21,6 +21,7 @@ import {
   ChevronLeft,
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
+import CategoryIcon from '@/components/ui/CategoryIcon';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
@@ -38,12 +39,12 @@ const stats = {
 
 // أقسام المنتجات
 const productCategories = [
-  { id: 'detergents', name: 'المنظفات', icon: '🧴', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700' },
-  { id: 'cosmetics', name: 'مستحضرات التجميل', icon: '💄', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600' },
-  { id: 'perfumes', name: 'العطور', icon: '🌸', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600' },
-  { id: 'soap', name: 'الصابون', icon: '🧼', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600' },
-  { id: 'hair', name: 'العناية بالشعر', icon: '💇', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600' },
-  { id: 'skin', name: 'العناية بالبشرة', icon: '✨', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600' },
+  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700' },
+  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600' },
+  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600' },
+  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600' },
+  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600' },
+  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600' },
 ];
 
 // المنتجات الأكثر مبيعاً
@@ -223,8 +224,11 @@ export default function DashboardPage() {
               className={`category-card ${category.color} animate-slide-up`}
               style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'both' }}
             >
-              <div className="text-5xl mb-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
-                {category.icon}
+              <div
+                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 animate-float shadow-sm"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <CategoryIcon id={category.id} />
               </div>
               <h3 className="text-lg font-bold mb-1">{category.name}</h3>
               <p className="text-sm opacity-90 font-semibold">{category.count} منتج</p>

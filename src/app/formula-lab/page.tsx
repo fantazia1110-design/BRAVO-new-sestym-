@@ -30,6 +30,9 @@ import {
 import Badge from '@/components/ui/Badge';
 import Modal from '@/components/ui/Modal';
 
+// عدّاد ثابت لتوليد معرّفات فريدة للمكونات (بديل نقي عن Date.now)
+let ingredientSeq = 0;
+
 interface RawMaterial {
   id: string;
   name: string;
@@ -135,7 +138,7 @@ export default function FormulaLabPage() {
     }
 
     const newIngredient: Ingredient = {
-      id: `ing-${Date.now()}`,
+      id: `ing-${++ingredientSeq}`,
       materialId: material.id,
       materialName: material.name,
       materialUnit: material.unit,
