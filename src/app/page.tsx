@@ -116,89 +116,61 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* الإحصائيات الرئيسية */}
-      <div className="grid grid-cols-4 gap-6">
+      {/* الإحصائيات */}
+      <div className="stat-grid-8">
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={28} />}
-          iconBgColor="bg-gradient-to-br from-blue-100 to-blue-200"
-          iconColor="text-blue-600"
+          icon={<FlaskConical size={20} />}
           delay={1}
-          tone="violet"
         />
         <StatCard
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<Package size={28} />}
-          iconBgColor="bg-gradient-to-br from-green-100 to-emerald-200"
-          iconColor="text-green-600"
+          icon={<Package size={20} />}
           delay={2}
-          tone="emerald"
         />
         <StatCard
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={28} />}
-          iconBgColor="bg-gradient-to-br from-purple-100 to-violet-200"
-          iconColor="text-purple-600"
+          icon={<Beaker size={20} />}
           delay={3}
-          tone="purple"
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={28} />}
-          iconBgColor="bg-gradient-to-br from-amber-100 to-orange-200"
-          iconColor="text-amber-600"
+          icon={<Warehouse size={20} />}
           delay={4}
-          tone="amber"
         />
-      </div>
-
-      {/* الإحصائيات المالية */}
-      <div className="grid grid-cols-4 gap-6">
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={28} />}
-          iconBgColor="bg-gradient-to-br from-emerald-100 to-green-200"
-          iconColor="text-emerald-600"
+          icon={<ShoppingCart size={20} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
-          tone="teal"
         />
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={28} />}
-          iconBgColor="bg-gradient-to-br from-cyan-100 to-blue-200"
-          iconColor="text-cyan-600"
+          icon={<TrendingUp size={20} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
-          tone="sky"
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={28} />}
-          iconBgColor="bg-gradient-to-br from-red-100 to-rose-200"
-          iconColor="text-red-600"
+          icon={<CreditCard size={20} />}
           delay={7}
-          tone="rose"
         />
         <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={28} />}
-          iconBgColor="bg-gradient-to-br from-orange-100 to-amber-200"
-          iconColor="text-orange-600"
+          icon={<AlertTriangle size={20} />}
           delay={8}
-          tone="orange"
         />
       </div>
 
