@@ -117,68 +117,60 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '0.75rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={20} />}
+          icon={<FlaskConical size={16} />}
           delay={1}
-          color="#7c3aed"
         />
         <StatCard
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<Package size={20} />}
+          icon={<Package size={16} />}
           delay={2}
-          color="#6d28d9"
         />
         <StatCard
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={20} />}
+          icon={<Beaker size={16} />}
           delay={3}
-          color="#8b5cf6"
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={20} />}
+          icon={<Warehouse size={16} />}
           delay={4}
-          color="#5b21b6"
         />
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={20} />}
+          icon={<ShoppingCart size={16} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
-          color="#7c3aed"
         />
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={20} />}
+          icon={<TrendingUp size={16} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
-          color="#6d28d9"
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={20} />}
+          icon={<CreditCard size={16} />}
           delay={7}
-          color="#8b5cf6"
         />
         <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={20} />}
+          icon={<AlertTriangle size={16} />}
           delay={8}
-          color="#5b21b6"
         />
       </div>
 
