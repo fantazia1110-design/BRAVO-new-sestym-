@@ -117,59 +117,59 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '0.6rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={16} />}
+          icon={<FlaskConical size={20} />}
           delay={1}
         />
         <StatCard
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<Package size={16} />}
+          icon={<Package size={20} />}
           delay={2}
         />
         <StatCard
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={16} />}
+          icon={<Beaker size={20} />}
           delay={3}
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={16} />}
+          icon={<Warehouse size={20} />}
           delay={4}
         />
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={16} />}
+          icon={<ShoppingCart size={20} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
         />
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={16} />}
+          icon={<TrendingUp size={20} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={16} />}
+          icon={<CreditCard size={20} />}
           delay={7}
         />
         <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={16} />}
+          icon={<AlertTriangle size={20} />}
           delay={8}
         />
       </div>
@@ -177,9 +177,9 @@ export default function DashboardPage() {
       {/* أقسام المنتجات */}
       <div className="animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
-              <Package size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
+              <Package size={24} />
             </span>
             أقسام المنتجات
           </h2>
@@ -212,9 +212,9 @@ export default function DashboardPage() {
       {/* الإجراءات السريعة */}
       <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
         <div className="card-header">
-          <h2 className="text-lg font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <Zap size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+              <Zap size={24} />
             </span>
             إجراءات سريعة
           </h2>
@@ -244,9 +244,9 @@ export default function DashboardPage() {
         {/* المنتجات الأكثر مبيعاً */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
-                <TrendingUp size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
+                <TrendingUp size={24} />
               </span>
               الأكثر مبيعاً
             </h2>
@@ -283,9 +283,9 @@ export default function DashboardPage() {
         {/* آخر التركيبات */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
-                <Beaker size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
+                <Beaker size={24} />
               </span>
               آخر التركيبات
             </h2>
@@ -323,9 +323,9 @@ export default function DashboardPage() {
         {/* آخر عمليات التصنيع */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
-                <Factory size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
+                <Factory size={24} />
               </span>
               التصنيع الجاري
             </h2>
@@ -368,9 +368,9 @@ export default function DashboardPage() {
         {/* آخر الفواتير */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
-                <FileText size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
+                <FileText size={24} />
               </span>
               آخر الفواتير
             </h2>
@@ -407,9 +407,9 @@ export default function DashboardPage() {
       {/* المواد منخفضة المخزون */}
       <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
         <div className="card-header flex items-center justify-between">
-          <h2 className="text-lg font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <AlertTriangle size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+              <AlertTriangle size={24} />
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
