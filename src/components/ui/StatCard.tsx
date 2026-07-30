@@ -62,7 +62,6 @@ export default function StatCard({
         height: '100%',
         background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
-        transition: 'all 0.35s ease',
       }} />
 
       {/* الأيقونة */}
@@ -75,36 +74,36 @@ export default function StatCard({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
       }}>
         {icon}
       </div>
 
       {/* العنوان */}
       <p style={{
-        fontSize: '0.85rem',
-        fontWeight: 800,
+        fontSize: '1rem',
+        fontWeight: 900,
         color: '#ffffff',
-        marginBottom: '0.15rem',
+        marginBottom: '0.2rem',
         textShadow: '0 1px 3px rgba(0,0,0,0.2)',
       }}>{title}</p>
 
       {/* القيمة */}
       <p style={{
-        fontSize: '1.5rem',
+        fontSize: '1.7rem',
         fontWeight: 900,
         color: '#ffffff',
         lineHeight: 1.2,
-        marginBottom: '0.1rem',
+        marginBottom: '0.15rem',
         textShadow: '0 2px 4px rgba(0,0,0,0.25)',
       }}>{value}</p>
 
       {/* الوصف */}
       {subtitle && (
         <p style={{
-          fontSize: '0.75rem',
-          fontWeight: 700,
-          color: '#ffffffcc',
+          fontSize: '0.9rem',
+          fontWeight: 800,
+          color: '#ffffff',
+          textShadow: '0 1px 2px rgba(0,0,0,0.15)',
         }}>{subtitle}</p>
       )}
 
@@ -114,15 +113,16 @@ export default function StatCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.25rem',
-          fontSize: '0.78rem',
+          gap: '0.3rem',
+          fontSize: '0.9rem',
           fontWeight: 800,
           marginTop: '0.15rem',
-          color: '#a5f3c4',
+          color: '#ffffff',
+          textShadow: '0 1px 2px rgba(0,0,0,0.15)',
         }}>
           <span>{trend.isPositive ? '↑' : '↓'}</span>
           <span>{Math.abs(trend.value)}%</span>
-          <span style={{ fontWeight: 700, color: '#ffffffbb', fontSize: '0.68rem' }}>عن الشهر السابق</span>
+          <span style={{ fontWeight: 700, color: '#ffffff', fontSize: '0.8rem' }}>عن الشهر السابق</span>
         </div>
       )}
     </div>
