@@ -117,13 +117,14 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div className="stat-grid-8">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
           icon={<FlaskConical size={20} />}
           delay={1}
+          color="#7c3aed"
         />
         <StatCard
           title="المنتجات"
@@ -131,6 +132,7 @@ export default function DashboardPage() {
           subtitle="منتج نهائي"
           icon={<Package size={20} />}
           delay={2}
+          color="#6d28d9"
         />
         <StatCard
           title="التركيبات"
@@ -138,12 +140,14 @@ export default function DashboardPage() {
           subtitle="تركيبة معتمدة"
           icon={<Beaker size={20} />}
           delay={3}
+          color="#8b5cf6"
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
           icon={<Warehouse size={20} />}
           delay={4}
+          color="#5b21b6"
         />
         <StatCard
           title="مبيعات اليوم"
@@ -151,6 +155,7 @@ export default function DashboardPage() {
           icon={<ShoppingCart size={20} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
+          color="#7c3aed"
         />
         <StatCard
           title="مبيعات الشهر"
@@ -158,12 +163,14 @@ export default function DashboardPage() {
           icon={<TrendingUp size={20} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
+          color="#6d28d9"
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
           icon={<CreditCard size={20} />}
           delay={7}
+          color="#8b5cf6"
         />
         <StatCard
           title="مخزون منخفض"
@@ -171,6 +178,7 @@ export default function DashboardPage() {
           subtitle="يحتاج إعادة طلب"
           icon={<AlertTriangle size={20} />}
           delay={8}
+          color="#5b21b6"
         />
       </div>
 
