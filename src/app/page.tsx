@@ -106,10 +106,10 @@ export default function DashboardPage() {
             <Sparkles className="text-white" size={32} />
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold gradient-text">
+            <h1 className="text-4xl font-extrabold gradient-text">
               مرحباً بك في BRAVO
             </h1>
-            <p className="text-[var(--text-secondary)] font-semibold text-lg">
+            <p className="text-[var(--text-secondary)] font-bold text-xl">
               نظام إدارة التركيبات والتصنيع الاحترافي ✨
             </p>
           </div>
@@ -117,7 +117,7 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '0.75rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '0.6rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}

@@ -29,62 +29,67 @@ export default function StatCard({
         animationDelay: `${delay * 0.08}s`,
         animationFillMode: 'both',
         background: 'linear-gradient(145deg, #7c3aed, #6d28d9)',
-        borderRadius: '0.85rem',
-        padding: '0.85rem 0.75rem',
+        borderRadius: '0.75rem',
+        padding: '0.65rem 0.6rem',
         textAlign: 'center',
         color: '#fff',
         position: 'relative',
         overflow: 'hidden',
-        transition: 'all 0.25s ease',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         cursor: 'default',
-        boxShadow: '0 4px 14px -4px rgba(109, 40, 217, 0.5)',
+        boxShadow: '0 2px 8px -2px rgba(109, 40, 217, 0.4)',
+        transform: 'translateY(0) scale(1)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-3px)';
-        e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(109, 40, 217, 0.6)';
+        e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
+        e.currentTarget.style.boxShadow = '0 16px 40px -8px rgba(109, 40, 217, 0.65)';
+        e.currentTarget.style.background = 'linear-gradient(145deg, #8b5cf6, #7c3aed)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 14px -4px rgba(109, 40, 217, 0.5)';
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = '0 2px 8px -2px rgba(109, 40, 217, 0.4)';
+        e.currentTarget.style.background = 'linear-gradient(145deg, #7c3aed, #6d28d9)';
       }}
     >
       {/* الأيقونة */}
       <div style={{
-        width: '2rem',
-        height: '2rem',
-        margin: '0 auto 0.35rem',
-        borderRadius: '0.5rem',
+        width: '1.8rem',
+        height: '1.8rem',
+        margin: '0 auto 0.25rem',
+        borderRadius: '0.45rem',
         background: 'rgba(255,255,255,0.2)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        transition: 'transform 0.3s ease',
       }}>
         {icon}
       </div>
 
       {/* العنوان */}
       <p style={{
-        fontSize: '0.82rem',
+        fontSize: '0.72rem',
         fontWeight: 800,
-        color: 'rgba(255,255,255,0.85)',
-        marginBottom: '0.15rem',
+        color: 'rgba(255,255,255,0.8)',
+        marginBottom: '0.1rem',
+        letterSpacing: '0.01em',
       }}>{title}</p>
 
       {/* القيمة */}
       <p style={{
-        fontSize: '1.5rem',
+        fontSize: '1.35rem',
         fontWeight: 900,
         color: '#fff',
-        lineHeight: 1.2,
-        marginBottom: '0.1rem',
+        lineHeight: 1.15,
+        marginBottom: '0.05rem',
       }}>{value}</p>
 
       {/* الوصف */}
       {subtitle && (
         <p style={{
-          fontSize: '0.75rem',
+          fontSize: '0.65rem',
           fontWeight: 700,
-          color: 'rgba(255,255,255,0.7)',
+          color: 'rgba(255,255,255,0.65)',
         }}>{subtitle}</p>
       )}
 
@@ -94,15 +99,15 @@ export default function StatCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.25rem',
-          fontSize: '0.78rem',
+          gap: '0.2rem',
+          fontSize: '0.7rem',
           fontWeight: 800,
-          marginTop: '0.15rem',
+          marginTop: '0.1rem',
           color: '#a5f3c4',
         }}>
           <span>{trend.isPositive ? '↑' : '↓'}</span>
           <span>{Math.abs(trend.value)}%</span>
-          <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.65)', fontSize: '0.68rem' }}>عن الشهر السابق</span>
+          <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.6)', fontSize: '0.6rem' }}>عن الشهر السابق</span>
         </div>
       )}
     </div>
