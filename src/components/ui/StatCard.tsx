@@ -107,12 +107,14 @@ export default function StatCard({
 
       {/* الأيقونة */}
       <div style={{
-        fontSize: '2rem', margin: '0 auto 0.3rem',
+        width: '2.8rem', height: '2.8rem', margin: '0 auto 0.35rem',
+        borderRadius: '0.7rem', background: 'rgba(255,255,255,0.15)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', zIndex: 2,
         transition: 'transform 0.35s ease',
-        transform: hovered ? 'scale(1.2) rotate(8deg)' : 'scale(1) rotate(0deg)',
-        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+        transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        backdropFilter: 'blur(4px)',
       }}>
         {icon}
       </div>

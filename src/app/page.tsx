@@ -122,7 +122,14 @@ export default function DashboardPage() {
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<span>🧪</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M9 3h6v2l3.5 6H5.5L9 5V3z" fill="white" fillOpacity="0.9"/>
+              <path d="M5 11h14v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-8z" fill="white" fillOpacity="0.4"/>
+              <path d="M7 14h10v5a1 1 0 01-1 1H8a1 1 0 01-1-1v-5z" fill="white" fillOpacity="0.65"/>
+              <rect x="8" y="2" width="8" height="2" rx="1" fill="white"/>
+            </svg>
+          )}
           delay={1}
           color="#4338ca"
           colorLight="#6366f1"
@@ -131,7 +138,16 @@ export default function DashboardPage() {
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<span>🔬</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h2v4l2 6v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6l2-6V2z" fill="white" fillOpacity="0.9"/>
+              <path d="M5 14h6v4a1 1 0 01-1 1H6a1 1 0 01-1-1v-4z" fill="white" fillOpacity="0.5"/>
+              <circle cx="8" cy="12" r="1.2" fill="white" fillOpacity="0.4"/>
+              <path d="M15 2h2v4l2 6v6a2 2 0 01-2 2h-2a2 2 0 01-2-2v-6l2-6V2z" fill="white" fillOpacity="0.6"/>
+              <path d="M13 14h6v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" fill="white" fillOpacity="0.35"/>
+              <circle cx="16" cy="11" r="1.2" fill="white" fillOpacity="0.35"/>
+            </svg>
+          )}
           delay={2}
           color="#7c3aed"
           colorLight="#a78bfa"
@@ -140,7 +156,16 @@ export default function DashboardPage() {
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<span>📦</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3L3 7l9 4 9-4-9-4z" fill="white" fillOpacity="0.9"/>
+              <path d="M3 7l9 4v10l-9-4V7z" fill="white" fillOpacity="0.6"/>
+              <path d="M12 11l9-4v10l-9 4V11z" fill="white" fillOpacity="0.4"/>
+              <path d="M12 11v10" stroke="white" strokeOpacity="0.5" strokeWidth="1.5"/>
+              <path d="M3 7l9 4" stroke="white" strokeOpacity="0.3" strokeWidth="1"/>
+              <path d="M21 7l-9 4" stroke="white" strokeOpacity="0.3" strokeWidth="1"/>
+            </svg>
+          )}
           delay={3}
           color="#0891b2"
           colorLight="#22d3ee"
@@ -149,7 +174,14 @@ export default function DashboardPage() {
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<span>🚨</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L1 21h22L12 2z" fill="white" fillOpacity="0.4"/>
+              <path d="M12 2L3 18h18L12 2z" fill="white" fillOpacity="0.25"/>
+              <rect x="11" y="8" width="2" height="6" rx="1" fill="white" fillOpacity="0.9"/>
+              <circle cx="12" cy="17" r="1.3" fill="white" fillOpacity="0.9"/>
+            </svg>
+          )}
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
@@ -157,7 +189,13 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<span>💰</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" fill="white" fillOpacity="0.2"/>
+              <path d="M12 4v16" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M9 7.5c0-1.2 1.3-2 3-2s3 .8 3 2-1.3 2-3 2-3 1-3 2.2 1.3 2 3 2 3-.8 3-2" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          )}
           trend={{ value: 12, isPositive: true }}
           delay={5}
           color="#15803d"
@@ -166,7 +204,14 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<span>📈</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="14" width="4" height="8" rx="1" fill="white" fillOpacity="0.5"/>
+              <rect x="8" y="10" width="4" height="12" rx="1" fill="white" fillOpacity="0.65"/>
+              <rect x="14" y="6" width="4" height="16" rx="1" fill="white" fillOpacity="0.85"/>
+              <rect x="20" y="2" width="4" height="20" rx="1" fill="white" fillOpacity="0.45"/>
+            </svg>
+          )}
           trend={{ value: 8, isPositive: true }}
           delay={6}
           color="#065f46"
@@ -175,7 +220,15 @@ export default function DashboardPage() {
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<span>💎</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L4 9h16L12 2z" fill="white" fillOpacity="0.9"/>
+              <path d="M4 9l8 13 8-13H4z" fill="white" fillOpacity="0.4"/>
+              <path d="M12 2L4 9l8 4 8-4L12 2z" fill="white" fillOpacity="0.2"/>
+              <path d="M4 9l8 13" stroke="white" strokeOpacity="0.3" strokeWidth="1"/>
+              <path d="M20 9l-8 13" stroke="white" strokeOpacity="0.3" strokeWidth="1"/>
+            </svg>
+          )}
           delay={7}
           color="#d97706"
           colorLight="#fbbf24"
@@ -183,7 +236,16 @@ export default function DashboardPage() {
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<span>🧾</span>}
+          icon={(
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M4 2h16v20l-3-2-3 2-3-2-3 2-4-2V2z" fill="white" fillOpacity="0.4"/>
+              <rect x="7" y="6" width="10" height="2" rx="1" fill="white" fillOpacity="0.85"/>
+              <rect x="7" y="10" width="7" height="2" rx="1" fill="white" fillOpacity="0.6"/>
+              <rect x="7" y="14" width="9" height="2" rx="1" fill="white" fillOpacity="0.7"/>
+              <circle cx="17" cy="17" r="3" fill="white" fillOpacity="0.3"/>
+              <path d="M17 15v4M15.5 17h3" stroke="white" strokeOpacity="0.8" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+          )}
           delay={8}
           color="#be123c"
           colorLight="#f43f5e"
