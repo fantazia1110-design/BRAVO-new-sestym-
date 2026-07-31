@@ -152,18 +152,19 @@ export default function StatCard({
       {trend && (
         <div style={{
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          gap: '0.25rem', marginTop: '0.3rem', padding: '0.3rem 0.7rem',
+          gap: '0.3rem', marginTop: '0.3rem', padding: '0.3rem 0.7rem',
           borderRadius: '2rem', background: 'rgba(0,0,0,0.25)',
           position: 'relative', zIndex: 2,
           transition: 'transform 0.3s ease',
           transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
           border: '1px solid rgba(74,222,128,0.3)',
+          direction: 'rtl',
         }}>
           <svg
             width="18" height="18" viewBox="0 0 24 24" fill="none"
             stroke={trend.isPositive ? '#4ade80' : '#f87171'}
             strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
-            style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))' }}
+            style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))', flexShrink: 0 }}
           >
             {trend.isPositive ? (
               <>
@@ -177,8 +178,8 @@ export default function StatCard({
               </>
             )}
           </svg>
-          <span style={{ fontSize: '1rem', fontWeight: 900, color: trend.isPositive ? '#4ade80' : '#f87171', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>{Math.abs(trend.value)}%</span>
-          <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#ffffffbb' }}>عن الشهر السابق</span>
+          <span style={{ fontSize: '1rem', fontWeight: 900, color: '#ffffff', textShadow: '0 1px 3px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>{Math.abs(trend.value)}%</span>
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#ffffff', whiteSpace: 'nowrap' }}>عن الشهر السابق</span>
         </div>
       )}
     </div>
