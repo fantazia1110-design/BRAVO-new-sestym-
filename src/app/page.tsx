@@ -159,8 +159,8 @@ export default function DashboardPage() {
           icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
-          color="#0891b2"
-          colorLight="#06b6d4"
+          color="#059669"
+          colorLight="#10b981"
         />
         <StatCard
           title="مبيعات الشهر"
@@ -168,8 +168,8 @@ export default function DashboardPage() {
           icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
-          color="#0284c7"
-          colorLight="#0ea5e9"
+          color="#16a34a"
+          colorLight="#22c55e"
         />
         <StatCard
           title="إجمالي المديونيات"
