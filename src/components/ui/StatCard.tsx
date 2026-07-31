@@ -107,7 +107,7 @@ export default function StatCard({
 
       {/* الأيقونة */}
       <div style={{
-        margin: '0 auto 0.35rem',
+        width: '2.5rem', height: '2.5rem', margin: '0 auto 0.35rem',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', zIndex: 2,
         transition: 'transform 0.35s ease',

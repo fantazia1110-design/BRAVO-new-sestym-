@@ -122,18 +122,7 @@ export default function DashboardPage() {
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <rect x="14" y="3" width="8" height="2.5" rx="1" fill="#a5b4fc"/>
-              <path d="M15 5.5h6v3l5 9H10l5-9v-3z" fill="#818cf8"/>
-              <path d="M10 17.5h16v12a2 2 0 01-2 2H12a2 2 0 01-2-2v-12z" fill="#6366f1"/>
-              <path d="M12 22h12v6a1 1 0 01-1 1H13a1 1 0 01-1-1v-6z" fill="#818cf8"/>
-              <path d="M12 22h12v6a1 1 0 01-1 1H13a1 1 0 01-1-1v-6z" fill="#a5b4fc" opacity="0.4"/>
-              <circle cx="16" cy="26" r="1.2" fill="#c7d2fe"/>
-              <circle cx="20" cy="24" r="0.8" fill="#c7d2fe"/>
-              <circle cx="18" cy="28" r="0.6" fill="#c7d2fe"/>
-            </svg>
-          )}
+          icon={<img src="/icons/raw-materials.png" alt="المواد الخام" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={1}
           color="#4338ca"
           colorLight="#6366f1"
@@ -142,19 +131,7 @@ export default function DashboardPage() {
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M11 3h3v5l2.5 8H8.5L11 8V3z" fill="#c4b5fd"/>
-              <path d="M8.5 16h8v9a2 2 0 01-2 2h-4a2 2 0 01-2-2v-9z" fill="#a78bfa"/>
-              <path d="M10 20h5v4a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4z" fill="#ddd6fe"/>
-              <circle cx="12.5" cy="18" r="1" fill="#ede9fe"/>
-              <path d="M22 3h3v5l2.5 8H19.5L22 8V3z" fill="#8b5cf6"/>
-              <path d="M19.5 16h8v9a2 2 0 01-2 2h-4a2 2 0 01-2-2v-9z" fill="#7c3aed"/>
-              <path d="M21 20h5v4a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4z" fill="#c4b5fd"/>
-              <circle cx="23.5" cy="17" r="1" fill="#ddd6fe"/>
-              <circle cx="23.5" cy="20" r="0.7" fill="#ede9fe"/>
-            </svg>
-          )}
+          icon={<img src="/icons/formulas.png" alt="التركيبات" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={2}
           color="#7c3aed"
           colorLight="#a78bfa"
@@ -163,16 +140,7 @@ export default function DashboardPage() {
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M18 4L5 10l13 6 13-6L18 4z" fill="#67e8f9"/>
-              <path d="M5 10l13 6v16L5 26V10z" fill="#0891b2"/>
-              <path d="M18 16l13-6v16L18 32V16z" fill="#06b6d4"/>
-              <path d="M18 16v16" stroke="#a5f3fc" strokeWidth="1" opacity="0.5"/>
-              <path d="M18 4L5 10l13 6" stroke="#a5f3fc" strokeWidth="1" opacity="0.4"/>
-              <path d="M5 14l13 6 13-6" stroke="#a5f3fc" strokeWidth="1" opacity="0.3"/>
-            </svg>
-          )}
+          icon={<img src="/icons/products.png" alt="المنتجات" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={3}
           color="#0891b2"
           colorLight="#22d3ee"
@@ -181,15 +149,7 @@ export default function DashboardPage() {
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M18 3L2 32h32L18 3z" fill="#fca5a5"/>
-              <path d="M18 3L4 28h28L18 3z" fill="#dc2626"/>
-              <path d="M18 3L6 28h24L18 3z" fill="#f87171" opacity="0.5"/>
-              <rect x="16.5" y="12" width="3" height="9" rx="1.5" fill="white"/>
-              <circle cx="18" cy="25" r="2" fill="white"/>
-            </svg>
-          )}
+          icon={<img src="/icons/low-stock.png" alt="مخزون منخفض" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
@@ -197,14 +157,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <circle cx="18" cy="18" r="15" fill="#4ade80"/>
-              <circle cx="18" cy="18" r="12" fill="#22c55e"/>
-              <path d="M18 6v24" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M13 10c0-1.8 2.2-3 5-3s5 1.2 5 3-2.2 3-5 3-5 1.5-5 3.3 2.2 3 5 3 5-1.2 5-3" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-            </svg>
-          )}
+          icon={<img src="/icons/today-sales.png" alt="مبيعات اليوم" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
           color="#15803d"
@@ -213,19 +166,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <rect x="3" y="21" width="6" height="12" rx="1.5" fill="#6ee7b7"/>
-              <rect x="11" y="15" width="6" height="18" rx="1.5" fill="#34d399"/>
-              <rect x="19" y="9" width="6" height="24" rx="1.5" fill="#10b981"/>
-              <rect x="27" y="3" width="6" height="30" rx="1.5" fill="#059669"/>
-              <path d="M6 18l8-7 8 5 8-9" stroke="#a7f3d0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="6" cy="18" r="1.5" fill="#ecfdf5"/>
-              <circle cx="14" cy="11" r="1.5" fill="#ecfdf5"/>
-              <circle cx="22" cy="16" r="1.5" fill="#ecfdf5"/>
-              <circle cx="30" cy="7" r="1.5" fill="#ecfdf5"/>
-            </svg>
-          )}
+          icon={<img src="/icons/month-sales.png" alt="مبيعات الشهر" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
           color="#065f46"
@@ -234,16 +175,7 @@ export default function DashboardPage() {
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M18 3L6 13h24L18 3z" fill="#fde68a"/>
-              <path d="M6 13l12 20 12-20H6z" fill="#d97706"/>
-              <path d="M18 3L6 13l12 6 12-6L18 3z" fill="#fbbf24"/>
-              <path d="M6 13l12 20" stroke="#fef3c7" strokeWidth="1" opacity="0.5"/>
-              <path d="M30 13l-12 20" stroke="#fef3c7" strokeWidth="1" opacity="0.5"/>
-              <path d="M18 3l12 10-12 6" fill="#f59e0b" opacity="0.3"/>
-            </svg>
-          )}
+          icon={<img src="/icons/inventory-value.png" alt="قيمة المخزون" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={7}
           color="#d97706"
           colorLight="#fbbf24"
@@ -251,17 +183,7 @@ export default function DashboardPage() {
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={(
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-              <path d="M6 3h24v30l-4.5-3-4.5 3-4.5-3-4.5 3-4.5-3L6 33V3z" fill="#f43f5e"/>
-              <path d="M6 3h24v30l-4.5-3-4.5 3-4.5-3-4.5 3-4.5-3L6 33V3z" fill="#fb7185" opacity="0.3"/>
-              <rect x="10" y="9" width="16" height="3" rx="1.5" fill="white" opacity="0.9"/>
-              <rect x="10" y="15" width="11" height="3" rx="1.5" fill="white" opacity="0.6"/>
-              <rect x="10" y="21" width="14" height="3" rx="1.5" fill="white" opacity="0.7"/>
-              <circle cx="25" cy="25" r="4.5" fill="white" opacity="0.25"/>
-              <path d="M25 22.5v5M22.5 25h5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-            </svg>
-          )}
+          icon={<img src="/icons/total-debts.png" alt="إجمالي المديونيات" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />}
           delay={8}
           color="#be123c"
           colorLight="#f43f5e"
