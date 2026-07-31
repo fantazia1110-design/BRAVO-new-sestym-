@@ -122,55 +122,71 @@ export default function DashboardPage() {
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={20} />}
+          icon={<FlaskConical size={18} />}
           delay={1}
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<Package size={20} />}
+          icon={<Package size={18} />}
           delay={2}
+          color="#6366f1"
+          colorLight="#818cf8"
         />
         <StatCard
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={20} />}
+          icon={<Beaker size={18} />}
           delay={3}
+          color="#9333ea"
+          colorLight="#a855f7"
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={20} />}
+          icon={<Warehouse size={18} />}
           delay={4}
+          color="#4f46e5"
+          colorLight="#6366f1"
         />
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={20} />}
+          icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
+          color="#c026d3"
+          colorLight="#d946ef"
         />
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={20} />}
+          icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
+          color="#a21caf"
+          colorLight="#c026d3"
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={20} />}
+          icon={<CreditCard size={18} />}
           delay={7}
+          color="#6d28d9"
+          colorLight="#7c3aed"
         />
         <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={20} />}
+          icon={<AlertTriangle size={18} />}
           delay={8}
+          color="#d97706"
+          colorLight="#f59e0b"
         />
       </div>
 

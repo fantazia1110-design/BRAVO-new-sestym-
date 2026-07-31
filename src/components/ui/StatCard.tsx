@@ -12,6 +12,8 @@ interface StatCardProps {
     isPositive: boolean;
   };
   delay?: number;
+  color: string;
+  colorLight: string;
 }
 
 export default function StatCard({
@@ -21,6 +23,8 @@ export default function StatCard({
   icon,
   trend,
   delay = 0,
+  color = '#7c3aed',
+  colorLight = '#8b5cf6',
 }: StatCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -32,8 +36,8 @@ export default function StatCard({
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
 
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.05)`;
     card.style.setProperty('--mouse-x', `${x}px`);
@@ -43,8 +47,8 @@ export default function StatCard({
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0) scale(1)';
-    card.style.boxShadow = '0 4px 14px -4px rgba(109, 40, 217, 0.5)';
-    card.style.background = 'linear-gradient(145deg, #7c3aed, #6d28d9)';
+    card.style.boxShadow = `0 4px 14px -4px ${color}80`;
+    card.style.background = `linear-gradient(145deg, ${colorLight}, ${color})`;
   };
 
   return (
@@ -54,23 +58,23 @@ export default function StatCard({
       style={{
         animationDelay: `${delay * 0.08}s`,
         animationFillMode: 'both',
-        background: 'linear-gradient(145deg, #7c3aed, #6d28d9)',
+        background: `linear-gradient(145deg, ${colorLight}, ${color})`,
         borderRadius: '1rem',
-        padding: '1.25rem 1rem',
+        padding: '1.1rem 0.7rem',
         textAlign: 'center',
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
         transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.3s ease',
         cursor: 'default',
-        boxShadow: '0 4px 14px -4px rgba(109, 40, 217, 0.5)',
+        boxShadow: `0 4px 14px -4px ${color}80`,
         transform: 'perspective(800px) rotateX(0) rotateY(0) translateY(0) scale(1)',
         willChange: 'transform',
       } as React.CSSProperties}
       onMouseMove={handleMouseMove}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 25px 60px -12px rgba(109, 40, 217, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.4)';
-        e.currentTarget.style.background = 'linear-gradient(145deg, #8b5cf6, #7c3aed)';
+        e.currentTarget.style.boxShadow = `0 25px 60px -12px ${color}cc, 0 0 30px -5px ${color}80`;
+        e.currentTarget.style.background = `linear-gradient(145deg, ${colorLight}dd, ${colorLight})`;
       }}
       onMouseLeave={handleMouseLeave}
     >
@@ -81,35 +85,23 @@ export default function StatCard({
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15), transparent 60%)',
+        background: 'radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15), transparent 60%)',
         pointerEvents: 'none',
         opacity: 0,
         transition: 'opacity 0.3s ease',
         zIndex: 1,
       }} />
 
-      {/* حدود متوهجة */}
-      <div style={{
-        position: 'absolute',
-        inset: -1,
-        borderRadius: '1.1rem',
-        background: 'linear-gradient(145deg, rgba(167,139,250,0.5), rgba(139,92,246,0.3), rgba(167,139,250,0.5))',
-        zIndex: -1,
-        opacity: 0,
-        transition: 'opacity 0.3s ease',
-      }} />
-
       {/* الأيقونة */}
       <div style={{
-        width: '2.4rem',
-        height: '2.4rem',
-        margin: '0 auto 0.4rem',
-        borderRadius: '0.65rem',
-        background: 'rgba(255,255,255,0.2)',
+        width: '2.2rem',
+        height: '2.2rem',
+        margin: '0 auto 0.3rem',
+        borderRadius: '0.55rem',
+        background: 'rgba(255,255,255,0.22)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
         position: 'relative',
         zIndex: 2,
       }}>
@@ -118,23 +110,23 @@ export default function StatCard({
 
       {/* العنوان */}
       <p style={{
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         fontWeight: 900,
         color: '#ffffff',
         marginBottom: '0.2rem',
-        textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+        textShadow: '0 2px 4px rgba(0,0,0,0.2)',
         position: 'relative',
         zIndex: 2,
       }}>{title}</p>
 
       {/* القيمة */}
       <p style={{
-        fontSize: '1.7rem',
+        fontSize: '1.8rem',
         fontWeight: 900,
         color: '#ffffff',
-        lineHeight: 1.2,
-        marginBottom: '0.15rem',
-        textShadow: '0 2px 4px rgba(0,0,0,0.25)',
+        lineHeight: 1.15,
+        marginBottom: '0.1rem',
+        textShadow: '0 2px 5px rgba(0,0,0,0.25)',
         position: 'relative',
         zIndex: 2,
       }}>{value}</p>
@@ -157,10 +149,10 @@ export default function StatCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '0.3rem',
-          fontSize: '0.9rem',
+          gap: '0.25rem',
+          fontSize: '0.88rem',
           fontWeight: 800,
-          marginTop: '0.15rem',
+          marginTop: '0.1rem',
           color: '#ffffff',
           textShadow: '0 1px 2px rgba(0,0,0,0.15)',
           position: 'relative',
@@ -168,7 +160,7 @@ export default function StatCard({
         }}>
           <span>{trend.isPositive ? '↑' : '↓'}</span>
           <span>{Math.abs(trend.value)}%</span>
-          <span style={{ fontWeight: 700, color: '#ffffff', fontSize: '0.8rem' }}>عن الشهر السابق</span>
+          <span style={{ fontWeight: 700, color: '#ffffffdd', fontSize: '0.78rem' }}>عن الشهر السابق</span>
         </div>
       )}
     </div>
