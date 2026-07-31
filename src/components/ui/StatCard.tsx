@@ -37,25 +37,28 @@ export default function StatCard({
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
 
-    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-16px) scale(1.08)`;
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
+    card.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-18px) scale(1.1)`;
 
-    // تحريك الضوء
     const glow = card.querySelector('.card-glow') as HTMLElement;
     if (glow) {
       glow.style.opacity = '1';
-      glow.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(255,255,255,0.2), transparent 50%)`;
+      glow.style.background = `radial-gradient(350px circle at ${x}px ${y}px, rgba(255,255,255,0.25), transparent 50%)`;
     }
 
-    // تحريك الحدود
     const border = card.querySelector('.card-border-glow') as HTMLElement;
     if (border) {
+      const angle = Math.atan2(y - centerY, x - centerX) * 180 / Math.PI;
       border.style.opacity = '1';
-      border.style.background = `conic-gradient(from ${Math.atan2(y - centerY, x - centerX) * 180 / Math.PI}deg at ${x}px ${y}px, ${colorLight}, transparent, ${colorLight}, transparent, ${colorLight})`;
+      border.style.background = `conic-gradient(from ${angle}deg at ${x}px ${y}px, ${colorLight}, transparent 30%, transparent 70%, ${colorLight})`;
+    }
+
+    const innerGlow = card.querySelector('.card-inner-glow') as HTMLElement;
+    if (innerGlow) {
+      innerGlow.style.opacity = '1';
+      innerGlow.style.background = `radial-gradient(200px circle at ${x}px ${y}px, ${colorLight}44, transparent 60%)`;
     }
   };
 
@@ -76,20 +79,24 @@ export default function StatCard({
         transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
         cursor: 'default',
         boxShadow: `0 4px 14px -4px ${color}80`,
-        transform: 'perspective(600px) rotateX(0) rotateY(0) translateY(0) scale(1)',
+        transform: 'perspective(500px) rotateX(0) rotateY(0) translateY(0) scale(1)',
         willChange: 'transform',
         zIndex: hovered ? 10 : 1,
       } as React.CSSProperties}
       onMouseMove={handleMouseMove}
       onMouseEnter={(e) => {
         setHovered(true);
-        e.currentTarget.style.boxShadow = `0 30px 60px -12px ${color}bb, 0 0 40px -5px ${colorLight}88`;
+        e.currentTarget.style.boxShadow = `
+          0 35px 70px -15px ${color}cc,
+          0 0 50px -10px ${colorLight}99,
+          inset 0 0 30px ${colorLight}22
+        `;
         e.currentTarget.style.background = `linear-gradient(145deg, ${colorLight}ee, ${color})`;
       }}
       onMouseLeave={(e) => {
         setHovered(false);
         const card = e.currentTarget;
-        card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        card.style.transform = 'perspective(500px) rotateX(0) rotateY(0) translateY(0) scale(1)';
         card.style.boxShadow = `0 4px 14px -4px ${color}80`;
         card.style.background = `linear-gradient(145deg, ${colorLight}, ${color})`;
         card.style.zIndex = '1';
@@ -99,6 +106,9 @@ export default function StatCard({
 
         const border = card.querySelector('.card-border-glow') as HTMLElement;
         if (border) border.style.opacity = '0';
+
+        const innerGlow = card.querySelector('.card-inner-glow') as HTMLElement;
+        if (innerGlow) innerGlow.style.opacity = '0';
       }}
     >
       {/* حدود متوهجة تدور مع الماوس */}
@@ -130,6 +140,20 @@ export default function StatCard({
         borderRadius: '1rem',
       }} />
 
+      {/* توهج داخلي يتبع الماوس */}
+      <div className="card-inner-glow" style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        opacity: 0,
+        transition: 'opacity 0.3s ease',
+        pointerEvents: 'none',
+        zIndex: 1,
+        borderRadius: '1rem',
+      }} />
+
       {/* لمعة ثابتة */}
       <div style={{
         position: 'absolute',
@@ -142,57 +166,27 @@ export default function StatCard({
         zIndex: 1,
       }} />
 
-      {/* شريط علوي متوهج عند الوقوف */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: hovered ? '3px' : '0px',
-        background: `linear-gradient(90deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
-        transition: 'height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        zIndex: 3,
-        boxShadow: hovered ? `0 0 15px ${colorLight}88` : 'none',
-      }} />
-
-      {/* شريط سفلي متوهج عند الوقوف */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: hovered ? '3px' : '0px',
-        background: `linear-gradient(90deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
-        transition: 'height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        zIndex: 3,
-        boxShadow: hovered ? `0 0 15px ${colorLight}88` : 'none',
-      }} />
-
-      {/* شريط يمين متوهج عند الوقوف */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        width: hovered ? '3px' : '0px',
-        background: `linear-gradient(180deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
-        transition: 'width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        zIndex: 3,
-        boxShadow: hovered ? `0 0 15px ${colorLight}88` : 'none',
-      }} />
-
-      {/* شريط يسار متوهج عند الوقوف */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        width: hovered ? '3px' : '0px',
-        background: `linear-gradient(180deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
-        transition: 'width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        zIndex: 3,
-        boxShadow: hovered ? `0 0 15px ${colorLight}88` : 'none',
-      }} />
+      {/* خطوط متوهجة من الأطراف */}
+      {[0, 1, 2, 3].map((i) => {
+        const isHorizontal = i < 2;
+        const isFirst = i % 2 === 0;
+        return (
+          <div key={i} style={{
+            position: 'absolute',
+            [isHorizontal ? (isFirst ? 'top' : 'bottom') : (isFirst ? 'right' : 'left')]: 0,
+            [isHorizontal ? 'left' : 'top']: 0,
+            [isHorizontal ? 'right' : 'bottom']: 0,
+            width: isHorizontal ? '100%' : hovered ? '3px' : '0px',
+            height: isHorizontal ? hovered ? '3px' : '0px' : '100%',
+            background: isHorizontal
+              ? `linear-gradient(90deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`
+              : `linear-gradient(180deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
+            transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            zIndex: 3,
+            boxShadow: hovered ? `0 0 20px ${colorLight}aa` : 'none',
+          }} />
+        );
+      })}
 
       {/* الأيقونة */}
       <div style={{
@@ -207,7 +201,8 @@ export default function StatCard({
         position: 'relative',
         zIndex: 2,
         transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        transform: hovered ? 'scale(1.2) rotate(10deg)' : 'scale(1) rotate(0deg)',
+        transform: hovered ? 'scale(1.25) rotate(15deg)' : 'scale(1) rotate(0deg)',
+        boxShadow: hovered ? '0 0 20px rgba(255,255,255,0.3)' : 'none',
       }}>
         {icon}
       </div>
@@ -218,11 +213,11 @@ export default function StatCard({
         fontWeight: 900,
         color: '#ffffff',
         marginBottom: '0.2rem',
-        textShadow: '0 2px 4px rgba(0,0,0,0.2)',
+        textShadow: hovered ? `0 0 10px ${colorLight}88` : '0 2px 4px rgba(0,0,0,0.2)',
         position: 'relative',
         zIndex: 2,
         transition: 'all 0.3s ease',
-        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
       }}>{title}</p>
 
       {/* القيمة */}
@@ -232,11 +227,11 @@ export default function StatCard({
         color: '#ffffff',
         lineHeight: 1.15,
         marginBottom: '0.1rem',
-        textShadow: '0 2px 5px rgba(0,0,0,0.25)',
+        textShadow: hovered ? `0 0 15px ${colorLight}aa` : '0 2px 5px rgba(0,0,0,0.25)',
         position: 'relative',
         zIndex: 2,
-        transition: 'all 0.3s ease',
-        transform: hovered ? 'scale(1.1) translateY(-2px)' : 'scale(1) translateY(0)',
+        transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        transform: hovered ? 'scale(1.15) translateY(-3px)' : 'scale(1) translateY(0)',
       }}>{value}</p>
 
       {/* الوصف */}
@@ -250,6 +245,7 @@ export default function StatCard({
           zIndex: 2,
           transition: 'all 0.3s ease',
           opacity: hovered ? 1 : 0.9,
+          transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
         }}>{subtitle}</p>
       )}
 
@@ -263,11 +259,12 @@ export default function StatCard({
           marginTop: '0.25rem',
           padding: '0.25rem 0.6rem',
           borderRadius: '2rem',
-          background: 'rgba(255,255,255,0.22)',
+          background: hovered ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.22)',
           position: 'relative',
           zIndex: 2,
-          transition: 'all 0.3s ease',
-          transform: hovered ? 'scale(1.1)' : 'scale(1)',
+          transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          transform: hovered ? 'scale(1.12)' : 'scale(1)',
+          boxShadow: hovered ? '0 0 15px rgba(74,222,128,0.3)' : 'none',
         }}>
           <span style={{
             fontSize: '1rem',

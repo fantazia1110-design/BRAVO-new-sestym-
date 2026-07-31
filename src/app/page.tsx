@@ -146,11 +146,20 @@ export default function DashboardPage() {
           colorLight="#22d3ee"
         />
         <StatCard
+          title="مخزون منخفض"
+          value={formatNumber(stats.lowStockItems, 0)}
+          subtitle="يحتاج إعادة طلب"
+          icon={<AlertTriangle size={18} />}
+          delay={4}
+          color="#991b1b"
+          colorLight="#dc2626"
+        />
+        <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
           icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
-          delay={4}
+          delay={5}
           color="#15803d"
           colorLight="#4ade80"
         />
@@ -159,7 +168,7 @@ export default function DashboardPage() {
           value={formatCurrency(stats.monthSales)}
           icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
-          delay={5}
+          delay={6}
           color="#065f46"
           colorLight="#10b981"
         />
@@ -167,18 +176,9 @@ export default function DashboardPage() {
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
           icon={<Warehouse size={18} />}
-          delay={6}
+          delay={7}
           color="#d97706"
           colorLight="#fbbf24"
-        />
-        <StatCard
-          title="مخزون منخفض"
-          value={formatNumber(stats.lowStockItems, 0)}
-          subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={18} />}
-          delay={7}
-          color="#991b1b"
-          colorLight="#dc2626"
         />
         <StatCard
           title="إجمالي المديونيات"
