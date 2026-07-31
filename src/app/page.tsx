@@ -123,11 +123,15 @@ export default function DashboardPage() {
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 3h6v2l3.5 6H5.5L9 5V3z" fill="#6366f1"/>
-              <path d="M5 11h14v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-8z" fill="#818cf8"/>
-              <path d="M7 14h10v5a1 1 0 01-1 1H8a1 1 0 01-1-1v-5z" fill="#a5b4fc"/>
-              <rect x="8" y="2" width="8" height="2" rx="1" fill="#4338ca"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <rect x="14" y="3" width="8" height="2.5" rx="1" fill="#a5b4fc"/>
+              <path d="M15 5.5h6v3l5 9H10l5-9v-3z" fill="#818cf8"/>
+              <path d="M10 17.5h16v12a2 2 0 01-2 2H12a2 2 0 01-2-2v-12z" fill="#6366f1"/>
+              <path d="M12 22h12v6a1 1 0 01-1 1H13a1 1 0 01-1-1v-6z" fill="#818cf8"/>
+              <path d="M12 22h12v6a1 1 0 01-1 1H13a1 1 0 01-1-1v-6z" fill="#a5b4fc" opacity="0.4"/>
+              <circle cx="16" cy="26" r="1.2" fill="#c7d2fe"/>
+              <circle cx="20" cy="24" r="0.8" fill="#c7d2fe"/>
+              <circle cx="18" cy="28" r="0.6" fill="#c7d2fe"/>
             </svg>
           )}
           delay={1}
@@ -139,13 +143,16 @@ export default function DashboardPage() {
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M7 2h2v4l2 6v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6l2-6V2z" fill="#a78bfa"/>
-              <path d="M5 14h6v4a1 1 0 01-1 1H6a1 1 0 01-1-1v-4z" fill="#c4b5fd"/>
-              <circle cx="8" cy="12" r="1.2" fill="#ddd6fe"/>
-              <path d="M15 2h2v4l2 6v6a2 2 0 01-2 2h-2a2 2 0 01-2-2v-6l2-6V2z" fill="#7c3aed"/>
-              <path d="M13 14h6v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" fill="#a78bfa"/>
-              <circle cx="16" cy="11" r="1.2" fill="#c4b5fd"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M11 3h3v5l2.5 8H8.5L11 8V3z" fill="#c4b5fd"/>
+              <path d="M8.5 16h8v9a2 2 0 01-2 2h-4a2 2 0 01-2-2v-9z" fill="#a78bfa"/>
+              <path d="M10 20h5v4a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4z" fill="#ddd6fe"/>
+              <circle cx="12.5" cy="18" r="1" fill="#ede9fe"/>
+              <path d="M22 3h3v5l2.5 8H19.5L22 8V3z" fill="#8b5cf6"/>
+              <path d="M19.5 16h8v9a2 2 0 01-2 2h-4a2 2 0 01-2-2v-9z" fill="#7c3aed"/>
+              <path d="M21 20h5v4a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4z" fill="#c4b5fd"/>
+              <circle cx="23.5" cy="17" r="1" fill="#ddd6fe"/>
+              <circle cx="23.5" cy="20" r="0.7" fill="#ede9fe"/>
             </svg>
           )}
           delay={2}
@@ -157,12 +164,13 @@ export default function DashboardPage() {
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3L3 7l9 4 9-4-9-4z" fill="#22d3ee"/>
-              <path d="M3 7l9 4v10l-9-4V7z" fill="#0891b2"/>
-              <path d="M12 11l9-4v10l-9 4V11z" fill="#06b6d4"/>
-              <path d="M12 11v10" stroke="white" strokeOpacity="0.6" strokeWidth="1.5"/>
-              <path d="M12 3L3 7l9 4" stroke="white" strokeOpacity="0.3" strokeWidth="1"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 4L5 10l13 6 13-6L18 4z" fill="#67e8f9"/>
+              <path d="M5 10l13 6v16L5 26V10z" fill="#0891b2"/>
+              <path d="M18 16l13-6v16L18 32V16z" fill="#06b6d4"/>
+              <path d="M18 16v16" stroke="#a5f3fc" strokeWidth="1" opacity="0.5"/>
+              <path d="M18 4L5 10l13 6" stroke="#a5f3fc" strokeWidth="1" opacity="0.4"/>
+              <path d="M5 14l13 6 13-6" stroke="#a5f3fc" strokeWidth="1" opacity="0.3"/>
             </svg>
           )}
           delay={3}
@@ -174,11 +182,12 @@ export default function DashboardPage() {
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L1 21h22L12 2z" fill="#fca5a5"/>
-              <path d="M12 2L3 18h18L12 2z" fill="#dc2626"/>
-              <rect x="11" y="8" width="2" height="6" rx="1" fill="white"/>
-              <circle cx="12" cy="17" r="1.3" fill="white"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 3L2 32h32L18 3z" fill="#fca5a5"/>
+              <path d="M18 3L4 28h28L18 3z" fill="#dc2626"/>
+              <path d="M18 3L6 28h24L18 3z" fill="#f87171" opacity="0.5"/>
+              <rect x="16.5" y="12" width="3" height="9" rx="1.5" fill="white"/>
+              <circle cx="18" cy="25" r="2" fill="white"/>
             </svg>
           )}
           delay={4}
@@ -189,10 +198,11 @@ export default function DashboardPage() {
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" fill="#4ade80"/>
-              <path d="M12 4v16" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M9 7.5c0-1.2 1.3-2 3-2s3 .8 3 2-1.3 2-3 2-3 1-3 2.2 1.3 2 3 2 3-.8 3-2" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="15" fill="#4ade80"/>
+              <circle cx="18" cy="18" r="12" fill="#22c55e"/>
+              <path d="M18 6v24" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M13 10c0-1.8 2.2-3 5-3s5 1.2 5 3-2.2 3-5 3-5 1.5-5 3.3 2.2 3 5 3 5-1.2 5-3" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           )}
           trend={{ value: 12, isPositive: true }}
@@ -204,11 +214,16 @@ export default function DashboardPage() {
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="14" width="4" height="8" rx="1" fill="#6ee7b7"/>
-              <rect x="8" y="10" width="4" height="12" rx="1" fill="#34d399"/>
-              <rect x="14" y="6" width="4" height="16" rx="1" fill="#10b981"/>
-              <rect x="20" y="2" width="4" height="20" rx="1" fill="#059669"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <rect x="3" y="21" width="6" height="12" rx="1.5" fill="#6ee7b7"/>
+              <rect x="11" y="15" width="6" height="18" rx="1.5" fill="#34d399"/>
+              <rect x="19" y="9" width="6" height="24" rx="1.5" fill="#10b981"/>
+              <rect x="27" y="3" width="6" height="30" rx="1.5" fill="#059669"/>
+              <path d="M6 18l8-7 8 5 8-9" stroke="#a7f3d0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="6" cy="18" r="1.5" fill="#ecfdf5"/>
+              <circle cx="14" cy="11" r="1.5" fill="#ecfdf5"/>
+              <circle cx="22" cy="16" r="1.5" fill="#ecfdf5"/>
+              <circle cx="30" cy="7" r="1.5" fill="#ecfdf5"/>
             </svg>
           )}
           trend={{ value: 8, isPositive: true }}
@@ -220,12 +235,13 @@ export default function DashboardPage() {
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L4 9h16L12 2z" fill="#fbbf24"/>
-              <path d="M4 9l8 13 8-13H4z" fill="#d97706"/>
-              <path d="M12 2L4 9l8 4 8-4L12 2z" fill="#fde68a"/>
-              <path d="M4 9l8 13" stroke="white" strokeOpacity="0.4" strokeWidth="1"/>
-              <path d="M20 9l-8 13" stroke="white" strokeOpacity="0.4" strokeWidth="1"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 3L6 13h24L18 3z" fill="#fde68a"/>
+              <path d="M6 13l12 20 12-20H6z" fill="#d97706"/>
+              <path d="M18 3L6 13l12 6 12-6L18 3z" fill="#fbbf24"/>
+              <path d="M6 13l12 20" stroke="#fef3c7" strokeWidth="1" opacity="0.5"/>
+              <path d="M30 13l-12 20" stroke="#fef3c7" strokeWidth="1" opacity="0.5"/>
+              <path d="M18 3l12 10-12 6" fill="#f59e0b" opacity="0.3"/>
             </svg>
           )}
           delay={7}
@@ -236,13 +252,14 @@ export default function DashboardPage() {
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
           icon={(
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 2h16v20l-3-2-3 2-3-2-3 2-4-2V2z" fill="#f43f5e"/>
-              <rect x="7" y="6" width="10" height="2" rx="1" fill="white" fillOpacity="0.85"/>
-              <rect x="7" y="10" width="7" height="2" rx="1" fill="white" fillOpacity="0.6"/>
-              <rect x="7" y="14" width="9" height="2" rx="1" fill="white" fillOpacity="0.7"/>
-              <circle cx="17" cy="17" r="3" fill="white" fillOpacity="0.3"/>
-              <path d="M17 15v4M15.5 17h3" stroke="white" strokeOpacity="0.9" strokeWidth="1.2" strokeLinecap="round"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M6 3h24v30l-4.5-3-4.5 3-4.5-3-4.5 3-4.5-3L6 33V3z" fill="#f43f5e"/>
+              <path d="M6 3h24v30l-4.5-3-4.5 3-4.5-3-4.5 3-4.5-3L6 33V3z" fill="#fb7185" opacity="0.3"/>
+              <rect x="10" y="9" width="16" height="3" rx="1.5" fill="white" opacity="0.9"/>
+              <rect x="10" y="15" width="11" height="3" rx="1.5" fill="white" opacity="0.6"/>
+              <rect x="10" y="21" width="14" height="3" rx="1.5" fill="white" opacity="0.7"/>
+              <circle cx="25" cy="25" r="4.5" fill="white" opacity="0.25"/>
+              <path d="M25 22.5v5M22.5 25h5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
             </svg>
           )}
           delay={8}

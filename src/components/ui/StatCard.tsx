@@ -107,13 +107,11 @@ export default function StatCard({
 
       {/* الأيقونة */}
       <div style={{
-        width: '2.8rem', height: '2.8rem', margin: '0 auto 0.35rem',
-        borderRadius: '0.7rem', background: 'white',
+        margin: '0 auto 0.35rem',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', zIndex: 2,
         transition: 'transform 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
       }}>
         {icon}
       </div>
