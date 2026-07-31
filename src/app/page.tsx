@@ -122,7 +122,7 @@ export default function DashboardPage() {
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={18} />}
+          icon={<span>🧪</span>}
           delay={1}
           color="#4338ca"
           colorLight="#6366f1"
@@ -131,7 +131,7 @@ export default function DashboardPage() {
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={18} />}
+          icon={<span>🔬</span>}
           delay={2}
           color="#7c3aed"
           colorLight="#a78bfa"
@@ -140,7 +140,7 @@ export default function DashboardPage() {
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<Package size={18} />}
+          icon={<span>📦</span>}
           delay={3}
           color="#0891b2"
           colorLight="#22d3ee"
@@ -149,7 +149,7 @@ export default function DashboardPage() {
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={18} />}
+          icon={<span>🚨</span>}
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
@@ -157,7 +157,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={18} />}
+          icon={<span>💰</span>}
           trend={{ value: 12, isPositive: true }}
           delay={5}
           color="#15803d"
@@ -166,7 +166,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={18} />}
+          icon={<span>📈</span>}
           trend={{ value: 8, isPositive: true }}
           delay={6}
           color="#065f46"
@@ -175,7 +175,7 @@ export default function DashboardPage() {
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={18} />}
+          icon={<span>💎</span>}
           delay={7}
           color="#d97706"
           colorLight="#fbbf24"
@@ -183,7 +183,7 @@ export default function DashboardPage() {
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={18} />}
+          icon={<span>🧾</span>}
           delay={8}
           color="#be123c"
           colorLight="#f43f5e"
