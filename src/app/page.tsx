@@ -185,8 +185,8 @@ export default function DashboardPage() {
           value={formatCurrency(stats.totalDebts)}
           icon={<CreditCard size={18} />}
           delay={8}
-          color="#b45309"
-          colorLight="#f59e0b"
+          color="#be123c"
+          colorLight="#f43f5e"
         />
       </div>
 
