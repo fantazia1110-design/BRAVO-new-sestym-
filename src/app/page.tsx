@@ -117,7 +117,7 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
