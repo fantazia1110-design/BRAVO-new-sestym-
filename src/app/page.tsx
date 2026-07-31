@@ -146,30 +146,30 @@ export default function DashboardPage() {
           colorLight="#34d399"
         />
         <StatCard
-          title="قيمة المخزون"
-          value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={18} />}
-          delay={4}
-          color="#d97706"
-          colorLight="#fbbf24"
-        />
-        <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
           icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
-          delay={5}
-          color="#0891b2"
-          colorLight="#22d3ee"
+          delay={4}
+          color="#15803d"
+          colorLight="#4ade80"
         />
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
           icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
+          delay={5}
+          color="#065f46"
+          colorLight="#10b981"
+        />
+        <StatCard
+          title="قيمة المخزون"
+          value={formatCurrency(stats.inventoryValue)}
+          icon={<Warehouse size={18} />}
           delay={6}
-          color="#db2777"
-          colorLight="#f472b6"
+          color="#d97706"
+          colorLight="#fbbf24"
         />
         <StatCard
           title="إجمالي المديونيات"
