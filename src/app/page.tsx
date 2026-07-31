@@ -20,7 +20,6 @@ import {
   Star,
   ChevronLeft,
 } from 'lucide-react';
-import { FaFlask, FaVial, FaBoxOpen, FaTriangleExclamation, FaMoneyBillWave, FaChartLine, FaGem, FaFileInvoiceDollar } from 'react-icons/fa6';
 import StatCard from '@/components/ui/StatCard';
 import CategoryIcon from '@/components/ui/CategoryIcon';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
@@ -123,7 +122,7 @@ export default function DashboardPage() {
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FaFlask size={20} />}
+          icon={<FlaskConical size={20} />}
           delay={1}
           color="#4338ca"
           colorLight="#6366f1"
@@ -132,7 +131,7 @@ export default function DashboardPage() {
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<FaVial size={20} />}
+          icon={<Beaker size={20} />}
           delay={2}
           color="#7c3aed"
           colorLight="#a78bfa"
@@ -141,7 +140,7 @@ export default function DashboardPage() {
           title="المنتجات"
           value={formatNumber(stats.products, 0)}
           subtitle="منتج نهائي"
-          icon={<FaBoxOpen size={20} />}
+          icon={<Package size={20} />}
           delay={3}
           color="#0891b2"
           colorLight="#22d3ee"
@@ -150,7 +149,7 @@ export default function DashboardPage() {
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<FaTriangleExclamation size={20} />}
+          icon={<AlertTriangle size={20} />}
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
@@ -158,7 +157,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
-          icon={<FaMoneyBillWave size={20} />}
+          icon={<ShoppingCart size={20} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
           color="#15803d"
@@ -167,7 +166,7 @@ export default function DashboardPage() {
         <StatCard
           title="مبيعات الشهر"
           value={formatCurrency(stats.monthSales)}
-          icon={<FaChartLine size={20} />}
+          icon={<TrendingUp size={20} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
           color="#065f46"
@@ -176,7 +175,7 @@ export default function DashboardPage() {
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
-          icon={<FaGem size={20} />}
+          icon={<Warehouse size={20} />}
           delay={7}
           color="#d97706"
           colorLight="#fbbf24"
@@ -184,7 +183,7 @@ export default function DashboardPage() {
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
-          icon={<FaFileInvoiceDollar size={20} />}
+          icon={<CreditCard size={20} />}
           delay={8}
           color="#be123c"
           colorLight="#f43f5e"
