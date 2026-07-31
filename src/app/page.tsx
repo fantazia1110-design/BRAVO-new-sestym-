@@ -119,46 +119,11 @@ export default function DashboardPage() {
       {/* الإحصائيات */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem' }}>
         <StatCard
-          title="المواد الخام"
-          value={formatNumber(stats.rawMaterials, 0)}
-          subtitle="نوع مختلف"
-          icon={<FlaskConical size={18} />}
-          delay={1}
-          color="#4f46e5"
-          colorLight="#6366f1"
-        />
-        <StatCard
-          title="المنتجات"
-          value={formatNumber(stats.products, 0)}
-          subtitle="منتج نهائي"
-          icon={<Package size={18} />}
-          delay={2}
-          color="#059669"
-          colorLight="#10b981"
-        />
-        <StatCard
-          title="التركيبات"
-          value={formatNumber(stats.formulas, 0)}
-          subtitle="تركيبة معتمدة"
-          icon={<Beaker size={18} />}
-          delay={3}
-          color="#7c3aed"
-          colorLight="#8b5cf6"
-        />
-        <StatCard
-          title="قيمة المخزون"
-          value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={18} />}
-          delay={4}
-          color="#d97706"
-          colorLight="#f59e0b"
-        />
-        <StatCard
           title="مبيعات اليوم"
           value={formatCurrency(stats.todaySales)}
           icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
-          delay={5}
+          delay={1}
           color="#059669"
           colorLight="#10b981"
         />
@@ -167,9 +132,44 @@ export default function DashboardPage() {
           value={formatCurrency(stats.monthSales)}
           icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
+          delay={2}
+          color="#d97706"
+          colorLight="#f59e0b"
+        />
+        <StatCard
+          title="المواد الخام"
+          value={formatNumber(stats.rawMaterials, 0)}
+          subtitle="نوع مختلف"
+          icon={<FlaskConical size={18} />}
+          delay={3}
+          color="#4f46e5"
+          colorLight="#6366f1"
+        />
+        <StatCard
+          title="قيمة المخزون"
+          value={formatCurrency(stats.inventoryValue)}
+          icon={<Warehouse size={18} />}
+          delay={4}
+          color="#7c3aed"
+          colorLight="#8b5cf6"
+        />
+        <StatCard
+          title="المنتجات"
+          value={formatNumber(stats.products, 0)}
+          subtitle="منتج نهائي"
+          icon={<Package size={18} />}
+          delay={5}
+          color="#0891b2"
+          colorLight="#06b6d4"
+        />
+        <StatCard
+          title="التركيبات"
+          value={formatNumber(stats.formulas, 0)}
+          subtitle="تركيبة معتمدة"
+          icon={<Beaker size={18} />}
           delay={6}
-          color="#16a34a"
-          colorLight="#22c55e"
+          color="#9333ea"
+          colorLight="#a855f7"
         />
         <StatCard
           title="إجمالي المديونيات"
