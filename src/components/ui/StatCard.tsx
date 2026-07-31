@@ -46,11 +46,11 @@ export default function StatCard({
         transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
         cursor: 'default',
         boxShadow: hovered
-          ? `0 20px 40px -10px ${color}bb, 0 0 30px ${colorLight}55`
+          ? `0 20px 40px -10px ${color}bb, 0 0 30px rgba(255,255,255,0.15)`
           : `0 4px 14px -4px ${color}80`,
         transform: hovered ? 'translateY(-10px) scale(1.06)' : 'translateY(0) scale(1)',
         zIndex: hovered ? 10 : 1,
-        border: hovered ? `2px solid ${colorLight}66` : '2px solid transparent',
+        border: hovered ? '2px solid rgba(255,255,255,0.4)' : '2px solid transparent',
       } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -59,9 +59,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', top: 0, left: '15%', right: '15%',
         height: hovered ? '3px' : '0px',
-        background: `linear-gradient(90deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), #fff, rgba(255,255,255,0.8), transparent)',
         transition: 'height 0.3s ease',
-        boxShadow: hovered ? `0 0 10px ${colorLight}` : 'none',
+        boxShadow: hovered ? '0 0 12px rgba(255,255,255,0.5)' : 'none',
         borderRadius: '2px',
       }} />
 
@@ -69,9 +69,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', bottom: 0, left: '15%', right: '15%',
         height: hovered ? '3px' : '0px',
-        background: `linear-gradient(90deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), #fff, rgba(255,255,255,0.8), transparent)',
         transition: 'height 0.3s ease 0.05s',
-        boxShadow: hovered ? `0 0 10px ${colorLight}` : 'none',
+        boxShadow: hovered ? '0 0 12px rgba(255,255,255,0.5)' : 'none',
         borderRadius: '2px',
       }} />
 
@@ -79,9 +79,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', top: '15%', bottom: '15%', right: 0,
         width: hovered ? '3px' : '0px',
-        background: `linear-gradient(180deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
+        background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.8), #fff, rgba(255,255,255,0.8), transparent)',
         transition: 'width 0.3s ease 0.1s',
-        boxShadow: hovered ? `0 0 10px ${colorLight}` : 'none',
+        boxShadow: hovered ? '0 0 12px rgba(255,255,255,0.5)' : 'none',
         borderRadius: '2px',
       }} />
 
@@ -89,9 +89,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', top: '15%', bottom: '15%', left: 0,
         width: hovered ? '3px' : '0px',
-        background: `linear-gradient(180deg, transparent, ${colorLight}, #fff, ${colorLight}, transparent)`,
+        background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.8), #fff, rgba(255,255,255,0.8), transparent)',
         transition: 'width 0.3s ease 0.15s',
-        boxShadow: hovered ? `0 0 10px ${colorLight}` : 'none',
+        boxShadow: hovered ? '0 0 12px rgba(255,255,255,0.5)' : 'none',
         borderRadius: '2px',
       }} />
 
