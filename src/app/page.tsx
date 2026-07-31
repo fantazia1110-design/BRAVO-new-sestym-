@@ -133,8 +133,8 @@ export default function DashboardPage() {
           subtitle="منتج نهائي"
           icon={<Package size={18} />}
           delay={2}
-          color="#6366f1"
-          colorLight="#818cf8"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="التركيبات"
@@ -142,16 +142,16 @@ export default function DashboardPage() {
           subtitle="تركيبة معتمدة"
           icon={<Beaker size={18} />}
           delay={3}
-          color="#9333ea"
-          colorLight="#a855f7"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="قيمة المخزون"
           value={formatCurrency(stats.inventoryValue)}
           icon={<Warehouse size={18} />}
           delay={4}
-          color="#4f46e5"
-          colorLight="#6366f1"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="مبيعات اليوم"
@@ -159,8 +159,8 @@ export default function DashboardPage() {
           icon={<ShoppingCart size={18} />}
           trend={{ value: 12, isPositive: true }}
           delay={5}
-          color="#c026d3"
-          colorLight="#d946ef"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="مبيعات الشهر"
@@ -168,16 +168,16 @@ export default function DashboardPage() {
           icon={<TrendingUp size={18} />}
           trend={{ value: 8, isPositive: true }}
           delay={6}
-          color="#a21caf"
-          colorLight="#c026d3"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="إجمالي المديونيات"
           value={formatCurrency(stats.totalDebts)}
           icon={<CreditCard size={18} />}
           delay={7}
-          color="#6d28d9"
-          colorLight="#7c3aed"
+          color="#7c3aed"
+          colorLight="#8b5cf6"
         />
         <StatCard
           title="مخزون منخفض"
@@ -185,8 +185,8 @@ export default function DashboardPage() {
           subtitle="يحتاج إعادة طلب"
           icon={<AlertTriangle size={18} />}
           delay={8}
-          color="#d97706"
-          colorLight="#f59e0b"
+          color="#dc2626"
+          colorLight="#ef4444"
         />
       </div>
 
