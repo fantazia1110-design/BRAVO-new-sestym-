@@ -142,8 +142,8 @@ export default function DashboardPage() {
           subtitle="منتج نهائي"
           icon={<Package size={18} />}
           delay={3}
-          color="#059669"
-          colorLight="#34d399"
+          color="#0891b2"
+          colorLight="#22d3ee"
         />
         <StatCard
           title="مبيعات اليوم"
@@ -176,8 +176,8 @@ export default function DashboardPage() {
           value={formatCurrency(stats.totalDebts)}
           icon={<CreditCard size={18} />}
           delay={7}
-          color="#ea580c"
-          colorLight="#fb923c"
+          color="#b45309"
+          colorLight="#f59e0b"
         />
         <StatCard
           title="مخزون منخفض"
