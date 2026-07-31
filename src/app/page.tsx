@@ -172,21 +172,21 @@ export default function DashboardPage() {
           colorLight="#fbbf24"
         />
         <StatCard
-          title="إجمالي المديونيات"
-          value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={18} />}
-          delay={7}
-          color="#b45309"
-          colorLight="#f59e0b"
-        />
-        <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
           icon={<AlertTriangle size={18} />}
-          delay={8}
+          delay={7}
           color="#991b1b"
           colorLight="#dc2626"
+        />
+        <StatCard
+          title="إجمالي المديونيات"
+          value={formatCurrency(stats.totalDebts)}
+          icon={<CreditCard size={18} />}
+          delay={8}
+          color="#b45309"
+          colorLight="#f59e0b"
         />
       </div>
 
