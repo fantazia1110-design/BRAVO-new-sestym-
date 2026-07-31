@@ -20,7 +20,7 @@ import {
   Star,
   ChevronLeft,
 } from 'lucide-react';
-import { FaFlask, FaVial, FaBoxOpen, FaExclamationTriangle, FaMoneyBillWave, FaChartLine, FaGem, FaFileInvoiceDollar } from 'react-icons/fa';
+import { FaFlask, FaVial, FaBoxOpen, FaTriangleExclamation, FaMoneyBillWave, FaChartLine, FaGem, FaFileInvoiceDollar } from 'react-icons/fa6';
 import StatCard from '@/components/ui/StatCard';
 import CategoryIcon from '@/components/ui/CategoryIcon';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
@@ -150,7 +150,7 @@ export default function DashboardPage() {
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<FaExclamationTriangle size={20} />}
+          icon={<FaTriangleExclamation size={20} />}
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
