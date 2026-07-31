@@ -46,8 +46,8 @@ export default function StatCard({
         transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
         cursor: 'default',
         boxShadow: hovered
-          ? `0 20px 40px -10px ${color}bb, 0 0 30px rgba(255,255,255,0.15)`
-          : `0 4px 14px -4px ${color}80`,
+          ? '0 20px 40px -10px rgba(0,0,0,0.35), 0 0 30px rgba(255,255,255,0.15)'
+          : '0 4px 14px -4px rgba(0,0,0,0.2)',
         transform: hovered ? 'translateY(-10px) scale(1.06)' : 'translateY(0) scale(1)',
         zIndex: hovered ? 10 : 1,
         border: hovered ? '2px solid rgba(255,255,255,0.4)' : '2px solid transparent',
