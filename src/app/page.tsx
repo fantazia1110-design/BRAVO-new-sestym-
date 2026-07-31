@@ -126,6 +126,8 @@ export default function DashboardPage() {
           delay={1}
           color="#4338ca"
           colorLight="#6366f1"
+          effect={1}
+          effectName="1- توهج ملون"
         />
         <StatCard
           title="التركيبات"
@@ -135,6 +137,8 @@ export default function DashboardPage() {
           delay={2}
           color="#7c3aed"
           colorLight="#a78bfa"
+          effect={2}
+          effectName="2- شعاع ضوء"
         />
         <StatCard
           title="المنتجات"
@@ -144,6 +148,8 @@ export default function DashboardPage() {
           delay={3}
           color="#0891b2"
           colorLight="#22d3ee"
+          effect={3}
+          effectName="3- إمالة ثلاثية"
         />
         <StatCard
           title="مخزون منخفض"
@@ -153,6 +159,8 @@ export default function DashboardPage() {
           delay={4}
           color="#991b1b"
           colorLight="#dc2626"
+          effect={4}
+          effectName="4- إطار متوهج"
         />
         <StatCard
           title="مبيعات اليوم"
@@ -162,6 +170,8 @@ export default function DashboardPage() {
           delay={5}
           color="#15803d"
           colorLight="#4ade80"
+          effect={5}
+          effectName="5- تكبير"
         />
         <StatCard
           title="مبيعات الشهر"
@@ -171,6 +181,8 @@ export default function DashboardPage() {
           delay={6}
           color="#065f46"
           colorLight="#10b981"
+          effect={6}
+          effectName="6- رفع عميق"
         />
         <StatCard
           title="قيمة المخزون"
@@ -179,6 +191,8 @@ export default function DashboardPage() {
           delay={7}
           color="#d97706"
           colorLight="#fbbf24"
+          effect={7}
+          effectName="7- تحول لوني"
         />
         <StatCard
           title="إجمالي المديونيات"
@@ -187,6 +201,8 @@ export default function DashboardPage() {
           delay={8}
           color="#be123c"
           colorLight="#f43f5e"
+          effect={8}
+          effectName="8- دوران ثلاثي"
         />
       </div>
 

@@ -1895,3 +1895,8 @@ a:hover {
 }
 .table th { height: 3.4rem; }
 .table td { height: 5.4rem; }
+
+@keyframes shineSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
