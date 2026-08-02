@@ -19,6 +19,11 @@ import {
   Zap,
   Star,
   ChevronLeft,
+  SoapDispenserDroplet,
+  SprayCan,
+  Bubbles,
+  Scissors,
+  HeartPulse,
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
 import CategoryCard from '@/components/ui/CategoryCard';
@@ -40,12 +45,12 @@ const stats = {
 
 // أقسام المنتجات
 const productCategories = [
-  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700' },
-  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600' },
-  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600' },
-  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600' },
-  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600' },
-  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600' },
+  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700', icon: <SoapDispenserDroplet size={36} strokeWidth={1.8} /> },
+  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600', icon: <Sparkles size={36} strokeWidth={1.8} /> },
+  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600', icon: <SprayCan size={36} strokeWidth={1.8} /> },
+  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600', icon: <Bubbles size={36} strokeWidth={1.8} /> },
+  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600', icon: <Scissors size={36} strokeWidth={1.8} /> },
+  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600', icon: <HeartPulse size={36} strokeWidth={1.8} /> },
 ];
 
 // المنتجات الأكثر مبيعاً
@@ -214,6 +219,7 @@ export default function DashboardPage() {
               count={category.count}
               colorClass={category.color}
               delay={0.4 + index * 0.1}
+              icon={category.icon}
             />
           ))}
         </div>

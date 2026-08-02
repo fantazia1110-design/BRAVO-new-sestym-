@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface CategoryCardProps {
   id: string;
@@ -10,7 +9,7 @@ interface CategoryCardProps {
   count: number;
   colorClass: string;
   delay?: number;
-  icon3d?: string;
+  icon: React.ReactNode;
 }
 
 export default function CategoryCard({
@@ -19,6 +18,7 @@ export default function CategoryCard({
   count,
   colorClass,
   delay = 0,
+  icon,
 }: CategoryCardProps) {
   const [hovered, setHovered] = useState(false);
 
@@ -104,19 +104,32 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة 3D */}
+      {/* أيقونة القسم */}
       <div style={{
-        width: '4.5rem', height: '4.5rem', margin: '0 auto 0.4rem',
-        position: 'relative', zIndex: 2,
-        transition: 'transform 0.35s ease',
+        width: '4.5rem',
+        height: '4.5rem',
+        margin: '0 auto 0.4rem',
+        position: 'relative',
+        zIndex: 2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'rgba(255,255,255,0.15)',
+        borderRadius: '1rem',
+        transition: 'transform 0.35s ease, background 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
         filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
       }}>
-        <img
-          src={`/icons/3d-${id}.png`}
-          alt={name}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
+        <div style={{
+          transition: 'transform 0.35s ease',
+          transform: hovered ? 'scale(1.1)' : 'scale(1)',
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          {icon}
+        </div>
       </div>
 
       {/* اسم القسم */}
