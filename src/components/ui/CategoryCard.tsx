@@ -40,7 +40,7 @@ export default function CategoryCard({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '180px',
+        minHeight: '250px',
         boxShadow: hovered
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
@@ -106,8 +106,8 @@ export default function CategoryCard({
       <div
         className="category-icon-animate"
         style={{
-          width: '8rem',
-          height: '8rem',
+          width: '10rem',
+          height: '10rem',
           margin: '0 auto 0.4rem',
           position: 'relative',
           zIndex: 2,
