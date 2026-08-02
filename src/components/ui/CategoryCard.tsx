@@ -106,8 +106,8 @@ export default function CategoryCard({
       <div
         className="category-icon-animate"
         style={{
-          width: '6.5rem',
-          height: '6.5rem',
+          width: '7.5rem',
+          height: '7.5rem',
           margin: '0 auto 0.5rem',
           position: 'relative',
           zIndex: 2,
