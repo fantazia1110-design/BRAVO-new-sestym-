@@ -499,7 +499,6 @@ export const translations = {
     restore: 'الاستعادة',
     theme: 'المظهر',
     light_mode: 'الوضع الفاتح',
-    dark_mode: 'الوضع الداكن',
     language: 'اللغة',
     currency: 'العملة',
     tax_settings: 'إعدادات الضريبة',

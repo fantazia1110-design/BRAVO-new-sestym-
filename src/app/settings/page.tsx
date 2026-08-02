@@ -15,23 +15,8 @@ import {
   Receipt,
   Calculator,
   Save,
-  Sun,
-  Moon,
-  Monitor,
 } from 'lucide-react';
 import { t } from '@/lib/localization';
-import { useTheme, type ThemeMode } from '@/components/ThemeProvider';
-
-const themeOptions: {
-  id: ThemeMode;
-  label: string;
-  preview: string;
-  icon: React.ReactNode;
-}[] = [
-  { id: 'light', label: 'فاتح', preview: 'preview-light', icon: <Sun size={16} /> },
-  { id: 'dark', label: 'داكن', preview: 'preview-dark', icon: <Moon size={16} /> },
-  { id: 'system', label: 'تلقائي', preview: 'preview-system', icon: <Monitor size={16} /> },
-];
 
 interface SettingsSection {
   id: string;
@@ -92,7 +77,7 @@ const settingsSections: SettingsSection[] = [
   {
     id: 'appearance',
     title: 'المظهر',
-    description: 'تخصيص الألوان والوضع الداكن',
+    description: 'تخصيص الألوان',
     icon: <Palette size={24} />,
   },
   {
@@ -110,7 +95,6 @@ const settingsSections: SettingsSection[] = [
 ];
 
 export default function SettingsPage() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('organization');
   const [orgData, setOrgData] = useState({
     name: 'شركة برافو للصناعات الكيميائية',
@@ -336,34 +320,6 @@ export default function SettingsPage() {
                 </h2>
               </div>
               <div className="card-body space-y-6">
-                <div>
-                  <label className="input-label mb-3 block">الوضع</label>
-                  <div className="flex gap-4">
-                    {themeOptions.map((option) => (
-                      <button
-                        key={option.id}
-                        type="button"
-                        onClick={() => setTheme(option.id)}
-                        className={`theme-option ${theme === option.id ? 'selected' : ''}`}
-                        aria-pressed={theme === option.id}
-                      >
-                        <div className={`theme-option-preview ${option.preview}`}></div>
-                        <p className="text-center font-bold flex items-center justify-center gap-2">
-                          {option.icon}
-                          {option.label}
-                        </p>
-                      </button>
-                    ))}
-                  </div>
-                  <p className="text-sm text-[var(--text-secondary)] mt-3">
-                    الوضع المُطبّق حالياً:{' '}
-                    <span className="font-bold text-[var(--primary)]">
-                      {resolvedTheme === 'dark' ? 'الوضع الداكن' : 'الوضع الفاتح'}
-                    </span>
-                    {theme === 'system' && ' (حسب إعدادات الجهاز)'}
-                  </p>
-                </div>
-
                 <div>
                   <label className="input-label mb-3 block">اللون الأساسي</label>
                   <div className="flex gap-3">
