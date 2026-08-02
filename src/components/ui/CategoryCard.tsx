@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface CategoryCardProps {
   id: string;
@@ -103,7 +102,7 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة القسم - 3D ملونة متحركة */}
+      {/* أيقونة 3D حقيقية */}
       <div
         className="category-icon-animate"
         style={{
@@ -112,15 +111,16 @@ export default function CategoryCard({
           margin: '0 auto 0.4rem',
           position: 'relative',
           zIndex: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           transition: 'transform 0.35s ease',
           transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
           filter: hovered ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.35))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
         }}
       >
-        <CategoryIcon id={id} size={56} />
+        <img
+          src={`/icons/3d-${id}.png`}
+          alt={name}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
       </div>
 
       {/* اسم القسم */}
