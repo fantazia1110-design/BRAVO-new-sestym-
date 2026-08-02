@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface CategoryCardProps {
   id: string;
@@ -10,7 +9,17 @@ interface CategoryCardProps {
   count: number;
   colorClass: string;
   delay?: number;
+  icon3d?: string;
 }
+
+const ICON_3D: Record<string, string> = {
+  detergents: '/icons/3d-detergents.png',
+  cosmetics: '/icons/3d-cosmetics.png',
+  perfumes: '/icons/3d-perfumes.png',
+  soap: '/icons/3d-soap.png',
+  hair: '/icons/3d-hair.png',
+  skin: '/icons/3d-skin.png',
+};
 
 export default function CategoryCard({
   id,
@@ -103,36 +112,19 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* الأيقونة */}
+      {/* أيقونة 3D */}
       <div style={{
-        width: '3.8rem', height: '3.8rem', margin: '0 auto 0.6rem',
-        borderRadius: '1rem',
-        background: 'linear-gradient(145deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 8px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.06)',
-        border: '1px solid rgba(255,255,255,0.9)',
+        width: '4rem', height: '4rem', margin: '0 auto 0.5rem',
         position: 'relative', zIndex: 2,
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease',
+        transition: 'transform 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
-        transformStyle: 'preserve-3d',
-        perspective: '500px',
+        filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
       }}>
-        <div style={{
-          transform: 'perspective(500px) rotateX(5deg) rotateY(-5deg)',
-          transition: 'transform 0.35s ease',
-          filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.15))',
-        }}>
-          <CategoryIcon id={id} />
-        </div>
-        {/* لمعة 3D */}
-        <div style={{
-          position: 'absolute',
-          top: 2, left: 4, right: 4,
-          height: '40%',
-          borderRadius: '0.8rem 0.8rem 50% 50%',
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)',
-          pointerEvents: 'none',
-        }} />
+        <img
+          src={ICON_3D[id] || ''}
+          alt={name}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
       </div>
 
       {/* اسم القسم */}
