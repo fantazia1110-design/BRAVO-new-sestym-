@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import {
-  SoapDispenserDroplet,
-  Sparkles,
-  SprayCan,
-  Bubbles,
+  WashingMachine,
+  Palette,
+  Flower2,
+  Bath,
   Scissors,
-  HeartPulse,
+  ScanFace,
 } from 'lucide-react';
 
 interface CategoryCardProps {
@@ -20,12 +20,12 @@ interface CategoryCardProps {
 }
 
 const ICONS: Record<string, React.ReactNode> = {
-  detergents: <SoapDispenserDroplet size={32} />,
-  cosmetics: <Sparkles size={32} />,
-  perfumes: <SprayCan size={32} />,
-  soap: <Bubbles size={32} />,
+  detergents: <WashingMachine size={32} />,
+  cosmetics: <Palette size={32} />,
+  perfumes: <Flower2 size={32} />,
+  soap: <Bath size={32} />,
   hair: <Scissors size={32} />,
-  skin: <HeartPulse size={32} />,
+  skin: <ScanFace size={32} />,
 };
 
 export default function CategoryCard({
