@@ -2,6 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  SoapDispenserDroplet,
+  Sparkles,
+  SprayCan,
+  Bubbles,
+  Scissors,
+  HeartPulse,
+} from 'lucide-react';
 
 interface CategoryCardProps {
   id: string;
@@ -10,6 +18,15 @@ interface CategoryCardProps {
   colorClass: string;
   delay?: number;
 }
+
+const ICONS: Record<string, React.ReactNode> = {
+  detergents: <SoapDispenserDroplet size={32} />,
+  cosmetics: <Sparkles size={32} />,
+  perfumes: <SprayCan size={32} />,
+  soap: <Bubbles size={32} />,
+  hair: <Scissors size={32} />,
+  skin: <HeartPulse size={32} />,
+};
 
 export default function CategoryCard({
   id,
@@ -28,7 +45,7 @@ export default function CategoryCard({
         animationDelay: `${delay}s`,
         animationFillMode: 'both',
         borderRadius: '1.2rem',
-        padding: '0.8rem 0.6rem 0.8rem',
+        padding: '1.5rem 1rem 1.2rem',
         textAlign: 'center',
         color: '#ffffff',
         position: 'relative',
@@ -40,7 +57,7 @@ export default function CategoryCard({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '160px',
+        minHeight: '180px',
         boxShadow: hovered
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
@@ -102,33 +119,31 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة 3D حقيقية - كبيرة */}
-      <div
-        className="category-icon-animate"
-        style={{
-          width: '7rem',
-          height: '7rem',
-          margin: '0 auto 0.2rem',
-          position: 'relative',
-          zIndex: 2,
-          transition: 'transform 0.35s ease',
-          transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
-          filter: hovered ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.35))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
-        }}
-      >
-        <img
-          src={`/icons/3d-${id}.png`}
-          alt={name}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
+      {/* أيقونة القسم */}
+      <div style={{
+        width: '4rem',
+        height: '4rem',
+        borderRadius: '1rem',
+        background: 'rgba(255,255,255,0.2)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '0.75rem',
+        position: 'relative',
+        zIndex: 2,
+        transition: 'transform 0.35s ease, background 0.35s ease',
+        transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
+        boxShadow: hovered ? '0 4px 12px rgba(0,0,0,0.2)' : 'none',
+      }}>
+        {ICONS[id]}
       </div>
 
       {/* اسم القسم */}
       <h3 style={{
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         fontWeight: 900,
         color: '#ffffff',
-        marginBottom: '0.3rem',
+        marginBottom: '0.5rem',
         textShadow: '0 1px 3px rgba(0,0,0,0.2)',
         textAlign: 'center',
         lineHeight: 1.3,
@@ -141,10 +156,10 @@ export default function CategoryCard({
       <p style={{
         background: hovered ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.2)',
         border: `1px solid ${hovered ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.25)'}`,
-        padding: '0.2rem 0.7rem',
+        padding: '0.3rem 0.85rem',
         borderRadius: '999px',
         fontWeight: 800,
-        fontSize: '0.8rem',
+        fontSize: '0.9rem',
         margin: '0 auto',
         textAlign: 'center',
         color: '#ffffff',
