@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface CategoryCardProps {
   id: string;
@@ -11,15 +12,6 @@ interface CategoryCardProps {
   delay?: number;
   icon3d?: string;
 }
-
-const ICON_3D: Record<string, string> = {
-  detergents: '/icons/3d-detergents.png',
-  cosmetics: '/icons/3d-cosmetics.png',
-  perfumes: '/icons/3d-perfumes.png',
-  soap: '/icons/3d-soap.png',
-  hair: '/icons/3d-hair.png',
-  skin: '/icons/3d-skin.png',
-};
 
 export default function CategoryCard({
   id,
@@ -112,19 +104,15 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة 3D */}
+      {/* أيقونة 3D SVG */}
       <div style={{
-        width: '4rem', height: '4rem', margin: '0 auto 0.5rem',
+        width: '3.8rem', height: '3.8rem', margin: '0 auto 0.5rem',
         position: 'relative', zIndex: 2,
         transition: 'transform 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
         filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
       }}>
-        <img
-          src={ICON_3D[id] || ''}
-          alt={name}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
+        <CategoryIcon id={id} size={52} />
       </div>
 
       {/* اسم القسم */}
