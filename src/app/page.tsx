@@ -213,25 +213,28 @@ export default function DashboardPage() {
               style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'both' }}
             >
               <div
-                className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-3 animate-float shadow-sm"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                style={{
+                  width: '3.5rem', height: '3.5rem', margin: '0 auto 0.6rem',
+                  borderRadius: '50%', background: 'rgba(255,255,255,0.92)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: '0 4px 12px -2px rgba(0,0,0,0.25)',
+                  border: '2px solid rgba(255,255,255,0.9)',
+                  position: 'relative', zIndex: 2,
+                  transition: 'transform 0.3s ease',
+                }}
               >
                 <CategoryIcon id={category.id} />
               </div>
               <h3 style={{
-                fontSize: '1rem',
+                fontSize: '1.15rem',
                 fontWeight: 900,
                 color: '#ffffff',
-                marginBottom: '0.4rem',
+                marginBottom: '0.5rem',
                 textShadow: '0 1px 3px rgba(0,0,0,0.2)',
                 textAlign: 'center',
-                position: 'relative',
-                zIndex: 2,
+                lineHeight: 1.3,
               }}>{category.name}</h3>
-              <p style={{
-                position: 'relative',
-                zIndex: 2,
-              }}>{category.count} منتج</p>
+              <p>{category.count} منتج</p>
             </Link>
           ))}
         </div>
