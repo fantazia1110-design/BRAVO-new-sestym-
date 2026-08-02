@@ -204,7 +204,7 @@ export default function DashboardPage() {
             <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           </Link>
         </div>
-        <div className="grid grid-cols-6 gap-5">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
           {productCategories.map((category, index) => (
             <Link
               key={category.id}
@@ -213,13 +213,25 @@ export default function DashboardPage() {
               style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'both' }}
             >
               <div
-                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 animate-float shadow-sm"
+                className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-3 animate-float shadow-sm"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <CategoryIcon id={category.id} />
               </div>
-              <h3 className="text-lg font-bold mb-1">{category.name}</h3>
-              <p className="text-sm opacity-90 font-semibold">{category.count} منتج</p>
+              <h3 style={{
+                fontSize: '1rem',
+                fontWeight: 900,
+                color: '#ffffff',
+                marginBottom: '0.4rem',
+                textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                textAlign: 'center',
+                position: 'relative',
+                zIndex: 2,
+              }}>{category.name}</h3>
+              <p style={{
+                position: 'relative',
+                zIndex: 2,
+              }}>{category.count} منتج</p>
             </Link>
           ))}
         </div>
