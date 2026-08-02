@@ -2,14 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import {
-  WashingMachine,
-  Palette,
-  Flower2,
-  Bath,
-  Scissors,
-  ScanFace,
-} from 'lucide-react';
+import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface CategoryCardProps {
   id: string;
@@ -18,15 +11,6 @@ interface CategoryCardProps {
   colorClass: string;
   delay?: number;
 }
-
-const ICONS: Record<string, React.ReactNode> = {
-  detergents: <WashingMachine size={32} />,
-  cosmetics: <Palette size={32} />,
-  perfumes: <Flower2 size={32} />,
-  soap: <Bath size={32} />,
-  hair: <Scissors size={32} />,
-  skin: <ScanFace size={32} />,
-};
 
 export default function CategoryCard({
   id,
@@ -119,23 +103,21 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة القسم */}
-      <div style={{
-        width: '4rem',
-        height: '4rem',
-        borderRadius: '1rem',
-        background: 'rgba(255,255,255,0.2)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '0.75rem',
-        position: 'relative',
-        zIndex: 2,
-        transition: 'transform 0.35s ease, background 0.35s ease',
-        transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
-        boxShadow: hovered ? '0 4px 12px rgba(0,0,0,0.2)' : 'none',
-      }}>
-        {ICONS[id]}
+      {/* أيقونة القسم - ملونة واحترافية */}
+      <div
+        className="category-icon-animate"
+        style={{
+          width: '4.5rem',
+          height: '4.5rem',
+          margin: '0 auto 0.5rem',
+          position: 'relative',
+          zIndex: 2,
+          transition: 'transform 0.35s ease',
+          transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
+          filter: hovered ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+        }}
+      >
+        <CategoryIcon id={id} size={56} />
       </div>
 
       {/* اسم القسم */}
