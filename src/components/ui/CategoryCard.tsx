@@ -28,7 +28,7 @@ export default function CategoryCard({
         animationDelay: `${delay}s`,
         animationFillMode: 'both',
         borderRadius: '1.2rem',
-        padding: '1.5rem 1rem 1.2rem',
+        padding: '0.8rem 0.6rem 0.8rem',
         textAlign: 'center',
         color: '#ffffff',
         position: 'relative',
@@ -40,7 +40,7 @@ export default function CategoryCard({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '250px',
+        minHeight: '160px',
         boxShadow: hovered
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
@@ -102,13 +102,13 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة 3D حقيقية */}
+      {/* أيقونة 3D حقيقية - كبيرة */}
       <div
         className="category-icon-animate"
         style={{
-          width: '10rem',
-          height: '10rem',
-          margin: '0 auto 0.4rem',
+          width: '7rem',
+          height: '7rem',
+          margin: '0 auto 0.2rem',
           position: 'relative',
           zIndex: 2,
           transition: 'transform 0.35s ease',
@@ -125,10 +125,10 @@ export default function CategoryCard({
 
       {/* اسم القسم */}
       <h3 style={{
-        fontSize: '1.15rem',
+        fontSize: '1rem',
         fontWeight: 900,
         color: '#ffffff',
-        marginBottom: '0.5rem',
+        marginBottom: '0.3rem',
         textShadow: '0 1px 3px rgba(0,0,0,0.2)',
         textAlign: 'center',
         lineHeight: 1.3,
@@ -141,10 +141,10 @@ export default function CategoryCard({
       <p style={{
         background: hovered ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.2)',
         border: `1px solid ${hovered ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.25)'}`,
-        padding: '0.3rem 0.85rem',
+        padding: '0.2rem 0.7rem',
         borderRadius: '999px',
         fontWeight: 800,
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         margin: '0 auto',
         textAlign: 'center',
         color: '#ffffff',
