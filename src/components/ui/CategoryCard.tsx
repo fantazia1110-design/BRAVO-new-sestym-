@@ -106,13 +106,13 @@ export default function CategoryCard({
 
       {/* أيقونة 3D SVG */}
       <div style={{
-        width: '3.8rem', height: '3.8rem', margin: '0 auto 0.5rem',
+        width: '4.5rem', height: '4.5rem', margin: '0 auto 0.4rem',
         position: 'relative', zIndex: 2,
         transition: 'transform 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
         filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
       }}>
-        <CategoryIcon id={id} size={52} />
+        <CategoryIcon id={id} size={60} />
       </div>
 
       {/* اسم القسم */}
