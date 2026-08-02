@@ -104,7 +104,7 @@ export default function CategoryCard({
         zIndex: 1,
       }} />
 
-      {/* أيقونة 3D SVG */}
+      {/* أيقونة 3D */}
       <div style={{
         width: '4.5rem', height: '4.5rem', margin: '0 auto 0.4rem',
         position: 'relative', zIndex: 2,
@@ -112,7 +112,11 @@ export default function CategoryCard({
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
         filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
       }}>
-        <CategoryIcon id={id} size={60} />
+        <img
+          src={`/icons/3d-${id}.png`}
+          alt={name}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
       </div>
 
       {/* اسم القسم */}
