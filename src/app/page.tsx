@@ -21,6 +21,7 @@ import {
   ChevronLeft,
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
+import CategoryCard from '@/components/ui/CategoryCard';
 import CategoryIcon from '@/components/ui/CategoryIcon';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
 import { formatCurrency, formatNumber } from '@/lib/utils';
@@ -206,36 +207,14 @@ export default function DashboardPage() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
           {productCategories.map((category, index) => (
-            <Link
+            <CategoryCard
               key={category.id}
-              href={`/products?category=${category.id}`}
-              className={`category-card ${category.color} animate-slide-up`}
-              style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'both' }}
-            >
-              <div
-                style={{
-                  width: '3.5rem', height: '3.5rem', margin: '0 auto 0.6rem',
-                  borderRadius: '50%', background: 'rgba(255,255,255,0.92)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 4px 12px -2px rgba(0,0,0,0.25)',
-                  border: '2px solid rgba(255,255,255,0.9)',
-                  position: 'relative', zIndex: 2,
-                  transition: 'transform 0.3s ease',
-                }}
-              >
-                <CategoryIcon id={category.id} />
-              </div>
-              <h3 style={{
-                fontSize: '1.15rem',
-                fontWeight: 900,
-                color: '#ffffff',
-                marginBottom: '0.5rem',
-                textShadow: '0 1px 3px rgba(0,0,0,0.2)',
-                textAlign: 'center',
-                lineHeight: 1.3,
-              }}>{category.name}</h3>
-              <p>{category.count} منتج</p>
-            </Link>
+              id={category.id}
+              name={category.name}
+              count={category.count}
+              colorClass={category.color}
+              delay={0.4 + index * 0.1}
+            />
           ))}
         </div>
       </div>
