@@ -105,16 +105,34 @@ export default function CategoryCard({
 
       {/* الأيقونة */}
       <div style={{
-        width: '3.5rem', height: '3.5rem', margin: '0 auto 0.6rem',
-        borderRadius: '50%', background: 'rgba(255,255,255,0.92)',
+        width: '3.8rem', height: '3.8rem', margin: '0 auto 0.6rem',
+        borderRadius: '1rem',
+        background: 'linear-gradient(145deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 12px -2px rgba(0,0,0,0.25)',
-        border: '2px solid rgba(255,255,255,0.9)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.06)',
+        border: '1px solid rgba(255,255,255,0.9)',
         position: 'relative', zIndex: 2,
-        transition: 'transform 0.35s ease',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
+        transformStyle: 'preserve-3d',
+        perspective: '500px',
       }}>
-        <CategoryIcon id={id} />
+        <div style={{
+          transform: 'perspective(500px) rotateX(5deg) rotateY(-5deg)',
+          transition: 'transform 0.35s ease',
+          filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.15))',
+        }}>
+          <CategoryIcon id={id} />
+        </div>
+        {/* لمعة 3D */}
+        <div style={{
+          position: 'absolute',
+          top: 2, left: 4, right: 4,
+          height: '40%',
+          borderRadius: '0.8rem 0.8rem 50% 50%',
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)',
+          pointerEvents: 'none',
+        }} />
       </div>
 
       {/* اسم القسم */}
