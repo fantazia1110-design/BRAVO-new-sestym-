@@ -106,108 +106,96 @@ export default function DashboardPage() {
             <Sparkles className="text-white" size={32} />
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold gradient-text">
+            <h1 className="text-4xl font-extrabold gradient-text">
               مرحباً بك في BRAVO
             </h1>
-            <p className="text-[var(--text-secondary)] font-semibold text-lg">
+            <p className="text-[var(--text-secondary)] font-bold text-xl">
               نظام إدارة التركيبات والتصنيع الاحترافي ✨
             </p>
           </div>
         </div>
       </div>
 
-      {/* الإحصائيات الرئيسية */}
-      <div className="grid grid-cols-4 gap-6">
+      {/* الإحصائيات */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
           subtitle="نوع مختلف"
-          icon={<FlaskConical size={28} />}
-          iconBgColor="bg-gradient-to-br from-blue-100 to-blue-200"
-          iconColor="text-blue-600"
+          icon={<FlaskConical size={20} />}
           delay={1}
-          tone="violet"
-        />
-        <StatCard
-          title="المنتجات"
-          value={formatNumber(stats.products, 0)}
-          subtitle="منتج نهائي"
-          icon={<Package size={28} />}
-          iconBgColor="bg-gradient-to-br from-green-100 to-emerald-200"
-          iconColor="text-green-600"
-          delay={2}
-          tone="emerald"
+          color="#4338ca"
+          colorLight="#6366f1"
         />
         <StatCard
           title="التركيبات"
           value={formatNumber(stats.formulas, 0)}
           subtitle="تركيبة معتمدة"
-          icon={<Beaker size={28} />}
-          iconBgColor="bg-gradient-to-br from-purple-100 to-violet-200"
-          iconColor="text-purple-600"
+          icon={<Beaker size={20} />}
+          delay={2}
+          color="#7c3aed"
+          colorLight="#a78bfa"
+        />
+        <StatCard
+          title="المنتجات"
+          value={formatNumber(stats.products, 0)}
+          subtitle="منتج نهائي"
+          icon={<Package size={20} />}
           delay={3}
-          tone="purple"
-        />
-        <StatCard
-          title="قيمة المخزون"
-          value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={28} />}
-          iconBgColor="bg-gradient-to-br from-amber-100 to-orange-200"
-          iconColor="text-amber-600"
-          delay={4}
-          tone="amber"
-        />
-      </div>
-
-      {/* الإحصائيات المالية */}
-      <div className="grid grid-cols-4 gap-6">
-        <StatCard
-          title="مبيعات اليوم"
-          value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={28} />}
-          iconBgColor="bg-gradient-to-br from-emerald-100 to-green-200"
-          iconColor="text-emerald-600"
-          trend={{ value: 12, isPositive: true }}
-          delay={5}
-          tone="teal"
-        />
-        <StatCard
-          title="مبيعات الشهر"
-          value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={28} />}
-          iconBgColor="bg-gradient-to-br from-cyan-100 to-blue-200"
-          iconColor="text-cyan-600"
-          trend={{ value: 8, isPositive: true }}
-          delay={6}
-          tone="sky"
-        />
-        <StatCard
-          title="إجمالي المديونيات"
-          value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={28} />}
-          iconBgColor="bg-gradient-to-br from-red-100 to-rose-200"
-          iconColor="text-red-600"
-          delay={7}
-          tone="rose"
+          color="#0891b2"
+          colorLight="#22d3ee"
         />
         <StatCard
           title="مخزون منخفض"
           value={formatNumber(stats.lowStockItems, 0)}
           subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={28} />}
-          iconBgColor="bg-gradient-to-br from-orange-100 to-amber-200"
-          iconColor="text-orange-600"
+          icon={<AlertTriangle size={20} />}
+          delay={4}
+          color="#991b1b"
+          colorLight="#dc2626"
+        />
+        <StatCard
+          title="مبيعات اليوم"
+          value={formatCurrency(stats.todaySales)}
+          icon={<ShoppingCart size={20} />}
+          trend={{ value: 12, isPositive: true }}
+          delay={5}
+          color="#15803d"
+          colorLight="#4ade80"
+        />
+        <StatCard
+          title="مبيعات الشهر"
+          value={formatCurrency(stats.monthSales)}
+          icon={<TrendingUp size={20} />}
+          trend={{ value: 8, isPositive: true }}
+          delay={6}
+          color="#065f46"
+          colorLight="#10b981"
+        />
+        <StatCard
+          title="قيمة المخزون"
+          value={formatCurrency(stats.inventoryValue)}
+          icon={<Warehouse size={20} />}
+          delay={7}
+          color="#d97706"
+          colorLight="#fbbf24"
+        />
+        <StatCard
+          title="إجمالي المديونيات"
+          value={formatCurrency(stats.totalDebts)}
+          icon={<CreditCard size={20} />}
           delay={8}
-          tone="orange"
+          color="#be123c"
+          colorLight="#f43f5e"
         />
       </div>
 
       {/* أقسام المنتجات */}
       <div className="animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
-              <Package size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
+              <Package size={24} />
             </span>
             أقسام المنتجات
           </h2>
@@ -216,7 +204,7 @@ export default function DashboardPage() {
             <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           </Link>
         </div>
-        <div className="grid grid-cols-6 gap-5">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
           {productCategories.map((category, index) => (
             <Link
               key={category.id}
@@ -225,13 +213,25 @@ export default function DashboardPage() {
               style={{ animationDelay: `${0.4 + index * 0.1}s`, animationFillMode: 'both' }}
             >
               <div
-                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 animate-float shadow-sm"
+                className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-3 animate-float shadow-sm"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <CategoryIcon id={category.id} />
               </div>
-              <h3 className="text-lg font-bold mb-1">{category.name}</h3>
-              <p className="text-sm opacity-90 font-semibold">{category.count} منتج</p>
+              <h3 style={{
+                fontSize: '1rem',
+                fontWeight: 900,
+                color: '#ffffff',
+                marginBottom: '0.4rem',
+                textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                textAlign: 'center',
+                position: 'relative',
+                zIndex: 2,
+              }}>{category.name}</h3>
+              <p style={{
+                position: 'relative',
+                zIndex: 2,
+              }}>{category.count} منتج</p>
             </Link>
           ))}
         </div>
@@ -240,9 +240,9 @@ export default function DashboardPage() {
       {/* الإجراءات السريعة */}
       <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
         <div className="card-header">
-          <h2 className="text-lg font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <Zap size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+              <Zap size={24} />
             </span>
             إجراءات سريعة
           </h2>
@@ -272,9 +272,9 @@ export default function DashboardPage() {
         {/* المنتجات الأكثر مبيعاً */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
-                <TrendingUp size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
+                <TrendingUp size={24} />
               </span>
               الأكثر مبيعاً
             </h2>
@@ -311,9 +311,9 @@ export default function DashboardPage() {
         {/* آخر التركيبات */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
-                <Beaker size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
+                <Beaker size={24} />
               </span>
               آخر التركيبات
             </h2>
@@ -351,9 +351,9 @@ export default function DashboardPage() {
         {/* آخر عمليات التصنيع */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
-                <Factory size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
+                <Factory size={24} />
               </span>
               التصنيع الجاري
             </h2>
@@ -396,9 +396,9 @@ export default function DashboardPage() {
         {/* آخر الفواتير */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
-                <FileText size={20} />
+            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
+                <FileText size={24} />
               </span>
               آخر الفواتير
             </h2>
@@ -435,9 +435,9 @@ export default function DashboardPage() {
       {/* المواد منخفضة المخزون */}
       <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
         <div className="card-header flex items-center justify-between">
-          <h2 className="text-lg font-extrabold flex items-center gap-3">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <AlertTriangle size={20} />
+          <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+              <AlertTriangle size={24} />
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
