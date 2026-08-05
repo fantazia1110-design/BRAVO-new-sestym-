@@ -325,18 +325,19 @@ export default function DashboardPage() {
             {topProducts.map((product, index) => (
               <div 
                 key={index} 
-                className="flex items-center gap-4 p-5 border-b border-[var(--border)] last:border-0 hover:bg-gradient-to-l hover:from-green-50 hover:to-transparent transition-all group cursor-pointer"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
+                className="group last:border-0 hover:bg-green-50"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-100 to-emerald-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {product.emoji}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-extrabold text-[var(--text-primary)] group-hover:text-green-700 transition-colors truncate">{product.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-bold">{product.sales} وحدة مباعة</p>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-green-700 truncate">{product.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{product.sales} وحدة مباعة</p>
                 </div>
-                <div className="text-left flex-shrink-0">
-                  <p className="font-extrabold text-base text-green-600">{formatCurrency(product.revenue)}</p>
-                  <div className="flex items-center gap-1 text-xs text-green-600 font-extrabold">
+                <div style={{ textAlign: 'left', flexShrink: 0 }}>
+                  <p style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }}>{formatCurrency(product.revenue)}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: '#16a34a', fontWeight: 800 }}>
                     <TrendingUp size={12} />
                     +{product.trend}%
                   </div>
@@ -364,16 +365,17 @@ export default function DashboardPage() {
             {recentFormulas.map((formula, index) => (
               <div 
                 key={index} 
-                className="flex items-center gap-4 p-5 border-b border-[var(--border)] last:border-0 hover:bg-gradient-to-l hover:from-purple-50 hover:to-transparent transition-all group cursor-pointer"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
+                className="group last:border-0 hover:bg-purple-50"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-violet-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {formula.emoji}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-extrabold text-[var(--text-primary)] group-hover:text-purple-700 transition-colors truncate">{formula.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-bold">{formula.category} • {formula.ingredients} مكون</p>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-purple-700 truncate">{formula.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
                 </div>
-                <div className="flex-shrink-0">
+                <div style={{ flexShrink: 0 }}>
                   {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
                   {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
                   {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
