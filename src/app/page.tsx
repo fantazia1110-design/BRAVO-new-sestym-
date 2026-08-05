@@ -109,7 +109,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <h1 className="text-4xl font-extrabold gradient-text">
-              مرحباً بك في BRAVO
+              مرحباً بك في BRAVO ✅
             </h1>
             <p className="text-[var(--text-secondary)] font-bold text-xl">
               نظام إدارة التركيبات والتصنيع الاحترافي ✨
