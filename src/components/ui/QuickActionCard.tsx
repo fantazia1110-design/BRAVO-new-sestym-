@@ -9,7 +9,15 @@ interface QuickActionCardProps {
   icon: React.ReactNode;
   gradient: string;
   glow: string;
+  color: string;
   delay?: number;
+}
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
+    : { r: 109, g: 40, b: 217 };
 }
 
 export default function QuickActionCard({
@@ -18,9 +26,12 @@ export default function QuickActionCard({
   icon,
   gradient = 'from-violet-500 to-purple-700',
   glow = 'shadow-purple-500/30',
+  color = '#6d28d9',
   delay = 0,
 }: QuickActionCardProps) {
   const [hovered, setHovered] = useState(false);
+  const rgb = hexToRgb(color);
+  const c = `rgba(${rgb.r},${rgb.g},${rgb.b},`;
 
   return (
     <Link
@@ -29,19 +40,19 @@ export default function QuickActionCard({
       style={{
         animationDelay: `${delay}s`,
         animationFillMode: 'both',
-        background: hovered ? '#6d28d9' : '#ffffff',
+        background: hovered ? color : '#ffffff',
         border: hovered ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
         transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
         transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
         boxShadow: hovered
-          ? '0 0 18px rgba(109,40,217,0.33), 0 14px 28px -6px rgba(109,40,217,0.44)'
+          ? `0 0 18px ${c}0.33), 0 14px 28px -6px ${c}0.44)`
           : '0 2px 8px -2px rgba(0,0,0,0.08)',
         textDecoration: 'none',
       } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* شعاع ضوء - اللمعة */}
+      {/* شعاع ضوء - بالظبط زي CategoryCard */}
       {hovered && (
         <div style={{
           position: 'absolute',
@@ -95,8 +106,12 @@ export default function QuickActionCard({
 
       {/* أيقونة */}
       <div
-        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center shadow-lg ${glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
-        style={{ position: 'relative', zIndex: 2, flexShrink: 0 }}
+        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center shadow-lg ${glow} transition-all duration-300`}
+        style={{
+          position: 'relative', zIndex: 2, flexShrink: 0,
+          transform: hovered ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)',
+          filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'none',
+        }}
       >
         {icon}
       </div>
@@ -108,6 +123,7 @@ export default function QuickActionCard({
           color: hovered ? '#ffffff' : undefined,
           position: 'relative',
           zIndex: 2,
+          textShadow: hovered ? '0 1px 3px rgba(0,0,0,0.2)' : 'none',
         }}
       >{label}</span>
     </Link>
