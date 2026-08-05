@@ -1845,7 +1845,14 @@ a:hover {
 
 /* BRAVO — تحسينات بصرية */
 .category-card>div:first-child{background:rgba(255,255,255,.92)!important;border:2px solid rgba(255,255,255,.9)!important;box-shadow:0 4px 12px -2px rgba(0,0,0,.25)!important;font-size:2.4rem!important;line-height:1!important}
-
+.card-body .grid-cols-4>a.group{--qa:#4f46e5;border:2px solid rgba(0,0,0,.06)!important;background:#fff!important}
+.card-body .grid-cols-4>a.group:nth-child(2){--qa:#9333ea}
+.card-body .grid-cols-4>a.group:nth-child(3){--qa:#0d9488}
+.card-body .grid-cols-4>a.group:nth-child(4){--qa:#ea580c}
+.card-body .grid-cols-4>a.group:hover{background:var(--qa)!important;border-color:var(--qa)!important;transform:translateY(-5px);box-shadow:0 14px 30px -10px var(--qa)!important}
+.card-body .grid-cols-4>a.group:hover span,.card-body .grid-cols-4>a.group:hover svg{color:#fff!important}
+.card-body .grid-cols-4>a.group>div:first-child{background:var(--qa)!important;border:2px solid rgba(255,255,255,.5)!important}
+.card-body .grid-cols-4>a.group>div:first-child svg{color:#fff!important}
 .main-content .grid.grid-cols-4{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1.25rem!important;margin-bottom:2.2rem!important;align-items:stretch!important}
 .main-content .grid.grid-cols-4>.card.card-body{--sc:#4f46e5;align-self:stretch!important;display:flex!important;align-items:center!important;width:auto!important;min-width:0!important;height:100%!important;min-height:6.6rem!important;padding:1.05rem!important;margin:0!important;position:relative!important;overflow:hidden!important;background:#fff!important;border:2px solid var(--sc)!important;border-radius:1.1rem!important}
 .main-content .grid.grid-cols-4>.card.card-body:nth-child(2){--sc:#059669}

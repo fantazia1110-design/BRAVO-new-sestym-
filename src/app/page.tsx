@@ -230,58 +230,20 @@ export default function DashboardPage() {
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
-            {quickActions.map((action, index) => {
-              const colors = ['#4f46e5', '#9333ea', '#0d9488', '#ea580c'];
-              const c = colors[index % colors.length];
-              return (
-                <Link
-                  key={action.label}
-                  href={action.href}
-                  className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
-                  style={{
-                    animationDelay: `${0.6 + index * 0.1}s`,
-                    animationFillMode: 'both',
-                    background: '#ffffff',
-                    border: '2px solid rgba(0,0,0,0.06)',
-                    transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease',
-                    transform: 'translateY(0)',
-                    boxShadow: '0 2px 8px -2px rgba(0,0,0,0.08)',
-                  } as React.CSSProperties}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.transform = 'translateY(-6px)';
-                    el.style.boxShadow = `0 0 18px ${c}33, 0 14px 28px -6px ${c}44`;
-                    el.style.borderColor = c;
-                    el.style.background = c;
-                    const span = el.querySelector('.qa-label') as HTMLElement;
-                    if (span) { span.style.color = '#fff'; }
-                    const chev = el.querySelector('.qa-chev') as HTMLElement;
-                    if (chev) { chev.style.color = '#fff'; chev.style.opacity = '1'; }
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.transform = 'translateY(0)';
-                    el.style.boxShadow = '0 2px 8px -2px rgba(0,0,0,0.08)';
-                    el.style.borderColor = 'rgba(0,0,0,0.06)';
-                    el.style.background = '#ffffff';
-                    const span = el.querySelector('.qa-label') as HTMLElement;
-                    if (span) { span.style.color = ''; }
-                    const chev = el.querySelector('.qa-chev') as HTMLElement;
-                    if (chev) { chev.style.color = ''; chev.style.opacity = '0'; }
-                  }}
-                >
-                  {/* أيقونة */}
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300"
-                    style={{ background: c, color: '#fff' }}
-                  >
-                    {action.icon}
-                  </div>
-                  <span className="qa-label font-bold text-lg transition-colors duration-300">{action.label}</span>
-                  <ChevronLeft size={20} className="qa-chev absolute left-4 opacity-0 transition-all duration-300" />
-                </Link>
-              );
-            })}
+            {quickActions.map((action, index) => (
+              <Link
+                key={action.label}
+                href={action.href}
+                className="group relative flex items-center gap-4 p-5 rounded-2xl border-2 border-[var(--border)] hover:border-transparent bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-white transition-all duration-300 overflow-hidden animate-slide-up"
+                style={{ animationDelay: `${0.6 + index * 0.1}s`, animationFillMode: 'both' }}
+              >
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.gradient} text-white flex items-center justify-center shadow-lg ${action.glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  {action.icon}
+                </div>
+                <span className="font-bold text-lg group-hover:text-[var(--primary)] transition-colors">{action.label}</span>
+                <ChevronLeft size={20} className="absolute left-4 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all text-[var(--primary)]" />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
