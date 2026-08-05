@@ -90,10 +90,10 @@ const lowStockItems = [
 
 // الإجراءات السريعة
 const quickActions = [
-  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30', color: '#6d28d9' },
-  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30', color: '#7c3aed' },
-  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30', color: '#c026d3' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30', color: '#4f46e5' },
+  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={20} />, color: '#6d28d9', colorLight: '#a78bfa' },
+  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={20} />, color: '#7c3aed', colorLight: '#c084fc' },
+  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={20} />, color: '#c026d3', colorLight: '#f0abfc' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={20} />, color: '#4f46e5', colorLight: '#818cf8' },
 ];
 
 function hexToRgb(hex: string): [number, number, number] {
@@ -106,17 +106,31 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
   return (
     <Link
       href={action.href}
-      className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
+      className="animate-slide-up"
       style={{
         animationDelay: `${0.6 + index * 0.1}s`,
         animationFillMode: 'both' as const,
-        background: hov ? action.color : '#ffffff',
-        border: hov ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
-        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
-        boxShadow: hov ? `0 0 18px ${c}0.33), 0 14px 28px -6px ${c}0.44)` : '0 2px 8px -2px rgba(0,0,0,0.08)',
+        background: `linear-gradient(145deg, ${action.colorLight}, ${action.color})`,
+        borderRadius: '1.2rem',
+        padding: '1.5rem 1rem 1.2rem',
+        textAlign: 'center',
+        color: '#ffffff',
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease',
+        cursor: 'pointer',
+        zIndex: hov ? 10 : 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '180px',
+        boxShadow: hov
+          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
+          : '0 4px 14px -4px rgba(0,0,0,0.15)',
+        transform: hov ? 'translateY(-8px)' : 'translateY(0)',
+        border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
         textDecoration: 'none',
-        position: 'relative' as const,
       } as React.CSSProperties}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -134,14 +148,41 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       <div style={{ position: 'absolute', top: '12%', bottom: '12%', right: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.1s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
       <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.15s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
       <div
-        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.gradient} text-white flex items-center justify-center shadow-lg ${action.glow} transition-all duration-300`}
-        style={{ position: 'relative', zIndex: 2, flexShrink: 0, transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)', filter: hov ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'none' }}
+        className="category-icon-animate"
+        style={{
+          width: '2.6rem', height: '2.6rem', margin: '0 auto 0.5rem',
+          borderRadius: '0.65rem',
+          background: 'rgba(255,255,255,0.2)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          position: 'relative', zIndex: 2,
+          transition: 'transform 0.35s ease, filter 0.35s ease',
+          transform: hov ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
+          border: '1.5px solid rgba(255,255,255,0.15)',
+          color: '#ffffff',
+          filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+        }}
       >
         {action.icon}
       </div>
-      <span className="font-bold text-lg transition-colors duration-300" style={{ color: hov ? '#ffffff' : '#1f2937', position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
-        {action.label}
-      </span>
+      <h3 style={{
+        fontSize: '1.1rem', fontWeight: 900, color: '#ffffff',
+        marginBottom: '0.5rem', textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+        textAlign: 'center', lineHeight: 1.3,
+        position: 'relative', zIndex: 2,
+        transition: 'transform 0.3s ease',
+        transform: hov ? 'translateY(-2px)' : 'translateY(0)',
+      }}>{action.label}</h3>
+      <p style={{
+        background: hov ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.2)',
+        border: `1px solid ${hov ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.25)'}`,
+        padding: '0.3rem 0.85rem', borderRadius: '999px',
+        fontWeight: 800, fontSize: '0.9rem', margin: '0 auto',
+        textAlign: 'center', color: '#ffffff',
+        textShadow: '0 1px 2px rgba(0,0,0,0.25)',
+        position: 'relative', zIndex: 2,
+        transition: 'all 0.3s ease',
+        transform: hov ? 'translateY(-1px)' : 'translateY(0)',
+      }}>اضغط هنا</p>
     </Link>
   );
 }
