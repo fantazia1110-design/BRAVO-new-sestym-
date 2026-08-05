@@ -120,6 +120,7 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
         border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '2px solid rgba(0,0,0,0.06)',
         cursor: 'pointer',
         color: hov ? '#ffffff' : '#1f2937',
+        borderTop: hov ? 'none' : `3px solid ${action.color}`,
       } as React.CSSProperties}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
