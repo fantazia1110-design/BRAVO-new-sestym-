@@ -1624,7 +1624,7 @@ a:hover {
 }
 
 .table {
-  min-width: 640px;
+  min-width: 0;
 }
 
 /* صفوف معمل التركيبات (شبكة 12 عمود) — تُمرَّر أفقياً على الشاشات الضيقة */
@@ -1668,7 +1668,6 @@ a:hover {
 }
 
 /* الكروت والبطاقات لا تلتصق ببعضها أبداً */
-.card + .card,
 .card + .stat-card,
 .stat-card + .card {
   margin-block-start: 1.5rem;
