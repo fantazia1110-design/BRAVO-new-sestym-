@@ -97,6 +97,7 @@ const quickActions = [
   { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30', color: '#4f46e5' },
 ];
 
+/* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
