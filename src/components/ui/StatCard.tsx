@@ -16,6 +16,13 @@ interface StatCardProps {
   colorLight: string;
 }
 
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
+    : { r: 255, g: 255, b: 255 };
+}
+
 export default function StatCard({
   title,
   value,
@@ -27,6 +34,10 @@ export default function StatCard({
   colorLight = '#8b5cf6',
 }: StatCardProps) {
   const [hovered, setHovered] = useState(false);
+
+  // نستخدم اللون الفاتح لللمعة والخطوط (نفس فكرة الأبيض في CategoryCard بس بلون الكارت)
+  const rgb = hexToRgb(colorLight);
+  const c = `rgba(${rgb.r},${rgb.g},${rgb.b},`;
 
   return (
     <div
@@ -45,33 +56,33 @@ export default function StatCard({
         cursor: 'default',
         zIndex: hovered ? 10 : 1,
         boxShadow: hovered
-          ? `0 0 18px ${color}55, 0 0 35px ${color}28, 0 14px 28px -6px rgba(0,0,0,0.3)`
+          ? `0 0 18px ${c}0.3), 0 0 35px ${c}0.15), 0 14px 28px -6px rgba(0,0,0,0.3)`
           : '0 4px 14px -4px rgba(0,0,0,0.2)',
         transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
-        border: hovered ? '1.5px solid rgba(255,255,255,0.25)' : '1.5px solid transparent',
+        border: hovered ? `1.5px solid ${c}0.5)` : '1.5px solid rgba(255,255,255,0.15)',
       } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* شعاع ضوء */}
+      {/* شعاع ضوء بنفس قوة CategoryCard بس بلون الكارت */}
       {hovered && (
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 62%, transparent 75%)',
+          background: `linear-gradient(105deg, transparent 25%, ${c}0.15) 38%, ${c}0.35) 50%, ${c}0.15) 62%, transparent 75%)`,
           animation: 'shineSweep 0.75s ease-out forwards',
           pointerEvents: 'none',
           zIndex: 1,
         }} />
       )}
 
-      {/* خط علوي */}
+      {/* خط علوي - نفس تأثير CategoryCard */}
       <div style={{
         position: 'absolute', top: 0, left: '12%', right: '12%',
         height: hovered ? '2px' : '0px',
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)',
+        background: `linear-gradient(90deg, transparent, ${c}0.6), ${c}0.8), ${c}0.6), transparent)`,
         transition: 'height 0.3s ease',
-        boxShadow: hovered ? '0 0 8px rgba(255,255,255,0.3)' : 'none',
+        boxShadow: hovered ? `0 0 8px ${c}0.3)` : 'none',
         zIndex: 1,
       }} />
 
@@ -79,9 +90,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', bottom: 0, left: '12%', right: '12%',
         height: hovered ? '2px' : '0px',
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)',
+        background: `linear-gradient(90deg, transparent, ${c}0.6), ${c}0.8), ${c}0.6), transparent)`,
         transition: 'height 0.3s ease 0.05s',
-        boxShadow: hovered ? '0 0 8px rgba(255,255,255,0.3)' : 'none',
+        boxShadow: hovered ? `0 0 8px ${c}0.3)` : 'none',
         zIndex: 1,
       }} />
 
@@ -89,9 +100,9 @@ export default function StatCard({
       <div style={{
         position: 'absolute', top: '12%', bottom: '12%', right: 0,
         width: hovered ? '2px' : '0px',
-        background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)',
+        background: `linear-gradient(180deg, transparent, ${c}0.6), ${c}0.8), ${c}0.6), transparent)`,
         transition: 'width 0.3s ease 0.1s',
-        boxShadow: hovered ? '0 0 8px rgba(255,255,255,0.3)' : 'none',
+        boxShadow: hovered ? `0 0 8px ${c}0.3)` : 'none',
         zIndex: 1,
       }} />
 
@@ -99,23 +110,24 @@ export default function StatCard({
       <div style={{
         position: 'absolute', top: '12%', bottom: '12%', left: 0,
         width: hovered ? '2px' : '0px',
-        background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)',
+        background: `linear-gradient(180deg, transparent, ${c}0.6), ${c}0.8), ${c}0.6), transparent)`,
         transition: 'width 0.3s ease 0.15s',
-        boxShadow: hovered ? '0 0 8px rgba(255,255,255,0.3)' : 'none',
+        boxShadow: hovered ? `0 0 8px ${c}0.3)` : 'none',
         zIndex: 1,
       }} />
 
-      {/* الأيقونة */}
+      {/* الأيقونة - نفس تأثير CategoryCard (scale + rotate + drop-shadow) */}
       <div style={{
         width: '2.6rem', height: '2.6rem', margin: '0 auto 0.35rem',
         borderRadius: '0.65rem',
-        background: 'rgba(255,255,255,0.2)',
+        background: hovered ? `${c}0.35)` : 'rgba(255,255,255,0.2)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         position: 'relative', zIndex: 2,
-        transition: 'transform 0.35s ease',
+        transition: 'transform 0.35s ease, background 0.35s ease, filter 0.35s ease, border-color 0.35s ease',
         transform: hovered ? 'scale(1.15) rotate(8deg)' : 'scale(1) rotate(0deg)',
-        border: '1.5px solid rgba(255,255,255,0.15)',
+        border: hovered ? `1.5px solid ${c}0.4)` : '1.5px solid rgba(255,255,255,0.15)',
         color: '#ffffff',
+        filter: hovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))',
       }}>
         {icon}
       </div>
@@ -162,9 +174,11 @@ export default function StatCard({
           <div style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             gap: '0.3rem', padding: '0.3rem 0.7rem',
-            borderRadius: '2rem', background: 'rgba(0,0,0,0.25)',
-            border: '1px solid rgba(74,222,128,0.3)',
+            borderRadius: '2rem',
+            background: hovered ? `${c}0.35)` : 'rgba(0,0,0,0.25)',
+            border: `1px solid ${hovered ? `${c}0.4)` : 'rgba(74,222,128,0.3)'}`,
             direction: 'rtl',
+            transition: 'background 0.3s ease, border-color 0.3s ease',
           }}>
             <svg
               width="18" height="18" viewBox="0 0 24 24" fill="none"
