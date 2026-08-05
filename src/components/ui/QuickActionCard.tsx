@@ -7,8 +7,8 @@ interface QuickActionCardProps {
   label: string;
   href: string;
   icon: React.ReactNode;
-  color: string;
-  colorLight: string;
+  gradient: string;
+  glow: string;
   delay?: number;
 }
 
@@ -16,8 +16,8 @@ export default function QuickActionCard({
   label,
   href,
   icon,
-  color = '#7c3aed',
-  colorLight = '#8b5cf6',
+  gradient = 'from-violet-500 to-purple-700',
+  glow = 'shadow-purple-500/30',
   delay = 0,
 }: QuickActionCardProps) {
   const [hovered, setHovered] = useState(false);
@@ -25,36 +25,23 @@ export default function QuickActionCard({
   return (
     <Link
       href={href}
-      className="animate-slide-up"
+      className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
       style={{
         animationDelay: `${delay}s`,
         animationFillMode: 'both',
-        background: `linear-gradient(145deg, ${colorLight}, ${color})`,
-        borderRadius: '1.2rem',
-        padding: '1.5rem 1rem 1.2rem',
-        textAlign: 'center',
-        color: '#ffffff',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease',
-        cursor: 'pointer',
-        zIndex: hovered ? 10 : 1,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '180px',
+        background: hovered ? '#6d28d9' : '#ffffff',
+        border: hovered ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
+        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
         boxShadow: hovered
-          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
-          : '0 4px 14px -4px rgba(0,0,0,0.15)',
-        transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
-        border: hovered ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
+          ? '0 0 18px rgba(109,40,217,0.33), 0 14px 28px -6px rgba(109,40,217,0.44)'
+          : '0 2px 8px -2px rgba(0,0,0,0.08)',
         textDecoration: 'none',
       } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* شعاع ضوء - بالظبط زي CategoryCard */}
+      {/* شعاع ضوء - اللمعة */}
       {hovered && (
         <div style={{
           position: 'absolute',
@@ -106,55 +93,23 @@ export default function QuickActionCard({
         zIndex: 1,
       }} />
 
-      {/* الأيقونة - نفس تأثير CategoryCard */}
+      {/* أيقونة */}
       <div
-        className="category-icon-animate"
-        style={{
-          width: '2.6rem', height: '2.6rem', margin: '0 auto 0.5rem',
-          borderRadius: '0.65rem',
-          background: 'rgba(255,255,255,0.2)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          position: 'relative', zIndex: 2,
-          transition: 'transform 0.35s ease, filter 0.35s ease',
-          transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
-          border: '1.5px solid rgba(255,255,255,0.15)',
-          color: '#ffffff',
-          filter: hovered ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
-        }}
+        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center shadow-lg ${glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
+        style={{ position: 'relative', zIndex: 2, flexShrink: 0 }}
       >
         {icon}
       </div>
 
-      {/* اسم الإجراء */}
-      <h3 style={{
-        fontSize: '1.1rem',
-        fontWeight: 900,
-        color: '#ffffff',
-        marginBottom: '0.5rem',
-        textShadow: '0 1px 3px rgba(0,0,0,0.2)',
-        textAlign: 'center',
-        lineHeight: 1.3,
-        position: 'relative', zIndex: 2,
-        transition: 'transform 0.3s ease',
-        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
-      }}>{label}</h3>
-
-      {/* بيلج "اضغط هنا" */}
-      <p style={{
-        background: hovered ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.2)',
-        border: `1px solid ${hovered ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.25)'}`,
-        padding: '0.3rem 0.85rem',
-        borderRadius: '999px',
-        fontWeight: 800,
-        fontSize: '0.9rem',
-        margin: '0 auto',
-        textAlign: 'center',
-        color: '#ffffff',
-        textShadow: '0 1px 2px rgba(0,0,0,0.25)',
-        position: 'relative', zIndex: 2,
-        transition: 'all 0.3s ease',
-        transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
-      }}>اضغط هنا</p>
+      {/* نص */}
+      <span
+        className="font-bold text-lg transition-colors duration-300"
+        style={{
+          color: hovered ? '#ffffff' : undefined,
+          position: 'relative',
+          zIndex: 2,
+        }}
+      >{label}</span>
     </Link>
   );
 }
