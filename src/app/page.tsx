@@ -306,7 +306,7 @@ export default function DashboardPage() {
       </div>
 
       {/* المنتجات الأكثر مبيعاً والتركيبات */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "1.5rem", width: "100%" }}>
         {/* المنتجات الأكثر مبيعاً */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
@@ -314,7 +314,7 @@ export default function DashboardPage() {
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
                 <TrendingUp size={24} />
               </span>
-              الأكثر مبيعاً 🟢
+              الأكثر مبيعاً
             </h2>
             <Link href="/reports" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
@@ -387,7 +387,7 @@ export default function DashboardPage() {
       </div>
 
       {/* التصنيع والفواتير */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "1.5rem", width: "100%" }}>
         {/* آخر عمليات التصنيع */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
