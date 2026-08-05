@@ -117,8 +117,8 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
         border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
-        textDecoration: 'none',
-        color: '#ffffff',
+        textDecoration: 'none' as const,
+        color: '#ffffff' as const,
       } as React.CSSProperties}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -126,7 +126,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       {hov && (
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 62%, transparent 75%)',
+          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.18) 62%, transparent 75%)',
           animation: 'shineSweep 0.75s ease-out forwards',
           pointerEvents: 'none', zIndex: 1,
         }} />
@@ -136,18 +136,20 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       <div style={{ position: 'absolute', top: '12%', bottom: '12%', right: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.1s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
       <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.15s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
       <div
-        className="w-14 h-14 rounded-xl text-white flex items-center justify-center shadow-lg transition-all duration-300"
+        className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300"
         style={{
           background: 'rgba(255,255,255,0.2)',
-          border: '1.5px solid rgba(255,255,255,0.15)',
+          border: '1.5px solid rgba(255,255,255,0.2)',
           position: 'relative', zIndex: 2, flexShrink: 0,
           transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)',
           filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+          color: '#ffffff',
         }}
       >
         {action.icon}
       </div>
-      <span className="font-bold text-lg" style={{
+      <span style={{
+        fontWeight: 700, fontSize: '1.125rem',
         color: '#ffffff',
         textShadow: '0 1px 3px rgba(0,0,0,0.2)',
         position: 'relative', zIndex: 2,

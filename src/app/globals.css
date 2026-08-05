@@ -147,6 +147,14 @@ a:hover {
   color: var(--primary-dark);
 }
 
+/* ===== إصلاح تأثيرات الإجراءات السريعة ===== */
+.card-body a {
+  color: inherit;
+}
+.card-body a:hover {
+  color: inherit;
+}
+
 /* ===== الأزرار المتقدمة ===== */
 .btn {
   display: inline-flex;
