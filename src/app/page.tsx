@@ -327,16 +327,16 @@ export default function DashboardPage() {
                 key={index} 
                 className="flex items-center gap-4 p-5 border-b border-[var(--border)] last:border-0 hover:bg-gradient-to-l hover:from-green-50 hover:to-transparent transition-all group cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-100 to-emerald-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
                   {product.emoji}
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-[var(--text-primary)] group-hover:text-green-700 transition-colors">{product.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-semibold">{product.sales} وحدة مباعة</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-extrabold text-[var(--text-primary)] group-hover:text-green-700 transition-colors truncate">{product.name}</h4>
+                  <p className="text-sm text-[var(--text-muted)] font-bold">{product.sales} وحدة مباعة</p>
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-lg text-green-600">{formatCurrency(product.revenue)}</p>
-                  <div className="flex items-center gap-1 text-xs text-green-600 font-bold">
+                <div className="text-left flex-shrink-0">
+                  <p className="font-extrabold text-base text-green-600">{formatCurrency(product.revenue)}</p>
+                  <div className="flex items-center gap-1 text-xs text-green-600 font-extrabold">
                     <TrendingUp size={12} />
                     +{product.trend}%
                   </div>
@@ -369,11 +369,11 @@ export default function DashboardPage() {
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-violet-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
                   {formula.emoji}
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-[var(--text-primary)] group-hover:text-purple-700 transition-colors">{formula.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-semibold">{formula.category} • {formula.ingredients} مكون</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-extrabold text-[var(--text-primary)] group-hover:text-purple-700 transition-colors truncate">{formula.name}</h4>
+                  <p className="text-sm text-[var(--text-muted)] font-bold">{formula.category} • {formula.ingredients} مكون</p>
                 </div>
-                <div>
+                <div className="flex-shrink-0">
                   {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
                   {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
                   {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
@@ -404,26 +404,26 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>رقم الدفعة</th>
-                  <th>المنتج</th>
-                  <th>التقدم</th>
-                  <th>الحالة</th>
+                  <th className="font-extrabold">رقم الدفعة</th>
+                  <th className="font-extrabold">المنتج</th>
+                  <th className="font-extrabold">التقدم</th>
+                  <th className="font-extrabold">الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentProduction.map((batch, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-bold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
-                    <td className="font-bold">{batch.product}</td>
+                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
+                    <td className="font-extrabold">{batch.product}</td>
                     <td>
                       <div className="w-full max-w-[120px]">
                         <div className="progress-bar h-2">
                           <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
                         </div>
-                        <span className="text-xs font-bold text-[var(--text-muted)]">{batch.progress}%</span>
+                        <span className="text-xs font-extrabold text-[var(--text-muted)]">{batch.progress}%</span>
                       </div>
                     </td>
-                    <td>{getProductionStatusBadge(batch.status)}</td>
+                    <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -449,19 +449,19 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>رقم الفاتورة</th>
-                  <th>العميل</th>
-                  <th>المبلغ</th>
-                  <th>الحالة</th>
+                  <th className="font-extrabold">رقم الفاتورة</th>
+                  <th className="font-extrabold">العميل</th>
+                  <th className="font-extrabold">المبلغ</th>
+                  <th className="font-extrabold">الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentInvoices.map((invoice, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-bold text-sm text-[var(--primary)]">{invoice.number}</td>
-                    <td className="font-bold">{invoice.customer}</td>
+                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{invoice.number}</td>
+                    <td className="font-extrabold">{invoice.customer}</td>
                     <td className="font-extrabold text-green-600">{formatCurrency(invoice.total)}</td>
-                    <td>{getInvoiceStatusBadge(invoice.status)}</td>
+                    <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}
               </tbody>
