@@ -111,15 +111,15 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
       style={{
         animationDelay: `${0.6 + index * 0.1}s`,
         animationFillMode: 'both' as const,
-        background: `linear-gradient(145deg, ${action.colorLight}, ${action.color})`,
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease',
+        background: hov ? `linear-gradient(145deg, ${action.colorLight}, ${action.color})` : '#ffffff',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease, background 0.35s ease',
         transform: hov ? 'translateY(-6px)' : 'translateY(0)',
         boxShadow: hov
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
-        border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
+        border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '2px solid rgba(0,0,0,0.06)',
         cursor: 'pointer',
-        color: '#ffffff',
+        color: hov ? '#ffffff' : '#1f2937',
       } as React.CSSProperties}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
@@ -140,11 +140,11 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
       <div
         className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300"
         style={{
-          background: 'rgba(255,255,255,0.2)',
-          border: '1.5px solid rgba(255,255,255,0.2)',
+          background: hov ? 'rgba(255,255,255,0.2)' : `linear-gradient(145deg, ${action.colorLight}, ${action.color})`,
+          border: hov ? '1.5px solid rgba(255,255,255,0.2)' : 'none',
           position: 'relative', zIndex: 2, flexShrink: 0,
           transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)',
-          filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+          filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'none',
           color: '#ffffff',
         }}
       >
@@ -152,10 +152,10 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
       </div>
       <span style={{
         fontWeight: 700, fontSize: '1.125rem',
-        color: '#ffffff',
-        textShadow: '0 1px 3px rgba(0,0,0,0.2)',
+        color: hov ? '#ffffff' : '#1f2937',
+        textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none',
         position: 'relative', zIndex: 2,
-        transition: 'transform 0.3s ease',
+        transition: 'color 0.35s ease, transform 0.3s ease, text-shadow 0.35s ease',
         transform: hov ? 'translateY(-2px)' : 'translateY(0)',
       }}>{action.label}</span>
     </div>
