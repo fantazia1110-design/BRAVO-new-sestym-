@@ -148,11 +148,11 @@ a:hover {
 }
 
 /* ===== إصلاح تأثيرات الإجراءات السريعة ===== */
-.card-body a {
-  color: inherit;
-}
-.card-body a:hover {
-  color: inherit;
+.card-body .grid > a,
+.card-body .grid > a:hover {
+  color: #ffffff !important;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease !important;
+  position: relative;
 }
 
 /* ===== الأزرار المتقدمة ===== */
