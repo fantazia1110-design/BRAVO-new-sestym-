@@ -22,7 +22,6 @@ import {
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
 import CategoryCard from '@/components/ui/CategoryCard';
-import QuickActionCard from '@/components/ui/QuickActionCard';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
@@ -97,6 +96,56 @@ const quickActions = [
   { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30', color: '#4f46e5' },
 ];
 
+function hexToRgb(hex: string): [number, number, number] {
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [109, 40, 217];
+}
+
+function QuickActionLink({ action, c, index }: { action: typeof quickActions[number]; c: string; index: number }) {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <Link
+      href={action.href}
+      className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
+      style={{
+        animationDelay: `${0.6 + index * 0.1}s`,
+        animationFillMode: 'both' as const,
+        background: hov ? action.color : '#ffffff',
+        border: hov ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
+        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+        boxShadow: hov ? `0 0 18px ${c}0.33), 0 14px 28px -6px ${c}0.44)` : '0 2px 8px -2px rgba(0,0,0,0.08)',
+        textDecoration: 'none',
+        position: 'relative' as const,
+      } as React.CSSProperties}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+    >
+      {hov && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 62%, transparent 75%)',
+          animation: 'shineSweep 0.75s ease-out forwards',
+          pointerEvents: 'none', zIndex: 1,
+        }} />
+      )}
+      <div style={{ position: 'absolute', top: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', bottom: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease 0.05s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', top: '12%', bottom: '12%', right: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.1s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.15s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div
+        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.gradient} text-white flex items-center justify-center shadow-lg ${action.glow} transition-all duration-300`}
+        style={{ position: 'relative', zIndex: 2, flexShrink: 0, transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)', filter: hov ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'none' }}
+      >
+        {action.icon}
+      </div>
+      <span className="font-bold text-lg transition-colors duration-300" style={{ color: hov ? '#ffffff' : undefined, position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
+        {action.label}
+      </span>
+    </Link>
+  );
+}
+
 /* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
   return (
@@ -109,7 +158,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <h1 className="text-4xl font-extrabold gradient-text">
-              مرحباً بك في BRAVO ✅
+              مرحباً بك في BRAVO
             </h1>
             <p className="text-[var(--text-secondary)] font-bold text-xl">
               نظام إدارة التركيبات والتصنيع الاحترافي ✨
@@ -232,18 +281,13 @@ export default function DashboardPage() {
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
-            {quickActions.map((action, index) => (
-              <QuickActionCard
-                key={action.label}
-                label={action.label}
-                href={action.href}
-                icon={action.icon}
-                gradient={action.gradient}
-                glow={action.glow}
-                color={action.color}
-                delay={0.6 + index * 0.1}
-              />
-            ))}
+            {quickActions.map((action, index) => {
+              const [r, g, b] = hexToRgb(action.color);
+              const c = `rgba(${r},${g},${b},`;
+              return (
+                <QuickActionLink key={action.label} action={action} c={c} index={index} />
+              );
+            })}
           </div>
         </div>
       </div>
