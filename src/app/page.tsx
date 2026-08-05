@@ -110,7 +110,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       style={{
         animationDelay: `${0.6 + index * 0.1}s`,
         animationFillMode: 'both' as const,
-        background: hov ? action.color : '#ffffff',
+        background: action.color,
         border: hov ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
         transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
         transform: hov ? 'translateY(-6px)' : 'translateY(0)',
@@ -139,7 +139,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       >
         {action.icon}
       </div>
-      <span className="font-bold text-lg transition-colors duration-300" style={{ color: hov ? '#ffffff' : undefined, position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
+      <span className="font-bold text-lg transition-colors duration-300" style={{ color: '#ffffff', position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
         {action.label}
       </span>
     </Link>
