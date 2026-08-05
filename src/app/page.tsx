@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   FlaskConical,
   Package,
@@ -101,11 +102,11 @@ function hexToRgb(hex: string): [number, number, number] {
   return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [109, 40, 217];
 }
 
-function QuickActionLink({ action, c, index }: { action: typeof quickActions[number]; c: string; index: number }) {
+function QuickActionLink({ action, index }: { action: typeof quickActions[number]; index: number }) {
   const [hov, setHov] = React.useState(false);
+  const router = useRouter();
   return (
-    <Link
-      href={action.href}
+    <div
       className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
       style={{
         animationDelay: `${0.6 + index * 0.1}s`,
@@ -117,11 +118,12 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
           ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
         border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
-        textDecoration: 'none' as const,
-        color: '#ffffff' as const,
+        cursor: 'pointer',
+        color: '#ffffff',
       } as React.CSSProperties}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
+      onClick={() => router.push(action.href)}
     >
       {hov && (
         <div style={{
@@ -156,7 +158,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
         transition: 'transform 0.3s ease',
         transform: hov ? 'translateY(-2px)' : 'translateY(0)',
       }}>{action.label}</span>
-    </Link>
+    </div>
   );
 }
 
@@ -295,13 +297,9 @@ export default function DashboardPage() {
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
-            {quickActions.map((action, index) => {
-              const [r, g, b] = hexToRgb(action.color);
-              const c = `rgba(${r},${g},${b},`;
-              return (
-                <QuickActionLink key={action.label} action={action} c={c} index={index} />
-              );
-            })}
+            {quickActions.map((action, index) => (
+              <QuickActionLink key={action.label} action={action} index={index} />
+            ))}
           </div>
         </div>
       </div>
