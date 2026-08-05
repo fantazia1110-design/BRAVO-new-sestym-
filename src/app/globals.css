@@ -1610,6 +1610,7 @@ a:hover {
   grid-template-columns: 1fr 1fr !important;
   gap: 1.5rem !important;
   width: 100% !important;
+  outline: 3px solid red !important;
 }
 .two-col-layout > * {
   min-width: 0 !important;
