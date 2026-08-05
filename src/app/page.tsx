@@ -314,7 +314,7 @@ export default function DashboardPage() {
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
                 <TrendingUp size={24} />
               </span>
-              الأكثر مبيعاً
+              الأكثر مبيعاً 🟢
             </h2>
             <Link href="/reports" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
