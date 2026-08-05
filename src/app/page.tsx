@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
 import CategoryCard from '@/components/ui/CategoryCard';
+import QuickActionCard from '@/components/ui/QuickActionCard';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
@@ -90,10 +91,10 @@ const lowStockItems = [
 
 // الإجراءات السريعة
 const quickActions = [
-  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30' },
-  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30' },
-  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30' },
+  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={20} />, color: '#6d28d9', colorLight: '#a78bfa' },
+  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={20} />, color: '#7c3aed', colorLight: '#c084fc' },
+  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={20} />, color: '#0d9488', colorLight: '#5eead4' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={20} />, color: '#ea580c', colorLight: '#fdba74' },
 ];
 
 export default function DashboardPage() {
@@ -219,8 +220,8 @@ export default function DashboardPage() {
       </div>
 
       {/* الإجراءات السريعة */}
-      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
-        <div className="card-header">
+      <div className="animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+        <div className="flex items-center justify-between mb-5">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
               <Zap size={24} />
@@ -228,23 +229,18 @@ export default function DashboardPage() {
             إجراءات سريعة
           </h2>
         </div>
-        <div className="card-body">
-          <div className="grid grid-cols-4 gap-5">
-            {quickActions.map((action, index) => (
-              <Link
-                key={action.label}
-                href={action.href}
-                className="group relative flex items-center gap-4 p-5 rounded-2xl border-2 border-[var(--border)] hover:border-transparent bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-white transition-all duration-300 overflow-hidden animate-slide-up"
-                style={{ animationDelay: `${0.6 + index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.gradient} text-white flex items-center justify-center shadow-lg ${action.glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                  {action.icon}
-                </div>
-                <span className="font-bold text-lg group-hover:text-[var(--primary)] transition-colors">{action.label}</span>
-                <ChevronLeft size={20} className="absolute left-4 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all text-[var(--primary)]" />
-              </Link>
-            ))}
-          </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+          {quickActions.map((action, index) => (
+            <QuickActionCard
+              key={action.label}
+              label={action.label}
+              href={action.href}
+              icon={action.icon}
+              color={action.color}
+              colorLight={action.colorLight}
+              delay={0.6 + index * 0.1}
+            />
+          ))}
         </div>
       </div>
 
