@@ -90,10 +90,10 @@ const lowStockItems = [
 
 // الإجراءات السريعة
 const quickActions = [
-  { label: '🧪 إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30', color: '#6d28d9' },
-  { label: '⚗️ تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30', color: '#7c3aed' },
-  { label: '🏭 بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30', color: '#c026d3' },
-  { label: '📄 فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30', color: '#4f46e5' },
+  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30', color: '#6d28d9' },
+  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30', color: '#7c3aed' },
+  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30', color: '#c026d3' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30', color: '#4f46e5' },
 ];
 
 function hexToRgb(hex: string): [number, number, number] {
@@ -110,7 +110,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       style={{
         animationDelay: `${0.6 + index * 0.1}s`,
         animationFillMode: 'both' as const,
-        background: action.color,
+        background: hov ? action.color : '#ffffff',
         border: hov ? '2px solid transparent' : '2px solid rgba(0,0,0,0.06)',
         transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease',
         transform: hov ? 'translateY(-6px)' : 'translateY(0)',
@@ -139,7 +139,7 @@ function QuickActionLink({ action, c, index }: { action: typeof quickActions[num
       >
         {action.icon}
       </div>
-      <span className="font-bold text-lg transition-colors duration-300" style={{ color: '#ffffff', position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
+      <span className="font-bold text-lg transition-colors duration-300" style={{ color: hov ? '#ffffff' : '#1f2937', position: 'relative', zIndex: 2, textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none' }}>
         {action.label}
       </span>
     </Link>
