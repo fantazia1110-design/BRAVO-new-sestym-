@@ -306,7 +306,7 @@ export default function DashboardPage() {
       </div>
 
       {/* المنتجات الأكثر مبيعاً والتركيبات */}
-      <div style={{ display: "flex", gap: "1.5rem", width: "100%" }}>
+      <div style={{ display: "flex", gap: "1.5rem", width: "100%", alignItems: "stretch" }}>
         {/* المنتجات الأكثر مبيعاً */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', flex: 1, minWidth: 0, animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
@@ -387,7 +387,7 @@ export default function DashboardPage() {
       </div>
 
       {/* التصنيع والفواتير */}
-      <div style={{ display: "flex", gap: "1.5rem", width: "100%" }}>
+      <div style={{ display: "flex", gap: "1.5rem", width: "100%", alignItems: "stretch" }}>
         {/* آخر عمليات التصنيع */}
         <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', flex: 1, minWidth: 0, animationFillMode: 'both' }}>
           <div className="card-header flex items-center justify-between">
