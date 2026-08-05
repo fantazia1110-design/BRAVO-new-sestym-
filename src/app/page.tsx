@@ -325,8 +325,8 @@ export default function DashboardPage() {
             {topProducts.map((product, index) => (
               <div 
                 key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
-                className="group last:border-0 hover:bg-green-50"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'all 0.2s' }}
+                className="group last:border-0 hover:bg-green-50 hover:translate-x-1"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {product.emoji}
@@ -366,7 +366,7 @@ export default function DashboardPage() {
               <div 
                 key={index} 
                 style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
-                className="group last:border-0 hover:bg-purple-50"
+                className="group last:border-0 hover:bg-purple-50 hover:translate-x-1"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {formula.emoji}
