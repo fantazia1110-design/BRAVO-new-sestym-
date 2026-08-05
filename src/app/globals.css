@@ -1604,6 +1604,18 @@ a:hover {
   }
 }
 
+/* تخطيط الكروت جنب بعض */
+.two-col-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+}
+.two-col-layout > * {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
 /* منع خروج المحتوى الطويل من الكروت والخلايا */
 .card,
 .stat-card,
