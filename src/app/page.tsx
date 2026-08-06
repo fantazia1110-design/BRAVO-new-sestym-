@@ -481,7 +481,7 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <div onClick={() => window.location.href = '/inventory'} className="btn btn-outline btn-sm btn-red-outline" style={{ borderColor: '#dc2626', color: '#dc2626' }}>
+          <div onClick={() => window.location.href = '/inventory'} className="btn btn-red-outline btn-sm group">
             إدارة المخزون
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           </div>
