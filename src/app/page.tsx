@@ -165,6 +165,7 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
 
 /* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
+  const router = useRouter();
   return (
     <div className="space-y-8" data-section="dashboard">
       {/* الترحيب */}
@@ -316,10 +317,10 @@ export default function DashboardPage() {
               </span>
               الأكثر مبيعاً
             </h2>
-            <Link href="/reports" style={{ color: '#16a34a' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/reports')} style={{ color: '#16a34a', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
               <ChevronLeft size={16} />
-            </Link>
+            </div>
           </div>
           <div className="card-body p-0">
             {topProducts.map((product, index) => (
@@ -356,10 +357,10 @@ export default function DashboardPage() {
               </span>
               آخر التركيبات
             </h2>
-            <Link href="/formulas" style={{ color: '#7c3aed' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/formulas')} style={{ color: '#7c3aed', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </Link>
+            </div>
           </div>
           <div className="card-body p-0">
             {recentFormulas.map((formula, index) => (
@@ -397,10 +398,10 @@ export default function DashboardPage() {
               </span>
               التصنيع الجاري
             </h2>
-            <Link href="/production" style={{ color: '#0891b2' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/production')} style={{ color: '#0891b2', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </Link>
+            </div>
           </div>
           <div className="card-body p-0">
             <table className="table">
@@ -442,10 +443,10 @@ export default function DashboardPage() {
               </span>
               آخر الفواتير
             </h2>
-            <Link href="/invoices" style={{ color: '#ea580c' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/invoices')} style={{ color: '#ea580c', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </Link>
+            </div>
           </div>
           <div className="card-body p-0">
             <table className="table">

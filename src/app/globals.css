@@ -1905,14 +1905,13 @@ a:hover {
 .main-content .grid.grid-cols-4>.card.card-body>div>div:first-child svg{color:#fff!important;width:21px!important;height:21px!important}
 .main-content .grid.grid-cols-4>.card.card-body .text-2xl{margin:0!important;min-height:2.1rem!important;display:flex!important;align-items:center!important;font-size:1.85rem!important;font-weight:900!important;color:var(--sc)!important}
 .main-content .grid.grid-cols-4>.card.card-body .text-sm{margin:0!important;min-height:1.3rem!important;display:flex!important;align-items:center!important;font-size:.92rem!important;font-weight:800!important;color:#475569!important}
-.table th{text-align:center!important;vertical-align:middle!important;font-weight:900!important;color:#312e81!important;background:linear-gradient(to bottom,#f5f3ff,#ede9fe)!important}
-.table td{text-align:center!important;vertical-align:middle!important;padding:1rem!important;color:#1e293b!important}
+.table th{text-align:center!important;vertical-align:middle!important;font-weight:900!important}
+.table td{text-align:center!important;vertical-align:middle!important;padding:1rem!important}
 .table tbody tr:nth-child(even){background:#fbfaff!important}
-.table tbody tr:hover{background:#f3ecff!important}
 .table td>div:not(.flex){display:flex!important;flex-direction:column!important;align-items:center!important}
-.table td .font-mono{font-weight:900!important;color:#4c1d95!important;background:#f3ecff!important;border:1.5px solid #ddd6fe!important;padding:.28rem .6rem!important;border-radius:.5rem!important}
-.table td .font-medium{font-size:1rem!important;font-weight:900!important;color:#1e1b4b!important}
-.table td .text-xs{font-style:italic!important;color:#7c6fa8!important}
+.table td .font-mono{font-weight:900!important;padding:.28rem .6rem!important;border-radius:.5rem!important}
+.table td .font-medium{font-size:1rem!important;font-weight:900!important}
+.table td .text-xs{font-style:italic!important}
 .table td .flex.items-center.gap-2{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:.4rem!important}
 .table td a.btn,.table td button.btn{display:inline-flex!important;align-items:center!important;gap:.35rem!important;padding:.42rem .8rem!important;border-radius:.55rem!important;font-size:.78rem!important;font-weight:800!important;border:1.5px solid #e2e8f0!important;background:#f8fafc!important;color:#334155!important;overflow:visible!important}
 .table td a.btn::after,.table td button.btn::after{content:attr(title)!important;position:static!important;inset:auto!important;opacity:1!important;background:none!important;color:inherit!important;display:inline!important;white-space:nowrap!important;transform:none!important;width:auto!important;height:auto!important}
