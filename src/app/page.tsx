@@ -332,8 +332,8 @@ export default function DashboardPage() {
                   {product.emoji}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-green-700 truncate">{product.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{product.sales} وحدة مباعة</p>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }} className="truncate">{product.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#15803d', margin: 0 }}>{product.sales} وحدة مباعة</p>
                 </div>
                 <div style={{ textAlign: 'left', flexShrink: 0 }}>
                   <p style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }}>{formatCurrency(product.revenue)}</p>
@@ -372,8 +372,8 @@ export default function DashboardPage() {
                   {formula.emoji}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-purple-700 truncate">{formula.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#7c3aed', margin: 0 }} className="truncate">{formula.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6d28d9', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
                 </div>
                 <div style={{ flexShrink: 0 }}>
                   {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
@@ -415,8 +415,8 @@ export default function DashboardPage() {
               <tbody>
                 {recentProduction.map((batch, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
-                    <td className="font-extrabold">{batch.product}</td>
+                    <td className="font-mono font-extrabold text-sm" style={{ color: '#0891b2' }}>{batch.batchNumber}</td>
+                    <td className="font-extrabold" style={{ color: '#0e7490' }}>{batch.product}</td>
                     <td>
                       <div className="w-full max-w-[120px]">
                         <div className="progress-bar h-2">
@@ -460,9 +460,9 @@ export default function DashboardPage() {
               <tbody>
                 {recentInvoices.map((invoice, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{invoice.number}</td>
-                    <td className="font-extrabold">{invoice.customer}</td>
-                    <td className="font-extrabold text-green-600">{formatCurrency(invoice.total)}</td>
+                    <td className="font-mono font-extrabold text-sm" style={{ color: '#ea580c' }}>{invoice.number}</td>
+                    <td className="font-extrabold" style={{ color: '#c2410c' }}>{invoice.customer}</td>
+                    <td className="font-extrabold" style={{ color: '#ea580c' }}>{formatCurrency(invoice.total)}</td>
                     <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}
