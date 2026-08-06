@@ -49,41 +49,41 @@ export function getFormulaStatusBadge(status: string) {
 
 // دالة مساعدة للحصول على لون حالة التصنيع — كل حالة بلونها المعبر عنها
 export function getProductionStatusBadge(status: string) {
-  const base = { fontWeight: 800, fontSize: '0.8rem', padding: '0.35rem 0.85rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, gap: '0.4rem' };
+  const base = { fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, letterSpacing: '0.02em' };
   switch (status) {
     case 'draft':
-      return <span style={{ ...base, background: 'rgba(107,114,128,0.1)', color: '#4b5563', border: '1.5px solid rgba(107,114,128,0.25)' }}>○ مسودة</span>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>;
     case 'planned':
-      return <span style={{ ...base, background: 'rgba(99,102,241,0.1)', color: '#4f46e5', border: '1.5px solid rgba(99,102,241,0.25)' }}>◯ مخطط</span>;
+      return <span style={{ ...base, background: '#eef2ff', color: '#3730a3', border: '2px solid #818cf8' }}>مخطط</span>;
     case 'in_progress':
-      return <span style={{ ...base, background: 'rgba(245,158,11,0.12)', color: '#b45309', border: '1.5px solid rgba(245,158,11,0.3)' }}>◉ جاري التصنيع</span>;
+      return <span style={{ ...base, background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>جاري التصنيع</span>;
     case 'quality_check':
-      return <span style={{ ...base, background: 'rgba(59,130,246,0.1)', color: '#2563eb', border: '1.5px solid rgba(59,130,246,0.25)' }}>◎ فحص الجودة</span>;
+      return <span style={{ ...base, background: '#eff6ff', color: '#1d4ed8', border: '2px solid #60a5fa' }}>فحص الجودة</span>;
     case 'completed':
-      return <span style={{ ...base, background: 'rgba(22,163,74,0.12)', color: '#15803d', border: '1.5px solid rgba(22,163,74,0.3)' }}>✓ مكتمل</span>;
+      return <span style={{ ...base, background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>مكتمل</span>;
     case 'cancelled':
-      return <span style={{ ...base, background: 'rgba(220,38,38,0.1)', color: '#dc2626', border: '1.5px solid rgba(220,38,38,0.3)' }}>✗ ملغي</span>;
+      return <span style={{ ...base, background: '#fef2f2', color: '#dc2626', border: '2px solid #f87171' }}>ملغي</span>;
     default:
-      return <span style={{ ...base, background: 'rgba(107,114,128,0.1)', color: '#4b5563', border: '1.5px solid rgba(107,114,128,0.25)' }}>{status}</span>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>{status}</span>;
   }
 }
 
 // دالة مساعدة للحصول على لون حالة الفاتورة — كل حالة بلونها المعبر عنها
 export function getInvoiceStatusBadge(status: string) {
-  const base = { fontWeight: 800, fontSize: '0.8rem', padding: '0.35rem 0.85rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, gap: '0.4rem' };
+  const base = { fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, letterSpacing: '0.02em' };
   switch (status) {
     case 'draft':
-      return <span style={{ ...base, background: 'rgba(107,114,128,0.1)', color: '#4b5563', border: '1.5px solid rgba(107,114,128,0.25)' }}>○ مسودة</span>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>;
     case 'confirmed':
-      return <span style={{ ...base, background: 'rgba(59,130,246,0.1)', color: '#2563eb', border: '1.5px solid rgba(59,130,246,0.25)' }}>◎ مؤكدة</span>;
+      return <span style={{ ...base, background: '#eff6ff', color: '#1d4ed8', border: '2px solid #60a5fa' }}>مؤكدة</span>;
     case 'paid':
-      return <span style={{ ...base, background: 'rgba(22,163,74,0.12)', color: '#15803d', border: '1.5px solid rgba(22,163,74,0.3)' }}>✓ مدفوعة</span>;
+      return <span style={{ ...base, background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>مدفوعة</span>;
     case 'partially_paid':
-      return <span style={{ ...base, background: 'rgba(245,158,11,0.12)', color: '#b45309', border: '1.5px solid rgba(245,158,11,0.3)' }}>◑ مدفوعة جزئياً</span>;
+      return <span style={{ ...base, background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>مدفوعة جزئياً</span>;
     case 'cancelled':
-      return <span style={{ ...base, background: 'rgba(220,38,38,0.1)', color: '#dc2626', border: '1.5px solid rgba(220,38,38,0.3)' }}>✗ ملغية</span>;
+      return <span style={{ ...base, background: '#fef2f2', color: '#dc2626', border: '2px solid #f87171' }}>ملغية</span>;
     default:
-      return <span style={{ ...base, background: 'rgba(107,114,128,0.1)', color: '#4b5563', border: '1.5px solid rgba(107,114,128,0.25)' }}>{status}</span>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>{status}</span>;
   }
 }
 
