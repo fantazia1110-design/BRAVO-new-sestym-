@@ -400,8 +400,6 @@ a:hover {
   text-align: right;
   font-weight: 800;
   font-size: 0.8rem;
-  color: var(--text-secondary);
-  background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
   border-bottom: 2px solid var(--border);
   letter-spacing: 0.05em;
   position: sticky;
@@ -1881,7 +1879,7 @@ a:hover {
 .main-content .grid.grid-cols-4>.card.card-body>div>div:first-child svg{color:#fff!important;width:21px!important;height:21px!important}
 .main-content .grid.grid-cols-4>.card.card-body .text-2xl{margin:0!important;min-height:2.1rem!important;display:flex!important;align-items:center!important;font-size:1.85rem!important;font-weight:900!important;color:var(--sc)!important}
 .main-content .grid.grid-cols-4>.card.card-body .text-sm{margin:0!important;min-height:1.3rem!important;display:flex!important;align-items:center!important;font-size:.92rem!important;font-weight:800!important;color:#475569!important}
-.table th{text-align:center!important;vertical-align:middle!important;font-weight:900!important;color:#312e81!important;background:linear-gradient(to bottom,#f5f3ff,#ede9fe)!important}
+.table th{text-align:center!important;vertical-align:middle!important;font-weight:900!important}
 .table td{text-align:center!important;vertical-align:middle!important;padding:1rem!important}
 .table tbody tr:nth-child(even){background:#fbfaff!important}
 
@@ -2122,3 +2120,10 @@ a:hover {
 .section-color-green .table td,
 .section-color-red .table td,
 .section-color-purple .table td { font-weight: 800 !important; }
+
+/* عناوين الجداول (th) بلون القسم */
+.section-color-green .table th { color: #16a34a !important; background: linear-gradient(to bottom, rgba(34,197,94,0.08), rgba(248,250,252,0.9)) !important; }
+.section-color-purple .table th { color: #7c3aed !important; background: linear-gradient(to bottom, rgba(139,92,246,0.08), rgba(248,250,252,0.9)) !important; }
+.section-color-cyan .table th { color: #0891b2 !important; background: linear-gradient(to bottom, rgba(6,182,212,0.08), rgba(248,250,252,0.9)) !important; }
+.section-color-orange .table th { color: #ea580c !important; background: linear-gradient(to bottom, rgba(249,115,22,0.08), rgba(248,250,252,0.9)) !important; }
+.section-color-red .table th { color: #dc2626 !important; background: linear-gradient(to bottom, rgba(220,38,38,0.08), rgba(248,250,252,0.9)) !important; }
