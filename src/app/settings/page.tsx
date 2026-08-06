@@ -106,7 +106,7 @@ export default function SettingsPage() {
   });
 
   return (
-    <div>
+    <div data-section="settings">
       {/* الهيدر */}
       <div className="mb-6">
         <h1 className="page-title flex items-center gap-3">

@@ -212,7 +212,7 @@ export default function FormulasPage() {
   });
 
   return (
-    <div>
+    <div data-section="formulas">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

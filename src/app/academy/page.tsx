@@ -165,7 +165,7 @@ export default function AcademyPage() {
   });
 
   return (
-    <div>
+    <div data-section="academy">
       {/* الهيدر */}
       <div className="mb-8">
         <h1 className="page-title flex items-center gap-3">

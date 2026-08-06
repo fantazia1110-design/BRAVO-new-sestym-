@@ -268,7 +268,7 @@ export default function ProductionPage() {
   ];
 
   return (
-    <div>
+    <div data-section="production">
       {/* الهيدر */}
       <div className="page-header">
         <div>

@@ -267,7 +267,7 @@ export default function RawMaterialsPage() {
   };
 
   return (
-    <div>
+    <div data-section="raw-materials">
       {/* الهيدر */}
       <div className="page-header">
         <div>

@@ -226,7 +226,7 @@ export default function InvoicesPage() {
   ];
 
   return (
-    <div>
+    <div data-section="invoices">
       {/* الهيدر */}
       <div className="page-header">
         <div>

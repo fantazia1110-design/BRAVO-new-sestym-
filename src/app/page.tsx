@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   FlaskConical,
   Package,
@@ -19,15 +20,9 @@ import {
   Zap,
   Star,
   ChevronLeft,
-  SoapDispenserDroplet,
-  SprayCan,
-  Bubbles,
-  Scissors,
-  HeartPulse,
 } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
 import CategoryCard from '@/components/ui/CategoryCard';
-import CategoryIcon from '@/components/ui/CategoryIcon';
 import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
@@ -45,12 +40,12 @@ const stats = {
 
 // أقسام المنتجات
 const productCategories = [
-  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700', icon: <SoapDispenserDroplet size={36} strokeWidth={1.8} /> },
-  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600', icon: <Sparkles size={36} strokeWidth={1.8} /> },
-  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600', icon: <SprayCan size={36} strokeWidth={1.8} /> },
-  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600', icon: <Bubbles size={36} strokeWidth={1.8} /> },
-  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600', icon: <Scissors size={36} strokeWidth={1.8} /> },
-  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600', icon: <HeartPulse size={36} strokeWidth={1.8} /> },
+  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700' },
+  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600' },
+  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600' },
+  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600' },
+  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600' },
+  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600' },
 ];
 
 // المنتجات الأكثر مبيعاً
@@ -96,15 +91,82 @@ const lowStockItems = [
 
 // الإجراءات السريعة
 const quickActions = [
-  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, gradient: 'from-violet-500 to-purple-700', glow: 'shadow-purple-500/30' },
-  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, gradient: 'from-purple-500 to-violet-700', glow: 'shadow-violet-500/30' },
-  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, gradient: 'from-fuchsia-500 to-purple-700', glow: 'shadow-fuchsia-500/30' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, gradient: 'from-indigo-500 to-violet-700', glow: 'shadow-indigo-500/30' },
+  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, color: '#4338ca', colorLight: '#6366f1' },
+  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, color: '#7c3aed', colorLight: '#a78bfa' },
+  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, color: '#0891b2', colorLight: '#22d3ee' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#be123c', colorLight: '#f43f5e' },
 ];
 
+function hexToRgb(hex: string): [number, number, number] {
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [109, 40, 217];
+}
+
+function QuickActionLink({ action, index }: { action: typeof quickActions[number]; index: number }) {
+  const [hov, setHov] = React.useState(false);
+  const router = useRouter();
+  return (
+    <div
+      className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
+      style={{
+        animationDelay: `${0.6 + index * 0.1}s`,
+        animationFillMode: 'both' as const,
+        background: hov ? `linear-gradient(145deg, ${action.colorLight}, ${action.color})` : '#ffffff',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease, background 0.35s ease',
+        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+        boxShadow: hov
+          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
+          : '0 4px 14px -4px rgba(0,0,0,0.15)',
+        border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '2px solid rgba(0,0,0,0.06)',
+        cursor: 'pointer',
+        color: hov ? '#ffffff' : '#1f2937',
+        borderTop: hov ? 'none' : `3px solid ${action.color}`,
+      } as React.CSSProperties}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      onClick={() => router.push(action.href)}
+    >
+      {hov && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.18) 62%, transparent 75%)',
+          animation: 'shineSweep 0.75s ease-out forwards',
+          pointerEvents: 'none', zIndex: 1,
+        }} />
+      )}
+      <div style={{ position: 'absolute', top: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', bottom: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease 0.05s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', top: '12%', bottom: '12%', right: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.1s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.15s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
+      <div
+        className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300"
+        style={{
+          background: hov ? 'rgba(255,255,255,0.2)' : `linear-gradient(145deg, ${action.colorLight}, ${action.color})`,
+          border: hov ? '1.5px solid rgba(255,255,255,0.2)' : 'none',
+          position: 'relative', zIndex: 2, flexShrink: 0,
+          transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)',
+          filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'none',
+          color: '#ffffff',
+        }}
+      >
+        {action.icon}
+      </div>
+      <span style={{
+        fontWeight: 700, fontSize: '1.125rem',
+        color: hov ? '#ffffff' : '#1f2937',
+        textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none',
+        position: 'relative', zIndex: 2,
+        transition: 'color 0.35s ease, transform 0.3s ease, text-shadow 0.35s ease',
+        transform: hov ? 'translateY(-2px)' : 'translateY(0)',
+      }}>{action.label}</span>
+    </div>
+  );
+}
+
+/* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" data-section="dashboard">
       {/* الترحيب */}
       <div className="animate-slide-up">
         <div className="flex items-center gap-5 mb-2">
@@ -219,14 +281,13 @@ export default function DashboardPage() {
               count={category.count}
               colorClass={category.color}
               delay={0.4 + index * 0.1}
-              icon={category.icon}
             />
           ))}
         </div>
       </div>
 
       {/* الإجراءات السريعة */}
-      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: 'none' }}>
         <div className="card-header">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
@@ -238,28 +299,17 @@ export default function DashboardPage() {
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
             {quickActions.map((action, index) => (
-              <Link
-                key={action.label}
-                href={action.href}
-                className="group relative flex items-center gap-4 p-5 rounded-2xl border-2 border-[var(--border)] hover:border-transparent bg-white hover:bg-gradient-to-br hover:from-gray-50 hover:to-white transition-all duration-300 overflow-hidden animate-slide-up"
-                style={{ animationDelay: `${0.6 + index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${action.gradient} text-white flex items-center justify-center shadow-lg ${action.glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                  {action.icon}
-                </div>
-                <span className="font-bold text-lg group-hover:text-[var(--primary)] transition-colors">{action.label}</span>
-                <ChevronLeft size={20} className="absolute left-4 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all text-[var(--primary)]" />
-              </Link>
+              <QuickActionLink key={action.label} action={action} index={index} />
             ))}
           </div>
         </div>
       </div>
 
       {/* المنتجات الأكثر مبيعاً والتركيبات */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="two-col-layout">
         {/* المنتجات الأكثر مبيعاً */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
-          <div className="card-header flex items-center justify-between">
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #16a34a' }}>
+          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(34,197,94,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
                 <TrendingUp size={24} />
@@ -275,18 +325,19 @@ export default function DashboardPage() {
             {topProducts.map((product, index) => (
               <div 
                 key={index} 
-                className="flex items-center gap-4 p-5 border-b border-[var(--border)] last:border-0 hover:bg-gradient-to-l hover:from-green-50 hover:to-transparent transition-all group cursor-pointer"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'all 0.2s' }}
+                className="group last:border-0 hover:bg-green-50 hover:translate-x-1"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {product.emoji}
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-[var(--text-primary)] group-hover:text-green-700 transition-colors">{product.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-semibold">{product.sales} وحدة مباعة</p>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-green-700 truncate">{product.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{product.sales} وحدة مباعة</p>
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-lg text-green-600">{formatCurrency(product.revenue)}</p>
-                  <div className="flex items-center gap-1 text-xs text-green-600 font-bold">
+                <div style={{ textAlign: 'left', flexShrink: 0 }}>
+                  <p style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }}>{formatCurrency(product.revenue)}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: '#16a34a', fontWeight: 800 }}>
                     <TrendingUp size={12} />
                     +{product.trend}%
                   </div>
@@ -297,8 +348,8 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر التركيبات */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
-          <div className="card-header flex items-center justify-between">
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #7c3aed' }}>
+          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(139,92,246,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
                 <Beaker size={24} />
@@ -314,16 +365,17 @@ export default function DashboardPage() {
             {recentFormulas.map((formula, index) => (
               <div 
                 key={index} 
-                className="flex items-center gap-4 p-5 border-b border-[var(--border)] last:border-0 hover:bg-gradient-to-l hover:from-purple-50 hover:to-transparent transition-all group cursor-pointer"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
+                className="group last:border-0 hover:bg-purple-50 hover:translate-x-1"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-violet-200 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {formula.emoji}
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-[var(--text-primary)] group-hover:text-purple-700 transition-colors">{formula.name}</h4>
-                  <p className="text-sm text-[var(--text-muted)] font-semibold">{formula.category} • {formula.ingredients} مكون</p>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-purple-700 truncate">{formula.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
                 </div>
-                <div>
+                <div style={{ flexShrink: 0 }}>
                   {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
                   {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
                   {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
@@ -335,10 +387,10 @@ export default function DashboardPage() {
       </div>
 
       {/* التصنيع والفواتير */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="two-col-layout">
         {/* آخر عمليات التصنيع */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both' }}>
-          <div className="card-header flex items-center justify-between">
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #0891b2' }}>
+          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(6,182,212,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
                 <Factory size={24} />
@@ -354,26 +406,26 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>رقم الدفعة</th>
-                  <th>المنتج</th>
-                  <th>التقدم</th>
-                  <th>الحالة</th>
+                  <th className="font-extrabold">رقم الدفعة</th>
+                  <th className="font-extrabold">المنتج</th>
+                  <th className="font-extrabold">التقدم</th>
+                  <th className="font-extrabold">الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentProduction.map((batch, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-bold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
-                    <td className="font-bold">{batch.product}</td>
+                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
+                    <td className="font-extrabold">{batch.product}</td>
                     <td>
                       <div className="w-full max-w-[120px]">
                         <div className="progress-bar h-2">
                           <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
                         </div>
-                        <span className="text-xs font-bold text-[var(--text-muted)]">{batch.progress}%</span>
+                        <span className="text-xs font-extrabold text-[var(--text-muted)]">{batch.progress}%</span>
                       </div>
                     </td>
-                    <td>{getProductionStatusBadge(batch.status)}</td>
+                    <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -382,8 +434,8 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر الفواتير */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
-          <div className="card-header flex items-center justify-between">
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #ea580c' }}>
+          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(249,115,22,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
                 <FileText size={24} />
@@ -399,19 +451,19 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>رقم الفاتورة</th>
-                  <th>العميل</th>
-                  <th>المبلغ</th>
-                  <th>الحالة</th>
+                  <th className="font-extrabold">رقم الفاتورة</th>
+                  <th className="font-extrabold">العميل</th>
+                  <th className="font-extrabold">المبلغ</th>
+                  <th className="font-extrabold">الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentInvoices.map((invoice, index) => (
                   <tr key={index} className="group">
-                    <td className="font-mono font-bold text-sm text-[var(--primary)]">{invoice.number}</td>
-                    <td className="font-bold">{invoice.customer}</td>
+                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{invoice.number}</td>
+                    <td className="font-extrabold">{invoice.customer}</td>
                     <td className="font-extrabold text-green-600">{formatCurrency(invoice.total)}</td>
-                    <td>{getInvoiceStatusBadge(invoice.status)}</td>
+                    <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -421,7 +473,7 @@ export default function DashboardPage() {
       </div>
 
       {/* المواد منخفضة المخزون */}
-      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
+      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none' }}>
         <div className="card-header flex items-center justify-between">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
@@ -429,7 +481,7 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <Link href="/inventory" className="btn btn-outline btn-sm group">
+          <Link href="/inventory" className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626' }}>
             إدارة المخزون
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           </Link>
