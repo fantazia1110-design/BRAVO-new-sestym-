@@ -2106,11 +2106,11 @@ a:hover {
 .section-color-red Link { color: #dc2626 !important; }
 
 /* تأثير الوقوف على صفوف الجداول بلون القسم */
-.section-color-green .table tbody tr:hover { background: rgba(34,197,94,0.1) !important; transform: translateX(4px); }
-.section-color-purple .table tbody tr:hover { background: rgba(139,92,246,0.1) !important; transform: translateX(4px); }
-.section-color-cyan .table tbody tr:hover { background: rgba(6,182,212,0.1) !important; transform: translateX(4px); }
-.section-color-orange .table tbody tr:hover { background: rgba(249,115,22,0.1) !important; transform: translateX(4px); }
-.section-color-red .table tbody tr:hover { background: rgba(220,38,38,0.1) !important; transform: translateX(4px); }
+.section-color-green .table tbody tr:hover { background: rgba(34,197,94,0.12) !important; box-shadow: inset 4px 0 0 #16a34a !important; transform: translateX(3px); }
+.section-color-purple .table tbody tr:hover { background: rgba(139,92,246,0.12) !important; box-shadow: inset 4px 0 0 #7c3aed !important; transform: translateX(3px); }
+.section-color-cyan .table tbody tr:hover { background: rgba(6,182,212,0.12) !important; box-shadow: inset 4px 0 0 #0891b2 !important; transform: translateX(3px); }
+.section-color-orange .table tbody tr:hover { background: rgba(249,115,22,0.12) !important; box-shadow: inset 4px 0 0 #ea580c !important; transform: translateX(3px); }
+.section-color-red .table tbody tr:hover { background: rgba(220,38,38,0.12) !important; box-shadow: inset 4px 0 0 #dc2626 !important; transform: translateX(3px); }
 
 /* شريط التقدم بلون القسم */
 .section-color-cyan .progress-fill { background: linear-gradient(90deg, #0891b2, #06b6d4) !important; }

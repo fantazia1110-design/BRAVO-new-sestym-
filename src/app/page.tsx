@@ -414,18 +414,18 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {recentProduction.map((batch, index) => (
-                  <tr key={index} className="group" style={{ transition: 'all 0.2s', cursor: 'pointer' }}>
-                    <td className="font-mono font-extrabold text-sm" style={{ color: '#0891b2', fontWeight: 900 }}>{batch.batchNumber}</td>
-                    <td className="font-extrabold" style={{ color: '#0e7490', fontWeight: 800 }}>{batch.product}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.25s ease', cursor: 'pointer' }}>
+                    <td style={{ color: '#0891b2', fontWeight: 900, fontSize: '0.85rem', fontFamily: 'monospace' }}>{batch.batchNumber}</td>
+                    <td style={{ color: '#0e7490', fontWeight: 800 }}>{batch.product}</td>
                     <td>
-                      <div className="w-full max-w-[120px]">
-                        <div className="progress-bar h-2">
-                          <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
+                      <div style={{ width: '100%', maxWidth: '140px' }}>
+                        <div className="progress-bar h-3" style={{ background: 'rgba(8,145,178,0.15)', borderRadius: '999px', overflow: 'hidden' }}>
+                          <div style={{ width: `${batch.progress}%`, height: '100%', borderRadius: '999px', background: 'linear-gradient(90deg, #0891b2, #22d3ee)', transition: 'width 0.5s ease' }} />
                         </div>
-                        <span className="text-xs font-extrabold" style={{ color: '#0891b2', fontWeight: 900 }}>{batch.progress}%</span>
+                        <span style={{ color: '#0891b2', fontWeight: 900, fontSize: '0.8rem', marginTop: '0.25rem', display: 'block', textAlign: 'center' }}>{batch.progress}%</span>
                       </div>
                     </td>
-                    <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
+                    <td style={{ fontWeight: 800 }}>{getProductionStatusBadge(batch.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -459,11 +459,11 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {recentInvoices.map((invoice, index) => (
-                  <tr key={index} className="group" style={{ transition: 'all 0.2s', cursor: 'pointer' }}>
-                    <td className="font-mono font-extrabold text-sm" style={{ color: '#ea580c', fontWeight: 900 }}>{invoice.number}</td>
-                    <td className="font-extrabold" style={{ color: '#c2410c', fontWeight: 800 }}>{invoice.customer}</td>
-                    <td className="font-extrabold" style={{ color: '#ea580c', fontWeight: 800 }}>{formatCurrency(invoice.total)}</td>
-                    <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.25s ease', cursor: 'pointer' }}>
+                    <td style={{ color: '#ea580c', fontWeight: 900, fontSize: '0.85rem', fontFamily: 'monospace' }}>{invoice.number}</td>
+                    <td style={{ color: '#c2410c', fontWeight: 800 }}>{invoice.customer}</td>
+                    <td style={{ color: '#ea580c', fontWeight: 800 }}>{formatCurrency(invoice.total)}</td>
+                    <td style={{ fontWeight: 800 }}>{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}
               </tbody>
