@@ -423,11 +423,9 @@ a:hover {
 }
 
 .table tbody tr:hover {
-  background: linear-gradient(to left, rgba(59, 130, 246, 0.05), transparent);
 }
 
 .table tbody tr:hover td {
-  color: var(--primary-dark);
 }
 
 .table tbody tr:last-child td {
@@ -1886,7 +1884,7 @@ a:hover {
 .table th{text-align:center!important;vertical-align:middle!important;font-weight:900!important;color:#312e81!important;background:linear-gradient(to bottom,#f5f3ff,#ede9fe)!important}
 .table td{text-align:center!important;vertical-align:middle!important;padding:1rem!important}
 .table tbody tr:nth-child(even){background:#fbfaff!important}
-.table tbody tr:hover{background:#f3ecff!important}
+
 .table td>div:not(.flex){display:flex!important;flex-direction:column!important;align-items:center!important}
 .table td .font-mono{font-weight:900!important;background:#f3ecff!important;border:1.5px solid #ddd6fe!important;padding:.28rem .6rem!important;border-radius:.5rem!important}
 .table td .font-medium{font-size:1rem!important;font-weight:900!important}
