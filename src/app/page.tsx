@@ -481,28 +481,27 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <Link 
-            href="/inventory" 
-            className="btn btn-sm group"
+          <div 
+            onClick={() => window.location.href = '/inventory'} 
+            className="group"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.5rem',
               padding: '0.5rem 1.2rem',
-              borderRadius: 'var(--radius-xl)',
+              borderRadius: '1.5rem',
               fontWeight: 700,
               fontSize: '0.85rem',
               cursor: 'pointer',
               background: 'rgba(255,255,255,0.95)',
               border: '2px solid #dc2626',
               color: '#dc2626',
-              boxShadow: 'var(--shadow)',
+              boxShadow: '0 2px 8px -2px rgba(0,0,0,0.08)',
               transition: 'all 0.25s ease',
               whiteSpace: 'nowrap',
               position: 'relative',
               overflow: 'hidden',
-              isolation: 'isolate',
               backdropFilter: 'blur(10px)',
             }}
             onMouseEnter={(e) => {
@@ -516,13 +515,13 @@ export default function DashboardPage() {
               e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
               e.currentTarget.style.color = '#dc2626';
               e.currentTarget.style.borderColor = '#dc2626';
-              e.currentTarget.style.boxShadow = 'var(--shadow)';
+              e.currentTarget.style.boxShadow = '0 2px 8px -2px rgba(0,0,0,0.08)';
               e.currentTarget.style.transform = 'translateY(0) scale(1)';
             }}
           >
             إدارة المخزون
-            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+            <ChevronLeft size={16} style={{ transition: 'transform 0.2s' }} />
+          </div>
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
