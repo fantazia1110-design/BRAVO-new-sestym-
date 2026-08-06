@@ -325,8 +325,8 @@ export default function DashboardPage() {
             {topProducts.map((product, index) => (
               <div 
                 key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'all 0.2s' }}
-                className="group last:border-0 hover:bg-green-50 hover:translate-x-1"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(34,197,94,0.15)', cursor: 'pointer', transition: 'all 0.25s ease' }}
+                className="group last:border-0 hover-list-green"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {product.emoji}
@@ -365,8 +365,8 @@ export default function DashboardPage() {
             {recentFormulas.map((formula, index) => (
               <div 
                 key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
-                className="group last:border-0 hover:bg-purple-50 hover:translate-x-1"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(139,92,246,0.15)', cursor: 'pointer', transition: 'all 0.25s ease' }}
+                className="group last:border-0 hover-list-purple"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {formula.emoji}
@@ -376,9 +376,9 @@ export default function DashboardPage() {
                   <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6d28d9', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
                 </div>
                 <div style={{ flexShrink: 0 }}>
-                  {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
-                  {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
-                  {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
+                  {formula.status === 'approved' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>معتمدة</span>}
+                  {formula.status === 'testing' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>تحت الاختبار</span>}
+                  {formula.status === 'draft' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>}
                 </div>
               </div>
             ))}
