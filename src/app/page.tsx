@@ -481,42 +481,28 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <div 
-            onClick={() => window.location.href = '/inventory'} 
-            className="group"
+          <Link 
+            href="/inventory" 
+            className="btn btn-outline btn-sm group"
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1.2rem',
-              borderRadius: '0.75rem',
-              fontWeight: 800,
-              fontSize: '0.85rem',
-              cursor: 'pointer',
-              background: 'rgba(255,255,255,0.95)',
-              border: '2px solid #dc2626',
+              borderColor: '#dc2626',
               color: '#dc2626',
-              boxShadow: '0 2px 8px -2px rgba(220,38,38,0.15)',
-              transition: 'all 0.25s ease',
+              background: 'rgba(255,255,255,0.95)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#dc2626';
               e.currentTarget.style.color = '#ffffff';
               e.currentTarget.style.borderColor = '#dc2626';
-              e.currentTarget.style.boxShadow = '0 8px 25px -5px rgba(220,38,38,0.4)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
               e.currentTarget.style.color = '#dc2626';
               e.currentTarget.style.borderColor = '#dc2626';
-              e.currentTarget.style.boxShadow = '0 2px 8px -2px rgba(220,38,38,0.15)';
-              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             إدارة المخزون
-            <ChevronLeft size={16} style={{ color: 'inherit' }} />
-          </div>
+            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+          </Link>
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
