@@ -163,6 +163,55 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
   );
 }
 
+/* زر عرض الكل بتصميم مميز */
+function ShowAllButton({ href, color, colorLight }: { href: string; color: string; colorLight: string }) {
+  const [hov, setHov] = React.useState(false);
+  const router = useRouter();
+  return (
+    <div
+      onClick={() => router.push(href)}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        padding: '0.55rem 1.3rem',
+        borderRadius: '0.85rem',
+        fontWeight: 800,
+        fontSize: '0.92rem',
+        cursor: 'pointer',
+        position: 'relative',
+        overflow: 'hidden',
+        background: hov
+          ? `linear-gradient(145deg, ${colorLight}, ${color})`
+          : 'rgba(255,255,255,0.95)',
+        color: hov ? '#ffffff' : color,
+        border: hov
+          ? `2px solid ${color}`
+          : `2px solid rgba(99,102,241,0.25)`,
+        boxShadow: hov
+          ? `0 0 20px ${color}44, 0 8px 20px -4px rgba(0,0,0,0.2)`
+          : '0 2px 8px -2px rgba(0,0,0,0.08)',
+        transition: 'all 0.35s cubic-bezier(.34,1.56,.64,1)',
+        transform: hov ? 'translateY(-3px) scale(1.05)' : 'translateY(0) scale(1)',
+        textShadow: hov ? '0 1px 4px rgba(0,0,0,0.2)' : 'none',
+      } as React.CSSProperties}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+    >
+      {hov && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 62%, transparent 75%)',
+          animation: 'shineSweep 0.75s ease-out forwards',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+      )}
+      <span style={{ position: 'relative', zIndex: 1, transition: 'transform 0.3s ease' }}>عرض الكل</span>
+      <ChevronLeft size={18} style={{ position: 'relative', zIndex: 1, transition: 'transform 0.3s ease', transform: hov ? 'translateX(-4px)' : 'translateX(0)' }} />
+    </div>
+  );
+}
+
 /* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
   return (
@@ -267,10 +316,7 @@ export default function DashboardPage() {
             </span>
             أقسام المنتجات
           </h2>
-          <Link href="/products" className="btn btn-outline btn-sm group">
-            عرض الكل
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+          <ShowAllButton href="/products" color="#6366f1" colorLight="#818cf8" />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
           {productCategories.map((category, index) => (
