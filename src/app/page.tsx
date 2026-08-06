@@ -267,9 +267,9 @@ export default function DashboardPage() {
             </span>
             أقسام المنتجات
           </h2>
-          <Link href="/products" className="show-all-btn">
+          <Link href="/products" className="btn btn-outline btn-sm group">
             عرض الكل
-            <ChevronLeft size={18} />
+            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           </Link>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
