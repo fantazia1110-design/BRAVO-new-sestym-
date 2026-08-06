@@ -316,7 +316,7 @@ export default function DashboardPage() {
               </span>
               الأكثر مبيعاً
             </h2>
-            <Link href="/reports" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/reports" style={{ color: '#16a34a' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
               <ChevronLeft size={16} />
             </Link>
@@ -356,7 +356,7 @@ export default function DashboardPage() {
               </span>
               آخر التركيبات
             </h2>
-            <Link href="/formulas" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/formulas" style={{ color: '#7c3aed' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -397,7 +397,7 @@ export default function DashboardPage() {
               </span>
               التصنيع الجاري
             </h2>
-            <Link href="/production" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/production" style={{ color: '#0891b2' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -406,10 +406,10 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th className="font-extrabold">رقم الدفعة</th>
-                  <th className="font-extrabold">المنتج</th>
-                  <th className="font-extrabold">التقدم</th>
-                  <th className="font-extrabold">الحالة</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>رقم الدفعة</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>المنتج</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>التقدم</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>الحالة</th>
                 </tr>
               </thead>
               <tbody>
@@ -442,7 +442,7 @@ export default function DashboardPage() {
               </span>
               آخر الفواتير
             </h2>
-            <Link href="/invoices" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/invoices" style={{ color: '#ea580c' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -451,10 +451,10 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th className="font-extrabold">رقم الفاتورة</th>
-                  <th className="font-extrabold">العميل</th>
-                  <th className="font-extrabold">المبلغ</th>
-                  <th className="font-extrabold">الحالة</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>رقم الفاتورة</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>العميل</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>المبلغ</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>الحالة</th>
                 </tr>
               </thead>
               <tbody>
@@ -491,26 +491,26 @@ export default function DashboardPage() {
             {lowStockItems.map((item, index) => (
               <div
                 key={index}
-                className="relative p-5 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
+                className="relative p-5 rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 hover:border-red-400 hover:shadow-xl hover:shadow-red-500/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
                 style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both' }}
               >
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-red-200 to-rose-200 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-orange-800">{item.name}</h4>
-                    <Badge variant="warning">{item.category}</Badge>
+                    <h4 className="font-bold text-red-800">{item.name}</h4>
+                    <Badge variant="error">{item.category}</Badge>
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <ArrowDownRight className="text-orange-600" size={20} />
-                    <span className="text-3xl font-extrabold text-orange-700">{item.current}</span>
-                    <span className="text-orange-600 font-bold">{item.unit}</span>
+                    <ArrowDownRight className="text-red-600" size={20} />
+                    <span className="text-3xl font-extrabold text-red-700">{item.current}</span>
+                    <span className="text-red-600 font-bold">{item.unit}</span>
                   </div>
-                  <div className="text-sm text-orange-600 font-bold mb-3">
+                  <div className="text-sm text-red-600 font-bold mb-3">
                     الحد الأدنى: {item.min} {item.unit}
                   </div>
-                  <div className="progress-bar bg-orange-200 h-3">
+                  <div className="progress-bar bg-red-200 h-3">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-red-600 to-rose-500 transition-all duration-500"
                       style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%` }}
                     />
                   </div>
