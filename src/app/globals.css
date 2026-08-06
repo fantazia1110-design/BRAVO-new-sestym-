@@ -2114,3 +2114,53 @@ a:hover {
 [data-section] .card-header Link {
   color: var(--sc) !important;
 }
+
+/* ===== ألوان الأقسام على الداشبورد ===== */
+.section-color-green { --sc: #16a34a; --sc-light: #22c55e; --sc-soft: rgba(34,197,94,0.08); }
+.section-color-purple { --sc: #7c3aed; --sc-light: #8b5cf6; --sc-soft: rgba(139,92,246,0.08); }
+.section-color-cyan { --sc: #0891b2; --sc-light: #06b6d4; --sc-soft: rgba(6,182,212,0.08); }
+.section-color-orange { --sc: #ea580c; --sc-light: #f97316; --sc-soft: rgba(249,115,22,0.08); }
+.section-color-red { --sc: #dc2626; --sc-light: #ef4444; --sc-soft: rgba(220,38,38,0.08); }
+
+.section-color-green .card-header h2,
+.section-color-green h2 { color: #16a34a !important; }
+
+.section-color-purple .card-header h2,
+.section-color-purple h2 { color: #7c3aed !important; }
+
+.section-color-cyan .card-header h2,
+.section-color-cyan h2 { color: #0891b2 !important; }
+
+.section-color-orange .card-header h2,
+.section-color-orange h2 { color: #ea580c !important; }
+
+.section-color-red .card-header h2,
+.section-color-red h2 { color: #dc2626 !important; }
+
+/* ألوان th/td حسب القسم */
+.section-color-green .table th { color: #16a34a !important; background: linear-gradient(to bottom, rgba(34,197,94,0.06), rgba(248,250,252,0.9)) !important; }
+.section-color-green .table td { color: #15803d !important; }
+.section-color-green .table tbody tr:hover { background: rgba(34,197,94,0.06) !important; }
+
+.section-color-purple .table th { color: #7c3aed !important; background: linear-gradient(to bottom, rgba(139,92,246,0.06), rgba(248,250,252,0.9)) !important; }
+.section-color-purple .table td { color: #6d28d9 !important; }
+.section-color-purple .table tbody tr:hover { background: rgba(139,92,246,0.06) !important; }
+
+.section-color-cyan .table th { color: #0891b2 !important; background: linear-gradient(to bottom, rgba(6,182,212,0.06), rgba(248,250,252,0.9)) !important; }
+.section-color-cyan .table td { color: #0e7490 !important; }
+.section-color-cyan .table tbody tr:hover { background: rgba(6,182,212,0.06) !important; }
+
+.section-color-orange .table th { color: #ea580c !important; background: linear-gradient(to bottom, rgba(249,115,22,0.06), rgba(248,250,252,0.9)) !important; }
+.section-color-orange .table td { color: #c2410c !important; }
+.section-color-orange .table tbody tr:hover { background: rgba(249,115,22,0.06) !important; }
+
+.section-color-red .table th { color: #dc2626 !important; background: linear-gradient(to bottom, rgba(220,38,38,0.06), rgba(248,250,252,0.9)) !important; }
+.section-color-red .table td { color: #b91c1c !important; }
+.section-color-red .table tbody tr:hover { background: rgba(220,38,38,0.06) !important; }
+
+/* hover list effects */
+.hover-list-green:hover { background: rgba(34,197,94,0.06) !important; box-shadow: -4px 0 0 0 #16a34a inset; transform: translateX(6px); }
+.hover-list-purple:hover { background: rgba(139,92,246,0.06) !important; box-shadow: -4px 0 0 0 #7c3aed inset; transform: translateX(6px); }
+.hover-list-cyan:hover { background: rgba(6,182,212,0.06) !important; box-shadow: -4px 0 0 0 #0891b2 inset; transform: translateX(6px); }
+.hover-list-orange:hover { background: rgba(249,115,22,0.06) !important; box-shadow: -4px 0 0 0 #ea580c inset; transform: translateX(6px); }
+.hover-list-red:hover { background: rgba(220,38,38,0.06) !important; box-shadow: -4px 0 0 0 #dc2626 inset; transform: translateX(6px); }
