@@ -414,15 +414,15 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {recentProduction.map((batch, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm" style={{ color: '#0891b2' }}>{batch.batchNumber}</td>
-                    <td className="font-extrabold" style={{ color: '#0e7490' }}>{batch.product}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.2s', cursor: 'pointer' }}>
+                    <td className="font-mono font-extrabold text-sm" style={{ color: '#0891b2', fontWeight: 900 }}>{batch.batchNumber}</td>
+                    <td className="font-extrabold" style={{ color: '#0e7490', fontWeight: 800 }}>{batch.product}</td>
                     <td>
                       <div className="w-full max-w-[120px]">
                         <div className="progress-bar h-2">
                           <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
                         </div>
-                        <span className="text-xs font-extrabold text-[var(--text-muted)]">{batch.progress}%</span>
+                        <span className="text-xs font-extrabold" style={{ color: '#0891b2', fontWeight: 900 }}>{batch.progress}%</span>
                       </div>
                     </td>
                     <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
@@ -459,10 +459,10 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {recentInvoices.map((invoice, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm" style={{ color: '#ea580c' }}>{invoice.number}</td>
-                    <td className="font-extrabold" style={{ color: '#c2410c' }}>{invoice.customer}</td>
-                    <td className="font-extrabold" style={{ color: '#ea580c' }}>{formatCurrency(invoice.total)}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.2s', cursor: 'pointer' }}>
+                    <td className="font-mono font-extrabold text-sm" style={{ color: '#ea580c', fontWeight: 900 }}>{invoice.number}</td>
+                    <td className="font-extrabold" style={{ color: '#c2410c', fontWeight: 800 }}>{invoice.customer}</td>
+                    <td className="font-extrabold" style={{ color: '#ea580c', fontWeight: 800 }}>{formatCurrency(invoice.total)}</td>
                     <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}

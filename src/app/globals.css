@@ -2104,3 +2104,23 @@ a:hover {
 .section-color-orange Link { color: #ea580c !important; }
 .section-color-red a,
 .section-color-red Link { color: #dc2626 !important; }
+
+/* تأثير الوقوف على صفوف الجداول بلون القسم */
+.section-color-green .table tbody tr:hover { background: rgba(34,197,94,0.1) !important; transform: translateX(4px); }
+.section-color-purple .table tbody tr:hover { background: rgba(139,92,246,0.1) !important; transform: translateX(4px); }
+.section-color-cyan .table tbody tr:hover { background: rgba(6,182,212,0.1) !important; transform: translateX(4px); }
+.section-color-orange .table tbody tr:hover { background: rgba(249,115,22,0.1) !important; transform: translateX(4px); }
+.section-color-red .table tbody tr:hover { background: rgba(220,38,38,0.1) !important; transform: translateX(4px); }
+
+/* شريط التقدم بلون القسم */
+.section-color-cyan .progress-fill { background: linear-gradient(90deg, #0891b2, #06b6d4) !important; }
+.section-color-orange .progress-fill { background: linear-gradient(90deg, #ea580c, #f97316) !important; }
+.section-color-green .progress-fill { background: linear-gradient(90deg, #16a34a, #22c55e) !important; }
+.section-color-red .progress-fill { background: linear-gradient(90deg, #dc2626, #f87171) !important; }
+
+/* bold قوي على خلايا الجداول */
+.section-color-cyan .table td,
+.section-color-orange .table td,
+.section-color-green .table td,
+.section-color-red .table td,
+.section-color-purple .table td { font-weight: 800 !important; }
