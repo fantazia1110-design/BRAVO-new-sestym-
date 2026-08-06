@@ -481,18 +481,18 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <Link href="/inventory" className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626' }}>
+          <div onClick={() => window.location.href = '/inventory'} className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={e => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#dc2626'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.borderColor = '#dc2626'; }}>
             إدارة المخزون
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+          </div>
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
             {lowStockItems.map((item, index) => (
               <div
                 key={index}
-                className="relative p-5 rounded-2xl border-2 border-red-400 hover:border-red-600 hover:shadow-xl hover:shadow-red-500/20 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: 'linear-gradient(145deg, #fef2f2, #fee2e2)' }}
+                className="relative p-5 rounded-2xl border-2 border-red-500 hover:border-red-700 hover:shadow-xl hover:shadow-red-500/25 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
+                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: 'linear-gradient(145deg, #fee2e2, #fecaca)' }}
               >
                 <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-red-300 to-rose-300 rounded-full opacity-40 group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative">
