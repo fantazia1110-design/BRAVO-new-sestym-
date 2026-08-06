@@ -287,7 +287,7 @@ export default function DashboardPage() {
       </div>
 
       {/* الإجراءات السريعة */}
-      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: 'none' }}>
         <div className="card-header">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
@@ -308,7 +308,7 @@ export default function DashboardPage() {
       {/* المنتجات الأكثر مبيعاً والتركيبات */}
       <div className="two-col-layout">
         {/* المنتجات الأكثر مبيعاً */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both', borderTop: '4px solid #16a34a' }}>
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #16a34a' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(34,197,94,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
@@ -348,7 +348,7 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر التركيبات */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both', borderTop: '4px solid #7c3aed' }}>
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #7c3aed' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(139,92,246,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
@@ -389,7 +389,7 @@ export default function DashboardPage() {
       {/* التصنيع والفواتير */}
       <div className="two-col-layout">
         {/* آخر عمليات التصنيع */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both', borderTop: '4px solid #0891b2' }}>
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #0891b2' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(6,182,212,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
@@ -434,7 +434,7 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر الفواتير */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both', borderTop: '4px solid #ea580c' }}>
+        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #ea580c' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(249,115,22,0.08), rgba(248,250,252,0.9))' }}>
             <h2 className="text-2xl font-extrabold flex items-center gap-3">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
@@ -473,7 +473,7 @@ export default function DashboardPage() {
       </div>
 
       {/* المواد منخفضة المخزون */}
-      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
+      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none' }}>
         <div className="card-header flex items-center justify-between">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
