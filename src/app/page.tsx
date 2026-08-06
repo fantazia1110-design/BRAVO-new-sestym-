@@ -491,27 +491,27 @@ export default function DashboardPage() {
             {lowStockItems.map((item, index) => (
               <div
                 key={index}
-                className="relative p-5 rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 hover:border-red-400 hover:shadow-xl hover:shadow-red-500/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both' }}
+                className="relative p-5 rounded-2xl border-2 border-red-400 hover:border-red-600 hover:shadow-xl hover:shadow-red-500/20 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
+                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: 'linear-gradient(145deg, #fef2f2, #fee2e2)' }}
               >
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-red-200 to-rose-200 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-red-300 to-rose-300 rounded-full opacity-40 group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-red-800">{item.name}</h4>
-                    <Badge variant="error">{item.category}</Badge>
+                    <h4 style={{ fontWeight: 800, color: '#991b1b', margin: 0 }}>{item.name}</h4>
+                    <span style={{ fontWeight: 900, fontSize: '0.75rem', padding: '0.25rem 0.65rem', borderRadius: '9999px', background: '#dc2626', color: '#fff' }}>{item.category}</span>
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <ArrowDownRight className="text-red-600" size={20} />
-                    <span className="text-3xl font-extrabold text-red-700">{item.current}</span>
-                    <span className="text-red-600 font-bold">{item.unit}</span>
+                    <ArrowDownRight style={{ color: '#dc2626' }} size={22} />
+                    <span style={{ fontWeight: 900, fontSize: '1.75rem', color: '#b91c1c' }}>{item.current}</span>
+                    <span style={{ fontWeight: 800, color: '#dc2626' }}>{item.unit}</span>
                   </div>
-                  <div className="text-sm text-red-600 font-bold mb-3">
+                  <div style={{ fontWeight: 800, fontSize: '0.85rem', color: '#dc2626', marginBottom: '0.75rem' }}>
                     الحد الأدنى: {item.min} {item.unit}
                   </div>
-                  <div className="progress-bar bg-red-200 h-3">
+                  <div className="progress-bar h-3" style={{ background: '#fecaca', borderRadius: '999px', overflow: 'hidden' }}>
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-red-600 to-rose-500 transition-all duration-500"
-                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%`, height: '100%', borderRadius: '999px', background: 'linear-gradient(90deg, #dc2626, #f87171)', transition: 'width 0.5s ease' }}
+                    />
                     />
                   </div>
                 </div>
