@@ -885,7 +885,7 @@ a:hover {
 .category-card {
   border-radius: 1.2rem;
   padding: 1.5rem 1rem 1.2rem;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s ease, border 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -910,34 +910,75 @@ a:hover {
   background: linear-gradient(145deg, rgba(255,255,255,0.18) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.category-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.15) 38%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.15) 62%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .category-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 32px -8px rgba(0,0,0,0.35);
-  border-color: rgba(255,255,255,0.35);
+  transform: translateY(-12px) scale(1.04) !important;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2), 0 20px 40px -8px rgba(0,0,0,0.35), 0 0 60px -10px rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  border-width: 2px;
+}
+
+.category-card:hover::after {
+  opacity: 1;
+  animation: shineSweep 0.75s ease-out forwards;
 }
 
 .category-card h3 {
   position: relative;
   z-index: 2;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), letter-spacing 0.3s ease;
   color: white;
 }
 
 .category-card:hover h3 {
-  transform: translateY(-2px);
+  transform: translateY(-4px) !important;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .category-card p {
   position: relative;
   z-index: 2;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), background 0.3s ease, border-color 0.3s ease;
   color: white;
 }
 
 .category-card:hover p {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.08) !important;
+  background: rgba(255,255,255,0.25) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.category-card img {
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), filter 0.3s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.25) rotate(10deg);
+  filter: brightness(1.1) drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+}
+
+.category-card .category-icon-animate {
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), filter 0.3s ease;
+}
+
+.category-card:hover .category-icon-animate {
+  transform: scale(1.25) rotate(10deg) !important;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)) brightness(1.1) !important;
 }
 
 .category-detergents { background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%); color: white; }
@@ -1920,9 +1961,46 @@ a:hover {
 }
 
 .category-card:hover p {
-  background: rgba(255,255,255,.22);
-  border-color: rgba(255,255,255,.35);
+  background: rgba(255,255,255,.22) !important;
+  border-color: rgba(255,255,255,.35) !important;
   color: white;
+}
+
+/* زر عرض الكل محسّن */
+.show-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 0.85rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.95);
+  color: #6366f1;
+  border: 2px solid rgba(99,102,241,0.25);
+  box-shadow: 0 2px 8px -2px rgba(0,0,0,0.08);
+  transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+
+.show-all-btn:hover {
+  background: linear-gradient(145deg, #818cf8, #6366f1) !important;
+  color: #ffffff !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 20px rgba(99,102,241,0.35), 0 8px 20px -4px rgba(0,0,0,0.2) !important;
+  transform: translateY(-3px) scale(1.05);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.show-all-btn:hover svg {
+  transform: translateX(-4px);
+  color: #ffffff !important;
+}
+
+.show-all-btn svg {
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 /* توحيد ارتفاع كروت لوحة التحكم (الأكثر مبيعاً / آخر التركيبات) — §13 */
