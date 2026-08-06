@@ -2087,3 +2087,20 @@ a:hover {
 [data-section]:not([data-section="dashboard"]) .card-header Link {
   color: var(--sc) !important;
 }
+
+/* ألوان عناوين أقسام الداشبورد — !important عشان نتغلّب على أي CSS تاني */
+.section-color-green  { color: #16a34a !important; }
+.section-color-purple { color: #7c3aed !important; }
+.section-color-cyan   { color: #0891b2 !important; }
+.section-color-orange { color: #ea580c !important; }
+.section-color-red    { color: #dc2626 !important; }
+.section-color-green a,
+.section-color-green Link { color: #16a34a !important; }
+.section-color-purple a,
+.section-color-purple Link { color: #7c3aed !important; }
+.section-color-cyan a,
+.section-color-cyan Link { color: #0891b2 !important; }
+.section-color-orange a,
+.section-color-orange Link { color: #ea580c !important; }
+.section-color-red a,
+.section-color-red Link { color: #dc2626 !important; }
