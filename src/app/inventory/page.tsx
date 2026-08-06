@@ -202,7 +202,7 @@ export default function InventoryPage() {
   };
 
   return (
-    <div>
+    <div data-section="inventory">
       {/* الهيدر */}
       <div className="page-header">
         <div>

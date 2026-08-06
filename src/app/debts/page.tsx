@@ -83,7 +83,7 @@ export default function DebtsPage() {
   });
 
   return (
-    <div>
+    <div data-section="debts">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

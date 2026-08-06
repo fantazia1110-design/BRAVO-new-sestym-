@@ -70,7 +70,7 @@ export default function ExpensesPage() {
   });
 
   return (
-    <div>
+    <div data-section="expenses">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

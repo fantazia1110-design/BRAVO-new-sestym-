@@ -115,7 +115,7 @@ export default function SalesPage() {
   });
 
   return (
-    <div>
+    <div data-section="sales">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

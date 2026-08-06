@@ -172,7 +172,7 @@ export default function NewRawMaterialPage() {
   ];
 
   return (
-    <div>
+    <div data-section="raw-materials">
       {/* الهيدر */}
       <div className="flex items-center gap-4 mb-6">
         <Link href="/raw-materials" className="btn btn-icon btn-ghost">

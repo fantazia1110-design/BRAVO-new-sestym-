@@ -79,7 +79,7 @@ export default function BooksPage() {
   });
 
   return (
-    <div>
+    <div data-section="books">
       {/* الهيدر */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-2">

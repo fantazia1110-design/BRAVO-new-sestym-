@@ -166,7 +166,7 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
 /* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" data-section="dashboard">
       {/* الترحيب */}
       <div className="animate-slide-up">
         <div className="flex items-center gap-5 mb-2">

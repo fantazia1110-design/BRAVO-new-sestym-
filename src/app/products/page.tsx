@@ -216,7 +216,7 @@ export default function ProductsPage() {
   });
 
   return (
-    <div>
+    <div data-section="products">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

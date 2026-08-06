@@ -220,7 +220,7 @@ export default function FormulaLabPage() {
   );
 
   return (
-    <div>
+    <div data-section="formula-lab">
       {/* الهيدر */}
       <div className="page-header">
         <div>

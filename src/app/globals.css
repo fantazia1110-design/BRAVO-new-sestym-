@@ -1974,3 +1974,121 @@ a:hover {
   position: relative;
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
+
+/* ============================================================
+   ألوان الأقسام — كل صفحة ليها لون مخصص
+   ============================================================ */
+[data-section="raw-materials"] { --sc: #4338ca; --sc-light: #eef2ff; --sc-soft: #c7d2fe; }
+[data-section="formulas"]      { --sc: #7c3aed; --sc-light: #f5f3ff; --sc-soft: #ddd6fe; }
+[data-section="formula-lab"]   { --sc: #7c3aed; --sc-light: #f5f3ff; --sc-soft: #ddd6fe; }
+[data-section="products"]      { --sc: #0891b2; --sc-light: #ecfeff; --sc-soft: #a5f3fc; }
+[data-section="inventory"]     { --sc: #dc2626; --sc-light: #fef2f2; --sc-soft: #fecaca; }
+[data-section="production"]    { --sc: #0d9488; --sc-light: #f0fdfa; --sc-soft: #99f6e4; }
+[data-section="invoices"]      { --sc: #ea580c; --sc-light: #fff7ed; --sc-soft: #fed7aa; }
+[data-section="sales"]         { --sc: #16a34a; --sc-light: #f0fdf4; --sc-soft: #bbf7d0; }
+[data-section="customers"]     { --sc: #3b82f6; --sc-light: #eff6ff; --sc-soft: #bfdbfe; }
+[data-section="debts"]         { --sc: #e11d48; --sc-light: #fff1f2; --sc-soft: #fecdd3; }
+[data-section="expenses"]      { --sc: #d97706; --sc-light: #fffbeb; --sc-soft: #fde68a; }
+[data-section="reports"]       { --sc: #059669; --sc-light: #ecfdf5; --sc-soft: #a7f3d0; }
+[data-section="suppliers"]     { --sc: #0284c7; --sc-light: #f0f9ff; --sc-soft: #bae6fd; }
+[data-section="academy"]       { --sc: #c026d3; --sc-light: #fdf4ff; --sc-soft: #f0abfc; }
+[data-section="books"]         { --sc: #7c3aed; --sc-light: #f5f3ff; --sc-soft: #ddd6fe; }
+[data-section="settings"]      { --sc: #475569; --sc-light: #f8fafc; --sc-soft: #cbd5e1; }
+[data-section="dashboard"]     { --sc: #6d28d9; --sc-light: #f5f3ff; --sc-soft: #ddd6fe; }
+
+/* ستايلات موحدة لكل الأقسام حسب لون القسم */
+[data-section] .page-title {
+  color: var(--sc) !important;
+}
+
+[data-section] .stat-card {
+  border-left: 4px solid var(--sc) !important;
+  border: none !important;
+  border-left: 4px solid var(--sc) !important;
+  background: linear-gradient(145deg, var(--sc-light) 0%, #fff 100%) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+[data-section] .stat-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15), 0 0 20px -6px var(--sc) !important;
+}
+
+[data-section] .stat-card .stat-value {
+  color: var(--sc) !important;
+  -webkit-text-fill-color: var(--sc) !important;
+  background: none !important;
+}
+
+[data-section] .stat-card .stat-label {
+  color: #475569 !important;
+}
+
+[data-section] .stat-card .stat-icon {
+  background: var(--sc-light) !important;
+  color: var(--sc) !important;
+  border: 2px solid var(--sc-soft) !important;
+}
+
+[data-section] .card {
+  border: none !important;
+  border-top: 4px solid var(--sc) !important;
+  overflow: hidden;
+}
+
+[data-section] .card-header {
+  background: linear-gradient(to bottom, var(--sc-light), rgba(248,250,252,0.9)) !important;
+}
+
+[data-section] .card-header h2,
+[data-section] .card-header h3 {
+  color: var(--sc) !important;
+}
+
+/* أزرار الأقسام */
+[data-section] .btn-primary {
+  background: var(--sc) !important;
+  border-color: var(--sc) !important;
+}
+
+[data-section] .btn-primary:hover {
+  filter: brightness(1.1) !important;
+}
+
+[data-section] .btn-outline {
+  border-color: var(--sc) !important;
+  color: var(--sc) !important;
+}
+
+[data-section] .btn-outline:hover {
+  background: var(--sc) !important;
+  border-color: var(--sc) !important;
+  color: #fff !important;
+}
+
+/* عناوين الجداول */
+[data-section] .table th {
+  background: linear-gradient(to bottom, var(--sc-light), #f8fafc) !important;
+  color: var(--sc) !important;
+}
+
+/* صفوف الجداول عند التمرير */
+[data-section] .table tbody tr:hover {
+  background: var(--sc-light) !important;
+}
+
+/* أيقونة الصفحة في الهيدر */
+[data-section] .page-header .w-14,
+[data-section] .page-header .w-16 {
+  background: linear-gradient(145deg, var(--sc), color-mix(in srgb, var(--sc) 70%, #000)) !important;
+}
+
+/* روابط عرض الكل */
+[data-section] a[href] {
+  /* لا نغير كل الروابط - بس اللي جوا card-header */
+}
+
+[data-section] .card-header a,
+[data-section] .card-header Link {
+  color: var(--sc) !important;
+}

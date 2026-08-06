@@ -109,7 +109,7 @@ export default function ReportsPage() {
   };
 
   return (
-    <div>
+    <div data-section="reports">
       {/* الهيدر */}
       <div className="page-header">
         <div>

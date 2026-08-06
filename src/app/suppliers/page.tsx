@@ -83,7 +83,7 @@ export default function SuppliersPage() {
   const totalBalance = suppliers.reduce((sum, s) => sum + s.balance, 0);
 
   return (
-    <div>
+    <div data-section="suppliers">
       {/* الهيدر */}
       <div className="page-header">
         <div className="flex items-center gap-4">

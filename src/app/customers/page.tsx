@@ -269,7 +269,7 @@ export default function CustomersPage() {
   };
 
   return (
-    <div>
+    <div data-section="customers">
       {/* الهيدر */}
       <div className="page-header">
         <div>
