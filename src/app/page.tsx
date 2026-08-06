@@ -512,7 +512,6 @@ export default function DashboardPage() {
                     <div
                       style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%`, height: '100%', borderRadius: '999px', background: 'linear-gradient(90deg, #dc2626, #f87171)', transition: 'width 0.5s ease' }}
                     />
-                    />
                   </div>
                 </div>
               </div>
