@@ -483,21 +483,41 @@ export default function DashboardPage() {
           </h2>
           <Link 
             href="/inventory" 
-            className="btn btn-outline btn-sm group"
+            className="btn btn-sm group"
             style={{
-              borderColor: '#dc2626',
-              color: '#dc2626',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 1.2rem',
+              borderRadius: 'var(--radius-xl)',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              cursor: 'pointer',
               background: 'rgba(255,255,255,0.95)',
+              border: '2px solid #dc2626',
+              color: '#dc2626',
+              boxShadow: 'var(--shadow)',
+              transition: 'all 0.25s ease',
+              whiteSpace: 'nowrap',
+              position: 'relative',
+              overflow: 'hidden',
+              isolation: 'isolate',
+              backdropFilter: 'blur(10px)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#dc2626';
               e.currentTarget.style.color = '#ffffff';
               e.currentTarget.style.borderColor = '#dc2626';
+              e.currentTarget.style.boxShadow = '0 8px 25px -5px rgba(220,38,38,0.4)';
+              e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
               e.currentTarget.style.color = '#dc2626';
               e.currentTarget.style.borderColor = '#dc2626';
+              e.currentTarget.style.boxShadow = 'var(--shadow)';
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
             }}
           >
             إدارة المخزون
