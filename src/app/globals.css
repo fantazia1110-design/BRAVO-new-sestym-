@@ -2030,7 +2030,7 @@ a:hover {
   border: 2px solid var(--sc-soft) !important;
 }
 
-[data-section] .card {
+[data-section]:not([data-section="dashboard"]) .card {
   border: none !important;
   border-top: 4px solid var(--sc) !important;
   overflow: hidden;
