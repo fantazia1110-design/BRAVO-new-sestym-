@@ -94,7 +94,7 @@ const quickActions = [
   { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, color: '#4338ca', colorLight: '#6366f1' },
   { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, color: '#7c3aed', colorLight: '#a78bfa' },
   { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, color: '#0891b2', colorLight: '#22d3ee' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#ea580c', colorLight: '#fff7ed' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#ea580c', colorLight: '#f97316' },
 ];
 
 function hexToRgb(hex: string): [number, number, number] {
