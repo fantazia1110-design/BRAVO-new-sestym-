@@ -165,7 +165,6 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
 
 /* Dashboard v2 - quick actions with per-card color hover + shine sweep */
 export default function DashboardPage() {
-  const router = useRouter();
   return (
     <div className="space-y-8" data-section="dashboard">
       {/* الترحيب */}
@@ -317,10 +316,10 @@ export default function DashboardPage() {
               </span>
               الأكثر مبيعاً
             </h2>
-            <div onClick={() => router.push('/reports')} style={{ color: '#16a34a', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <Link href="/reports" style={{ color: '#16a34a' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
               <ChevronLeft size={16} />
-            </div>
+            </Link>
           </div>
           <div className="card-body p-0">
             {topProducts.map((product, index) => (
@@ -357,10 +356,10 @@ export default function DashboardPage() {
               </span>
               آخر التركيبات
             </h2>
-            <div onClick={() => router.push('/formulas')} style={{ color: '#7c3aed', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <Link href="/formulas" style={{ color: '#7c3aed' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </div>
+            </Link>
           </div>
           <div className="card-body p-0">
             {recentFormulas.map((formula, index) => (
@@ -398,10 +397,10 @@ export default function DashboardPage() {
               </span>
               التصنيع الجاري
             </h2>
-            <div onClick={() => router.push('/production')} style={{ color: '#0891b2', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <Link href="/production" style={{ color: '#0891b2' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </div>
+            </Link>
           </div>
           <div className="card-body p-0">
             <table className="table">
@@ -443,10 +442,10 @@ export default function DashboardPage() {
               </span>
               آخر الفواتير
             </h2>
-            <div onClick={() => router.push('/invoices')} style={{ color: '#ea580c', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <Link href="/invoices" style={{ color: '#ea580c' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
-            </div>
+            </Link>
           </div>
           <div className="card-body p-0">
             <table className="table">
@@ -482,46 +481,9 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <div 
-            onClick={() => window.location.href = '/inventory'} 
-            className="group"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1.2rem',
-              borderRadius: '1.5rem',
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              cursor: 'pointer',
-              background: 'rgba(255,255,255,0.95)',
-              border: '2px solid #dc2626',
-              color: '#dc2626',
-              boxShadow: '0 2px 8px -2px rgba(0,0,0,0.08)',
-              transition: 'all 0.25s ease',
-              whiteSpace: 'nowrap',
-              position: 'relative',
-              overflow: 'hidden',
-              backdropFilter: 'blur(10px)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#dc2626';
-              e.currentTarget.style.color = '#ffffff';
-              e.currentTarget.style.borderColor = '#dc2626';
-              e.currentTarget.style.boxShadow = '0 8px 25px -5px rgba(220,38,38,0.4)';
-              e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
-              e.currentTarget.style.color = '#dc2626';
-              e.currentTarget.style.borderColor = '#dc2626';
-              e.currentTarget.style.boxShadow = '0 2px 8px -2px rgba(0,0,0,0.08)';
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            }}
-          >
+          <div onClick={() => window.location.href = '/inventory'} className="btn btn-red-outline btn-sm group">
             إدارة المخزون
-            <ChevronLeft size={16} style={{ transition: 'transform 0.2s' }} />
+            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           </div>
         </div>
         <div className="card-body">
