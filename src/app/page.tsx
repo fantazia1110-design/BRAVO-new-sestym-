@@ -94,7 +94,7 @@ const quickActions = [
   { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, color: '#4338ca', colorLight: '#6366f1' },
   { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, color: '#7c3aed', colorLight: '#a78bfa' },
   { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, color: '#0891b2', colorLight: '#22d3ee' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#be123c', colorLight: '#f43f5e' },
+  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#ea580c', colorLight: '#f97316' },
 ];
 
 function hexToRgb(hex: string): [number, number, number] {
@@ -185,7 +185,7 @@ export default function DashboardPage() {
       </div>
 
       {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem', padding: '1.25rem', borderRadius: '1.2rem', border: '2px solid #e2e8f0', background: 'rgba(255,255,255,0.7)' }}>
         <StatCard
           title="المواد الخام"
           value={formatNumber(stats.rawMaterials, 0)}
@@ -259,7 +259,7 @@ export default function DashboardPage() {
       </div>
 
       {/* أقسام المنتجات */}
-      <div className="animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+      <div className="animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both', padding: '1.25rem', borderRadius: '1.2rem', border: '2px solid #e2e8f0', background: 'rgba(255,255,255,0.7)' }}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
@@ -287,7 +287,7 @@ export default function DashboardPage() {
       </div>
 
       {/* الإجراءات السريعة */}
-      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: 'none' }}>
+      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: '2px solid #e2e8f0', background: 'rgba(255,255,255,0.7)' }}>
         <div className="card-header">
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
@@ -308,15 +308,15 @@ export default function DashboardPage() {
       {/* المنتجات الأكثر مبيعاً والتركيبات */}
       <div className="two-col-layout">
         {/* المنتجات الأكثر مبيعاً */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #16a34a' }}>
+        <div className="card list-card animate-slide-up section-color-green" style={{ animationDelay: '0.7s', animationFillMode: 'both', border: '2px solid rgba(34,197,94,0.3)', borderTop: '4px solid #16a34a' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(34,197,94,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold flex items-center gap-3 section-color-green">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
                 <TrendingUp size={24} />
               </span>
               الأكثر مبيعاً
             </h2>
-            <Link href="/reports" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/reports" style={{ color: '#16a34a' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               التقرير الكامل
               <ChevronLeft size={16} />
             </Link>
@@ -325,15 +325,15 @@ export default function DashboardPage() {
             {topProducts.map((product, index) => (
               <div 
                 key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'all 0.2s' }}
-                className="group last:border-0 hover:bg-green-50 hover:translate-x-1"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(34,197,94,0.15)', cursor: 'pointer', transition: 'all 0.25s ease' }}
+                className="group last:border-0 hover-list-green"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {product.emoji}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-green-700 truncate">{product.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{product.sales} وحدة مباعة</p>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }} className="truncate">{product.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#15803d', margin: 0 }}>{product.sales} وحدة مباعة</p>
                 </div>
                 <div style={{ textAlign: 'left', flexShrink: 0 }}>
                   <p style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }}>{formatCurrency(product.revenue)}</p>
@@ -348,15 +348,15 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر التركيبات */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #7c3aed' }}>
+        <div className="card list-card animate-slide-up section-color-purple" style={{ animationDelay: '0.8s', animationFillMode: 'both', border: '2px solid rgba(139,92,246,0.3)', borderTop: '4px solid #7c3aed' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(139,92,246,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold flex items-center gap-3 section-color-purple">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
                 <Beaker size={24} />
               </span>
               آخر التركيبات
             </h2>
-            <Link href="/formulas" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/formulas" style={{ color: '#7c3aed' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -365,20 +365,20 @@ export default function DashboardPage() {
             {recentFormulas.map((formula, index) => (
               <div 
                 key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
-                className="group last:border-0 hover:bg-purple-50 hover:translate-x-1"
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(139,92,246,0.15)', cursor: 'pointer', transition: 'all 0.25s ease' }}
+                className="group last:border-0 hover-list-purple"
               >
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
                   {formula.emoji}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-purple-700 truncate">{formula.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
+                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#7c3aed', margin: 0 }} className="truncate">{formula.name}</h4>
+                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6d28d9', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
                 </div>
                 <div style={{ flexShrink: 0 }}>
-                  {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
-                  {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
-                  {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
+                  {formula.status === 'approved' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>معتمدة</span>}
+                  {formula.status === 'testing' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>تحت الاختبار</span>}
+                  {formula.status === 'draft' && <span style={{ fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>}
                 </div>
               </div>
             ))}
@@ -389,15 +389,15 @@ export default function DashboardPage() {
       {/* التصنيع والفواتير */}
       <div className="two-col-layout">
         {/* آخر عمليات التصنيع */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #0891b2' }}>
+        <div className="card list-card animate-slide-up section-color-cyan" style={{ animationDelay: '0.9s', animationFillMode: 'both', border: '2px solid rgba(6,182,212,0.3)', borderTop: '4px solid #0891b2' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(6,182,212,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold flex items-center gap-3 section-color-cyan">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
                 <Factory size={24} />
               </span>
               التصنيع الجاري
             </h2>
-            <Link href="/production" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/production" style={{ color: '#0891b2' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -406,26 +406,26 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th className="font-extrabold">رقم الدفعة</th>
-                  <th className="font-extrabold">المنتج</th>
-                  <th className="font-extrabold">التقدم</th>
-                  <th className="font-extrabold">الحالة</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>رقم الدفعة</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>المنتج</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>التقدم</th>
+                  <th className="font-extrabold" style={{ color: '#0891b2' }}>الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentProduction.map((batch, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
-                    <td className="font-extrabold">{batch.product}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.25s ease', cursor: 'pointer' }}>
+                    <td style={{ color: '#0891b2', fontWeight: 900, fontSize: '0.85rem', fontFamily: 'monospace' }}>{batch.batchNumber}</td>
+                    <td style={{ color: '#0e7490', fontWeight: 800 }}>{batch.product}</td>
                     <td>
-                      <div className="w-full max-w-[120px]">
-                        <div className="progress-bar h-2">
-                          <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
+                      <div style={{ width: '100%', maxWidth: '140px' }}>
+                        <div className="progress-bar h-3" style={{ background: 'rgba(8,145,178,0.15)', borderRadius: '999px', overflow: 'hidden' }}>
+                          <div style={{ width: `${batch.progress}%`, height: '100%', borderRadius: '999px', background: 'linear-gradient(90deg, #0891b2, #22d3ee)', transition: 'width 0.5s ease' }} />
                         </div>
-                        <span className="text-xs font-extrabold text-[var(--text-muted)]">{batch.progress}%</span>
+                        <span style={{ color: '#0891b2', fontWeight: 900, fontSize: '0.9rem', marginTop: '0.25rem', display: 'block', textAlign: 'center' }}>{batch.progress}%</span>
                       </div>
                     </td>
-                    <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
+                    <td style={{ fontWeight: 800, color: '#0e7490', fontSize: '0.85rem' }}>{getProductionStatusBadge(batch.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -434,15 +434,15 @@ export default function DashboardPage() {
         </div>
 
         {/* آخر الفواتير */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #ea580c' }}>
+        <div className="card list-card animate-slide-up section-color-orange" style={{ animationDelay: '1s', animationFillMode: 'both', border: '2px solid rgba(249,115,22,0.3)', borderTop: '4px solid #ea580c' }}>
           <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(249,115,22,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold flex items-center gap-3 section-color-orange">
               <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
                 <FileText size={24} />
               </span>
               آخر الفواتير
             </h2>
-            <Link href="/invoices" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
+            <Link href="/invoices" style={{ color: '#ea580c' }} className="text-sm font-bold hover:underline flex items-center gap-1">
               عرض الكل
               <ChevronLeft size={16} />
             </Link>
@@ -451,19 +451,19 @@ export default function DashboardPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th className="font-extrabold">رقم الفاتورة</th>
-                  <th className="font-extrabold">العميل</th>
-                  <th className="font-extrabold">المبلغ</th>
-                  <th className="font-extrabold">الحالة</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>رقم الفاتورة</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>العميل</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>المبلغ</th>
+                  <th className="font-extrabold" style={{ color: '#ea580c' }}>الحالة</th>
                 </tr>
               </thead>
               <tbody>
                 {recentInvoices.map((invoice, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{invoice.number}</td>
-                    <td className="font-extrabold">{invoice.customer}</td>
-                    <td className="font-extrabold text-green-600">{formatCurrency(invoice.total)}</td>
-                    <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
+                  <tr key={index} className="group" style={{ transition: 'all 0.25s ease', cursor: 'pointer' }}>
+                    <td style={{ color: '#ea580c', fontWeight: 900, fontSize: '0.85rem', fontFamily: 'monospace' }}>{invoice.number}</td>
+                    <td style={{ color: '#c2410c', fontWeight: 800 }}>{invoice.customer}</td>
+                    <td style={{ color: '#ea580c', fontWeight: 800 }}>{formatCurrency(invoice.total)}</td>
+                    <td style={{ fontWeight: 800, color: '#c2410c', fontSize: '0.85rem' }}>{getInvoiceStatusBadge(invoice.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -473,45 +473,44 @@ export default function DashboardPage() {
       </div>
 
       {/* المواد منخفضة المخزون */}
-      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none' }}>
-        <div className="card-header flex items-center justify-between">
-          <h2 className="text-2xl font-extrabold flex items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+      <div className="card animate-slide-up section-color-red" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: '2px solid rgba(220,38,38,0.3)', borderTop: '4px solid #dc2626' }}>
+        <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(220,38,38,0.08), rgba(248,250,252,0.9))' }}>
+          <h2 className="text-2xl font-extrabold flex items-center gap-3 section-color-red">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-white shadow-lg animate-pulse">
               <AlertTriangle size={24} />
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <Link href="/inventory" className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626' }}>
+          <div onClick={() => window.location.href = '/inventory'} className="btn btn-red-outline btn-sm group">
             إدارة المخزون
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+          </div>
         </div>
         <div className="card-body">
           <div className="grid grid-cols-4 gap-5">
             {lowStockItems.map((item, index) => (
               <div
                 key={index}
-                className="relative p-5 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both' }}
+                className="relative p-5 rounded-2xl border-2 border-red-500 hover:border-red-700 hover:shadow-xl hover:shadow-red-500/25 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
+                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: '#fee2e2' }}
               >
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-25 group-hover:scale-150 transition-transform duration-500" style={{ background: 'radial-gradient(circle, #f87171, transparent)' }} />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-orange-800">{item.name}</h4>
-                    <Badge variant="warning">{item.category}</Badge>
+                    <h4 style={{ fontWeight: 800, color: '#991b1b', margin: 0 }}>{item.name}</h4>
+                    <span style={{ fontWeight: 900, fontSize: '0.75rem', padding: '0.25rem 0.65rem', borderRadius: '9999px', background: '#dc2626', color: '#fff' }}>{item.category}</span>
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <ArrowDownRight className="text-orange-600" size={20} />
-                    <span className="text-3xl font-extrabold text-orange-700">{item.current}</span>
-                    <span className="text-orange-600 font-bold">{item.unit}</span>
+                    <ArrowDownRight style={{ color: '#dc2626' }} size={22} />
+                    <span style={{ fontWeight: 900, fontSize: '1.75rem', color: '#b91c1c' }}>{item.current}</span>
+                    <span style={{ fontWeight: 800, color: '#dc2626' }}>{item.unit}</span>
                   </div>
-                  <div className="text-sm text-orange-600 font-bold mb-3">
+                  <div style={{ fontWeight: 800, fontSize: '0.85rem', color: '#dc2626', marginBottom: '0.75rem' }}>
                     الحد الأدنى: {item.min} {item.unit}
                   </div>
-                  <div className="progress-bar bg-orange-200 h-3">
+                  <div className="progress-bar h-3" style={{ background: '#fecaca', borderRadius: '999px', overflow: 'hidden' }}>
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-500"
-                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%`, height: '100%', borderRadius: '999px', background: '#dc2626', transition: 'width 0.5s ease' }}
                     />
                   </div>
                 </div>
