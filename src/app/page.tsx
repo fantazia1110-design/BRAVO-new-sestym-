@@ -481,9 +481,9 @@ export default function DashboardPage() {
             </span>
             ⚠️ تنبيه: مخزون منخفض
           </h2>
-          <div onClick={() => window.location.href = '/inventory'} className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={e => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#dc2626'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.borderColor = '#dc2626'; }}>
+          <div onClick={() => window.location.href = '/inventory'} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.85rem', borderRadius: '0.5rem', border: '2px solid #dc2626', color: '#dc2626', background: 'transparent', cursor: 'pointer', transition: 'all 0.2s', fontWeight: 800, fontSize: '0.85rem' }} onMouseEnter={e => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#dc2626'; }}>
             إدارة المخزون
-            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft size={16} />
           </div>
         </div>
         <div className="card-body">
