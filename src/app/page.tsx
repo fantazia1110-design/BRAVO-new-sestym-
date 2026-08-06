@@ -492,9 +492,9 @@ export default function DashboardPage() {
               <div
                 key={index}
                 className="relative p-5 rounded-2xl border-2 border-red-500 hover:border-red-700 hover:shadow-xl hover:shadow-red-500/25 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: 'linear-gradient(145deg, #fee2e2, #fecaca)' }}
+                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both', background: '#fee2e2' }}
               >
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-red-300 to-rose-300 rounded-full opacity-40 group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-25 group-hover:scale-150 transition-transform duration-500" style={{ background: 'radial-gradient(circle, #f87171, transparent)' }} />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-3">
                     <h4 style={{ fontWeight: 800, color: '#991b1b', margin: 0 }}>{item.name}</h4>
@@ -510,7 +510,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="progress-bar h-3" style={{ background: '#fecaca', borderRadius: '999px', overflow: 'hidden' }}>
                     <div
-                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%`, height: '100%', borderRadius: '999px', background: 'linear-gradient(90deg, #dc2626, #f87171)', transition: 'width 0.5s ease' }}
+                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%`, height: '100%', borderRadius: '999px', background: '#dc2626', transition: 'width 0.5s ease' }}
                     />
                   </div>
                 </div>
