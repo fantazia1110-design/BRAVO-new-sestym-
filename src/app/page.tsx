@@ -473,10 +473,10 @@ export default function DashboardPage() {
       </div>
 
       {/* المواد منخفضة المخزون */}
-      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none' }}>
-        <div className="card-header flex items-center justify-between">
+      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #dc2626' }}>
+        <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(220,38,38,0.08), rgba(248,250,252,0.9))' }}>
           <h2 className="text-2xl font-extrabold flex items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-white shadow-lg animate-pulse">
               <AlertTriangle size={24} />
             </span>
             ⚠️ تنبيه: مخزون منخفض
