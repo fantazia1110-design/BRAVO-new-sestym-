@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import {
   FlaskConical, Package, Beaker, Factory, Truck, ShoppingCart,
   FileText, TrendingUp, AlertTriangle, ChevronLeft, Plus, ArrowDownRight,
@@ -134,6 +134,7 @@ interface SectionPageProps {
 export default function SectionPage({ section, rawMaterials, formulas, products, suppliers, recentProduction, sales = [], invoices = [], customers = [], inventory = [], debts = [], expenses = [], labExperiments = [], academyCourses = [], books = [], formulaEmojis = {} }: SectionPageProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const activeTab = searchParams.get('tab') || 'overview';
   const c = section.color; const cl = section.colorLight;
 
@@ -192,8 +193,8 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
 
 <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: '2px solid #e2e8f0', background: 'rgba(255,255,255,0.7)' }}><div className="card-header"><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><ShoppingCart size={24} /></span>إجراءات سريعة</h2></div><div className="card-body"><div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1.25rem' }}>{quickActions.map((action, index) => (<QuickActionLink key={action.label} action={action} index={index} sectionColor={c} />))}</div></div></div>
           <div className="two-col-layout">
-            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Beaker size={24} /></span>آخر التركيبات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${window.location.pathname}?tab=formulas`)} /></div><div className="card-body p-0">{formulas.slice(0, 4).map((f, i) => (<ListItem key={i} name={f.name} subtitle={`${f.category} • ${f.ingredients} مكون`} badge={f.status} emoji={formulaEmojis[f.name] || '🧪'} color={c} />))}</div></div>
-            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Package size={24} /></span>آخر المنتجات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${window.location.pathname}?tab=products`)} /></div><div className="card-body p-0">{products.slice(0, 4).map((p, i) => (<ListItem key={i} name={p.name} subtitle={`${p.category} • مخزون: ${p.stock}`} value={formatCurrency(p.price)} emoji="📦" color={c} />))}</div></div>
+            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Beaker size={24} /></span>آخر التركيبات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=formulas`)} /></div><div className="card-body p-0">{formulas.slice(0, 4).map((f, i) => (<ListItem key={i} name={f.name} subtitle={`${f.category} • ${f.ingredients} مكون`} badge={f.status} emoji={formulaEmojis[f.name] || '🧪'} color={c} />))}</div></div>
+            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Package size={24} /></span>آخر المنتجات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=products`)} /></div><div className="card-body p-0">{products.slice(0, 4).map((p, i) => (<ListItem key={i} name={p.name} subtitle={`${p.category} • مخزون: ${p.stock}`} value={formatCurrency(p.price)} emoji="📦" color={c} />))}</div></div>
           </div>
           {rawMaterials.filter(r => r.status === 'منخفض').length > 0 && (
             <div className="card animate-slide-up section-color-red" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: '2px solid rgba(220,38,38,0.3)', borderTop: '4px solid #dc2626' }}>
@@ -204,7 +205,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
                   </span>
                   ⚠️ تنبيه: مخزون منخفض
                 </h2>
-                <SectionLink label="إدارة المخزون" color="#dc2626" onClick={() => router.push(`${window.location.pathname}?tab=inventory`)} />
+                <SectionLink label="إدارة المخزون" color="#dc2626" onClick={() => router.push(`${pathname}?tab=inventory`)} />
               </div>
               <div className="card-body">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem' }}>
