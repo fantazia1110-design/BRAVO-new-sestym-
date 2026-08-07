@@ -112,10 +112,10 @@ function QuickActionLink({ action, index }: { action: typeof quickActions[number
         animationDelay: `${0.6 + index * 0.1}s`,
         animationFillMode: 'both' as const,
         background: hov ? `linear-gradient(145deg, ${action.colorLight}, ${action.color})` : '#ffffff',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease, background 0.35s ease',
-        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+        transition: 'transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s ease, border 0.35s ease, background 0.35s ease',
+        transform: hov ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
         boxShadow: hov
-          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
+          ? '0 0 20px rgba(255,255,255,0.15), 0 18px 36px -8px rgba(0,0,0,0.35), 0 0 50px -10px rgba(255,255,255,0.1)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
         border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '2px solid rgba(0,0,0,0.06)',
         cursor: 'pointer',

@@ -41,7 +41,7 @@ export default function StatCard({
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease',
+        transition: 'transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s ease, border 0.3s ease',
         cursor: 'default',
         zIndex: hovered ? 10 : 1,
         display: 'flex',
@@ -50,9 +50,9 @@ export default function StatCard({
         justifyContent: 'center',
         minHeight: '180px',
         boxShadow: hovered
-          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
+          ? '0 0 25px rgba(255,255,255,0.2), 0 20px 40px -8px rgba(0,0,0,0.35), 0 0 60px -10px rgba(255,255,255,0.15)'
           : '0 4px 14px -4px rgba(0,0,0,0.15)',
-        transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+        transform: hovered ? 'translateY(-10px) scale(1.03)' : 'translateY(0) scale(1)',
         border: hovered ? '1.5px solid rgba(255,255,255,0.3)' : '1.5px solid rgba(255,255,255,0.15)',
       } as React.CSSProperties}
       onMouseEnter={() => setHovered(true)}
@@ -119,8 +119,8 @@ export default function StatCard({
           background: 'rgba(255,255,255,0.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 2,
-          transition: 'transform 0.35s ease, filter 0.35s ease',
-          transform: hovered ? 'scale(1.15) rotate(6deg)' : 'scale(1) rotate(0deg)',
+          transition: 'transform 0.4s cubic-bezier(.34,1.56,.64,1), filter 0.35s ease',
+          transform: hovered ? 'scale(1.2) rotate(8deg)' : 'scale(1) rotate(0deg)',
           border: '1.5px solid rgba(255,255,255,0.15)',
           color: '#ffffff',
           filter: hovered ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
@@ -139,8 +139,8 @@ export default function StatCard({
         textAlign: 'center',
         lineHeight: 1.3,
         position: 'relative', zIndex: 2,
-        transition: 'transform 0.3s ease',
-        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        transition: 'transform 0.35s cubic-bezier(.34,1.56,.64,1)',
+        transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
       }}>{title}</h3>
 
       {/* القيمة */}
@@ -156,8 +156,8 @@ export default function StatCard({
         color: '#ffffff',
         textShadow: '0 1px 2px rgba(0,0,0,0.25)',
         position: 'relative', zIndex: 2,
-        transition: 'all 0.3s ease',
-        transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
+        transition: 'all 0.35s cubic-bezier(.34,1.56,.64,1)',
+        transform: hovered ? 'translateY(-2px) scale(1.06)' : 'translateY(0) scale(1)',
       }}>{value}</p>
 
       {/* الوصف */}
