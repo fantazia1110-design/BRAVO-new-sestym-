@@ -5,82 +5,75 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   TrendingUp, FlaskConical, Beaker, Package, Factory, Truck,
-  ShoppingCart, FileText, Users, CreditCard, Warehouse, Receipt,
-  BarChart3, Settings, ChevronRight, ChevronLeft, Menu, X, LogOut,
-  ArrowRight,
+  ShoppingCart, FileText, Users, Warehouse, BarChart3, Settings,
+  ChevronRight, ChevronLeft, Menu, X, LogOut, ArrowRight,
 } from 'lucide-react';
 
-interface SectionConfig {
-  id: string;
-  name: string;
-  color: string;
-  colorLight: string;
+interface NavItem {
+  label: string;
+  href: string;
   icon: React.ReactNode;
-  basePath: string;
-  image: string;
+  color: string;
 }
 
-const sectionConfigs: Record<string, SectionConfig> = {
-  detergents: {
-    id: 'detergents',
-    name: 'المنظفات',
-    color: '#2563eb',
-    colorLight: '#3b82f6',
-    icon: <FlaskConical size={20} />,
-    basePath: '/detergents',
-    image: '/icons/real-detergents.jpg',
-  },
-  cosmetics: {
-    id: 'cosmetics',
-    name: 'مستحضرات التجميل',
-    color: '#db2777',
-    colorLight: '#ec4899',
-    icon: <Beaker size={20} />,
-    basePath: '/cosmetics',
-    image: '/icons/real-cosmetics.jpg',
-  },
-  perfumes: {
-    id: 'perfumes',
-    name: 'العطور',
-    color: '#7c3aed',
-    colorLight: '#8b5cf6',
-    icon: <Package size={20} />,
-    basePath: '/perfumes',
-    image: '/icons/real-perfumes.jpg',
-  },
+const sectionNavItems: Record<string, NavItem[]> = {
+  detergents: [
+    { label: 'نظرة عامة', href: '/detergents', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', href: '/detergents?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', href: '/detergents?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', href: '/detergents?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', href: '/detergents?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', href: '/detergents?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
+    { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
+    { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
+    { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-violet-500' },
+    { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-violet-500' },
+    { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
+  ],
+  cosmetics: [
+    { label: 'نظرة عامة', href: '/cosmetics', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', href: '/cosmetics?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', href: '/cosmetics?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', href: '/cosmetics?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', href: '/cosmetics?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', href: '/cosmetics?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
+    { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
+    { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
+    { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-violet-500' },
+    { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-violet-500' },
+    { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
+  ],
+  perfumes: [
+    { label: 'نظرة عامة', href: '/perfumes', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', href: '/perfumes?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', href: '/perfumes?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', href: '/perfumes?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', href: '/perfumes?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', href: '/perfumes?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
+    { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
+    { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
+    { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-violet-500' },
+    { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-violet-500' },
+    { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
+  ],
 };
 
-function getSectionItems(sectionId: string, basePath: string) {
-  return [
-    { label: 'نظرة عامة', href: basePath, icon: <TrendingUp size={20} /> },
-    { label: 'المواد الخام', href: `${basePath}?tab=raw`, icon: <FlaskConical size={20} /> },
-    { label: 'التركيبات', href: `${basePath}?tab=formulas`, icon: <Beaker size={20} /> },
-    { label: 'المنتجات', href: `${basePath}?tab=products`, icon: <Package size={20} /> },
-    { label: 'التصنيع', href: `${basePath}?tab=production`, icon: <Factory size={20} /> },
-    { label: 'الموردين', href: `${basePath}?tab=suppliers`, icon: <Truck size={20} /> },
-    { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} /> },
-    { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} /> },
-    { label: 'العملاء', href: '/customers', icon: <Users size={20} /> },
-    { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} /> },
-    { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} /> },
-    { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} /> },
-  ];
-}
-
 export default function SectionSidebar({ sectionId }: { sectionId: string }) {
-  const config = sectionConfigs[sectionId];
-  if (!config) return null;
-
+  const navItems = sectionNavItems[sectionId] || [];
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const c = config.color;
-  const cl = config.colorLight;
-  const items = getSectionItems(sectionId, config.basePath);
 
   const isActive = (href: string) => {
-    if (href.includes('?')) return false;
-    if (href === config.basePath) return pathname === config.basePath;
+    if (href.includes('?')) {
+      // For tab-based links, check if the base path matches
+      const basePath = href.split('?')[0];
+      return pathname === basePath;
+    }
+    if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
   };
 
@@ -91,6 +84,7 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
         className="sidebar-toggle btn btn-icon btn-outline"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+        aria-expanded={isOpen}
       >
         {isOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
@@ -100,58 +94,53 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
         <div className="sidebar-overlay" onClick={() => setIsOpen(false)} />
       )}
 
-      {/* القائمة الجانبية */}
+      {/* القائمة الجانبية - نفس الشكل القديم بالضبط */}
       <aside
         className={`sidebar ${isOpen ? 'open' : ''} ${collapsed ? 'collapsed' : ''}`}
         style={{
           transform: isOpen ? 'translateX(0)' : undefined,
           width: collapsed ? '72px' : undefined,
-          background: `linear-gradient(180deg, ${c}, ${cl}cc, ${c}dd)`,
         }}
       >
-        {/* شعار القسم */}
+        {/* الشعار - نفس القديم */}
         <div className="sidebar-header" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
-          <div className="flex items-center gap-3" style={{ justifyContent: collapsed ? 'center' : 'flex-start', cursor: 'pointer' }} onClick={() => window.location.href = config.basePath}>
-            <div style={{
-              width: '3rem', height: '3rem', borderRadius: '0.75rem',
-              background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0, color: '#fff',
-            }}>
-              {config.icon}
+          <Link href="/" className="flex items-center gap-3" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur" style={{ flexShrink: 0 }}>
+              <Beaker className="text-white" size={28} />
             </div>
             {!collapsed && (
               <div>
-                <h1 style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', margin: 0 }}>{config.name}</h1>
-                <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', margin: 0, fontWeight: 600 }}>BRAVO</p>
+                <h1 className="text-xl font-extrabold text-white">BRAVO</h1>
+                <p className="text-xs text-white/80 font-semibold">Formula & Factory</p>
               </div>
             )}
-          </div>
+          </Link>
         </div>
 
-        {/* زر طي/فتح */}
-        <div style={{ padding: '0.5rem 0.85rem', display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end' }}>
+        {/* زر طي/فتح - نفس القديم */}
+        <div style={{ padding: '0.6rem 0.85rem', display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end' }}>
           <button
             onClick={() => setCollapsed(!collapsed)}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-              height: '32px', borderRadius: '10rem',
-              background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.15)',
+              height: '36px', borderRadius: '10rem',
+              background: 'linear-gradient(135deg, #7c3aed, #6d28d9)', border: 'none',
               cursor: 'pointer', transition: 'all 0.25s ease', color: '#fff',
-              padding: collapsed ? '0 0.5rem' : '0 0.8rem 0 0.6rem',
-              fontSize: '0.75rem', fontWeight: 800, backdropFilter: 'blur(8px)',
+              padding: collapsed ? '0 0.6rem' : '0 1rem 0 0.7rem',
+              boxShadow: '0 4px 14px -2px rgba(109,40,217,0.3)',
+              fontSize: '0.8rem', fontWeight: 800,
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.35)'; e.currentTarget.style.transform = 'scale(1.05)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'scale(1)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 6px 20px -2px rgba(109,40,217,0.45)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 14px -2px rgba(109,40,217,0.3)'; }}
           >
-            {collapsed ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
+            {collapsed ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
             {!collapsed && <span>قفل</span>}
           </button>
         </div>
 
-        {/* القائمة */}
+        {/* القائمة - نفس شكل القديم بالضبط باستخدام نفس الـ CSS classes */}
         <nav className="sidebar-nav">
-          {items.map((item, index) => {
+          {navItems.map((item, index) => {
             const active = isActive(item.href);
             return (
               <div
@@ -159,93 +148,64 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
                 className={`nav-item ${active ? 'active' : ''}`}
                 onClick={() => {
                   setIsOpen(false);
-                  // Handle tab-based navigation
                   if (item.href.includes('?tab=')) {
                     const tab = item.href.split('?tab=')[1];
-                    // Dispatch a custom event for the section page to listen to
                     window.dispatchEvent(new CustomEvent('section-tab-change', { detail: tab }));
                   } else {
                     window.location.href = item.href;
                   }
                 }}
                 style={{
-                  display: 'flex', alignItems: 'center',
                   justifyContent: collapsed ? 'center' : 'flex-start',
-                  padding: collapsed ? '0.75rem' : '0.7rem 1rem',
-                  gap: collapsed ? '0' : '0.75rem',
-                  cursor: 'pointer', transition: 'all 0.25s ease',
-                  background: active ? 'rgba(255,255,255,0.2)' : 'transparent',
-                  borderRight: active ? '3px solid #fff' : '3px solid transparent',
-                  color: active ? '#fff' : 'rgba(255,255,255,0.75)',
-                  fontWeight: active ? 800 : 600,
-                  fontSize: '0.9rem',
-                  borderRadius: '0.5rem',
-                  margin: '0.15rem 0.5rem',
-                }}
-                onMouseEnter={(e) => {
-                  if (!active) {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
-                    e.currentTarget.style.color = '#fff';
-                    e.currentTarget.style.transform = 'translateX(-4px)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!active) {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = 'rgba(255,255,255,0.75)';
-                    e.currentTarget.style.transform = 'translateX(0)';
-                  }
+                  padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
+                  gap: collapsed ? '0' : '1rem',
+                  cursor: 'pointer',
                 }}
                 title={collapsed ? item.label : undefined}
               >
-                <span style={{ margin: collapsed ? '0' : undefined, transition: 'all 0.25s ease', display: 'flex', alignItems: 'center' }}>
+                <span className={`nav-item-icon ${active ? 'text-[var(--primary)]' : item.color}`} style={{ margin: collapsed ? '0' : undefined, transition: 'all 0.25s ease' }}>
                   {item.icon}
                 </span>
-                {!collapsed && <span>{item.label}</span>}
+                {!collapsed && <span style={{ transition: 'color 0.25s ease' }}>{item.label}</span>}
               </div>
             );
           })}
         </nav>
 
-        {/* الرجوع للأقسام */}
-        <div style={{ padding: '0.5rem', marginTop: 'auto' }}>
+        {/* الرجوع للأقسام + تسجيل الخروج - نفس ستايل القديم */}
+        <div className="sidebar-footer" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <div
-            onClick={() => { window.location.href = '/'; }}
+            className="nav-item w-full rounded-lg"
+            onClick={() => { setIsOpen(false); window.location.href = '/'; }}
             style={{
-              display: 'flex', alignItems: 'center',
               justifyContent: collapsed ? 'center' : 'flex-start',
-              padding: collapsed ? '0.75rem' : '0.7rem 1rem',
-              gap: collapsed ? '0' : '0.75rem',
-              cursor: 'pointer', transition: 'all 0.25s ease',
-              background: 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.15)',
-              borderRadius: '0.5rem', margin: '0 0.5rem',
-              color: 'rgba(255,255,255,0.8)', fontWeight: 700, fontSize: '0.85rem',
+              padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
+              gap: collapsed ? '0' : '1rem',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.25)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'scale(1.02)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.8)'; e.currentTarget.style.transform = 'scale(1)'; }}
           >
-            <ArrowRight size={18} />
-            {!collapsed && <span>الرجوع للأقسام</span>}
+            <span className="nav-item-icon text-violet-500" style={{ margin: collapsed ? '0' : undefined, transition: 'all 0.25s ease' }}>
+              <ArrowRight size={20} />
+            </span>
+            {!collapsed && <span style={{ transition: 'color 0.25s ease' }}>الرجوع للأقسام</span>}
           </div>
 
-          {/* تسجيل الخروج */}
-          <div
+          <button
+            className="nav-item nav-logout w-full rounded-lg"
             style={{
-              display: 'flex', alignItems: 'center',
               justifyContent: collapsed ? 'center' : 'flex-start',
-              padding: collapsed ? '0.75rem' : '0.7rem 1rem',
-              gap: collapsed ? '0' : '0.75rem',
-              cursor: 'pointer', transition: 'all 0.25s ease',
-              background: 'rgba(220,38,38,0.15)', border: '1.5px solid rgba(220,38,38,0.3)',
-              borderRadius: '0.5rem', margin: '0.5rem 0.5rem 0 0.5rem',
-              color: '#fca5a5', fontWeight: 700, fontSize: '0.85rem',
+              padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
+              gap: collapsed ? '0' : '1rem',
+              color: '#dc2626',
+              border: '2px solid #fecaca',
+              background: 'rgba(255,255,255,0.95)',
+              transition: 'all 0.25s ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#dc2626'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(220,38,38,0.15)'; e.currentTarget.style.color = '#fca5a5'; e.currentTarget.style.borderColor = 'rgba(220,38,38,0.3)'; }}
           >
-            <LogOut size={18} />
-            {!collapsed && <span>تسجيل الخروج</span>}
-          </div>
+            <LogOut size={20} style={{ transition: 'all 0.25s ease' }} />
+            {!collapsed && <span className="font-bold" style={{ transition: 'color 0.25s ease' }}>تسجيل الخروج</span>}
+          </button>
         </div>
       </aside>
 
