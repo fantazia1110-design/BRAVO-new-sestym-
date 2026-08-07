@@ -110,19 +110,23 @@ export default function Sidebar() {
         </div>
 
         {/* زر طي/فتح */}
-        <div style={{ padding: '0.5rem 0.85rem', display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end' }}>
+        <div style={{ padding: '0.6rem 0.85rem', display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end' }}>
           <button
             onClick={() => setCollapsed(!collapsed)}
             style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              width: '32px', height: '32px', borderRadius: '8px',
-              background: 'rgba(109,40,217,0.08)', border: '1px solid rgba(109,40,217,0.15)',
-              cursor: 'pointer', transition: 'all 0.25s ease', color: '#7c3aed',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+              height: '36px', borderRadius: '10rem',
+              background: 'linear-gradient(135deg, #7c3aed, #6d28d9)', border: 'none',
+              cursor: 'pointer', transition: 'all 0.25s ease', color: '#fff',
+              padding: collapsed ? '0 0.6rem' : '0 1rem 0 0.7rem',
+              boxShadow: '0 4px 14px -2px rgba(109,40,217,0.3)',
+              fontSize: '0.8rem', fontWeight: 800,
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(109,40,217,0.15)'; e.currentTarget.style.transform = 'scale(1.1)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(109,40,217,0.08)'; e.currentTarget.style.transform = 'scale(1)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 6px 20px -2px rgba(109,40,217,0.45)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 14px -2px rgba(109,40,217,0.3)'; }}
           >
             {collapsed ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+            {!collapsed && <span>طي</span>}
           </button>
         </div>
 
