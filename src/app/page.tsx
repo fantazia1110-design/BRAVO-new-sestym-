@@ -317,7 +317,7 @@ export default function DashboardPage() {
               </span>
               الأكثر مبيعاً
             </h2>
-            <div onClick={() => router.push('/reports')} style={{ color: '#16a34a', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/reports')} style={{ color: '#16a34a', cursor: 'pointer', padding: '0.35rem 0.9rem', borderRadius: '0.6rem', fontWeight: 800, fontSize: '0.85rem', transition: 'all 0.2s' }} className="text-sm font-bold flex items-center gap-1" onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(34,197,94,0.1)'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               التقرير الكامل
               <ChevronLeft size={16} />
             </div>
@@ -357,7 +357,7 @@ export default function DashboardPage() {
               </span>
               آخر التركيبات
             </h2>
-            <div onClick={() => router.push('/formulas')} style={{ color: '#7c3aed', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/formulas')} style={{ color: '#7c3aed', cursor: 'pointer', padding: '0.35rem 0.9rem', borderRadius: '0.6rem', fontWeight: 800, fontSize: '0.85rem', transition: 'all 0.2s' }} className="text-sm font-bold flex items-center gap-1" onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(139,92,246,0.1)'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               عرض الكل
               <ChevronLeft size={16} />
             </div>
@@ -398,7 +398,7 @@ export default function DashboardPage() {
               </span>
               التصنيع الجاري
             </h2>
-            <div onClick={() => router.push('/production')} style={{ color: '#0891b2', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/production')} style={{ color: '#0891b2', cursor: 'pointer', padding: '0.35rem 0.9rem', borderRadius: '0.6rem', fontWeight: 800, fontSize: '0.85rem', transition: 'all 0.2s' }} className="text-sm font-bold flex items-center gap-1" onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(6,182,212,0.1)'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               عرض الكل
               <ChevronLeft size={16} />
             </div>
@@ -443,7 +443,7 @@ export default function DashboardPage() {
               </span>
               آخر الفواتير
             </h2>
-            <div onClick={() => router.push('/invoices')} style={{ color: '#ea580c', cursor: 'pointer' }} className="text-sm font-bold hover:underline flex items-center gap-1">
+            <div onClick={() => router.push('/invoices')} style={{ color: '#ea580c', cursor: 'pointer', padding: '0.35rem 0.9rem', borderRadius: '0.6rem', fontWeight: 800, fontSize: '0.85rem', transition: 'all 0.2s' }} className="text-sm font-bold flex items-center gap-1" onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(249,115,22,0.1)'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               عرض الكل
               <ChevronLeft size={16} />
             </div>
