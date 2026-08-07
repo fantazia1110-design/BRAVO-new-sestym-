@@ -268,10 +268,22 @@ export default function DashboardPage() {
             </span>
             أقسام المنتجات
           </h2>
-          <Link href="/products" className="btn btn-outline btn-sm group">
+          <div 
+            onClick={() => router.push('/products')}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+              padding: '0.45rem 1.1rem', borderRadius: '0.7rem',
+              fontWeight: 800, fontSize: '0.85rem', cursor: 'pointer',
+              background: 'rgba(255,255,255,0.95)', border: '2px solid #6366f1',
+              color: '#6366f1', boxShadow: '0 2px 8px -2px rgba(99,102,241,0.15)',
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#6366f1'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#6366f1'; e.currentTarget.style.boxShadow = '0 8px 25px -5px rgba(99,102,241,0.4)'; e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.95)'; e.currentTarget.style.color = '#6366f1'; e.currentTarget.style.borderColor = '#6366f1'; e.currentTarget.style.boxShadow = '0 2px 8px -2px rgba(99,102,241,0.15)'; e.currentTarget.style.transform = 'translateY(0) scale(1)'; }}
+          >
             عرض الكل
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+            <ChevronLeft size={18} style={{ transition: 'transform 0.2s' }} />
+          </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
           {productCategories.map((category, index) => (
