@@ -126,7 +126,7 @@ export default function Sidebar() {
             onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 14px -2px rgba(109,40,217,0.3)'; }}
           >
             {collapsed ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
-            {!collapsed && <span>طي</span>}
+            {!collapsed && <span>قفل</span>}
           </button>
         </div>
 
@@ -142,15 +142,15 @@ export default function Sidebar() {
                 onClick={() => setIsOpen(false)}
                 style={{
                   justifyContent: collapsed ? 'center' : 'flex-start',
-                  padding: collapsed ? '0.9rem' : '1.15rem 1.25rem',
+                  padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
                   gap: collapsed ? '0' : '1rem',
                 }}
                 title={collapsed ? item.label : undefined}
               >
-                <span className={`nav-item-icon ${active ? 'text-[var(--primary)]' : item.color}`} style={{ margin: collapsed ? '0' : undefined }}>
+                <span className={`nav-item-icon ${active ? 'text-[var(--primary)]' : item.color}`} style={{ margin: collapsed ? '0' : undefined, transition: 'all 0.25s ease' }}>
                   {item.icon}
                 </span>
-                {!collapsed && <span>{item.label}</span>}
+                {!collapsed && <span style={{ transition: 'color 0.25s ease' }}>{item.label}</span>}
               </Link>
             );
           })}
@@ -159,16 +159,21 @@ export default function Sidebar() {
         {/* تسجيل الخروج */}
         <div className="sidebar-footer" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <button 
-            className="nav-item w-full text-red-500 hover:bg-red-50 rounded-lg"
+            className="nav-item w-full rounded-lg"
             style={{
               justifyContent: collapsed ? 'center' : 'flex-start',
-              padding: collapsed ? '0.9rem' : '1.15rem 1.25rem',
+              padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
               gap: collapsed ? '0' : '1rem',
+              color: '#dc2626',
+              border: '2px solid #fecaca',
+              background: 'rgba(255,255,255,0.95)',
+              transition: 'all 0.25s ease',
             }}
-            title={collapsed ? 'تسجيل الخروج' : undefined}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#dc2626'; e.currentTarget.style.transform = 'translateX(-3px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 6px 20px -4px rgba(220,38,38,0.35)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.95)'; e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.borderColor = '#fecaca'; e.currentTarget.style.transform = 'translateX(0) scale(1)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)'; }}
           >
-            <LogOut size={20} />
-            {!collapsed && <span className="font-bold">تسجيل الخروج</span>}
+            <LogOut size={20} style={{ transition: 'all 0.25s ease' }} />
+            {!collapsed && <span className="font-bold" style={{ transition: 'color 0.25s ease' }}>تسجيل الخروج</span>}
           </button>
         </div>
       </aside>

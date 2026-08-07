@@ -707,7 +707,9 @@ a:hover {
 }
 
 .nav-item:hover .nav-item-icon {
-  transform: scale(1.15);
+  transform: scale(1.15) rotate(5deg) !important;
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
 }
 
 /* ===== المحتوى الرئيسي ===== */
@@ -1761,6 +1763,25 @@ a:hover {
 /* تكبير مساحة النقر وإبعاد الأيقونة عن النص قليلاً */
 .nav-item {
   line-height: 1.4;
+}
+
+/* تأثير الوقوف — أوضح بـ !important */
+.nav-item:hover {
+  color: #ffffff !important;
+  background: #6d28d9 !important;
+  border-color: #6d28d9 !important;
+  box-shadow: 0 6px 20px -4px rgba(109,40,217,0.35) !important;
+  transform: translateX(-3px) scale(1.02) !important;
+}
+
+.nav-item:hover span,
+.nav-item:hover .nav-item-icon {
+  color: #ffffff !important;
+}
+
+.nav-item:hover .nav-item-icon {
+  transform: scale(1.15) rotate(5deg) !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
 }
 
 /* الشريط البنفسجي الصغير على يمين العنصر النشط */
