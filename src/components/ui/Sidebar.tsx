@@ -159,7 +159,7 @@ export default function Sidebar() {
         {/* تسجيل الخروج */}
         <div className="sidebar-footer" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <button 
-            className="nav-item w-full rounded-lg"
+            className="nav-item nav-logout w-full rounded-lg"
             style={{
               justifyContent: collapsed ? 'center' : 'flex-start',
               padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
@@ -169,8 +169,6 @@ export default function Sidebar() {
               background: 'rgba(255,255,255,0.95)',
               transition: 'all 0.25s ease',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = '#dc2626'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#dc2626'; e.currentTarget.style.transform = 'translateX(-3px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 6px 20px -4px rgba(220,38,38,0.35)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.95)'; e.currentTarget.style.color = '#dc2626'; e.currentTarget.style.borderColor = '#fecaca'; e.currentTarget.style.transform = 'translateX(0) scale(1)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)'; }}
           >
             <LogOut size={20} style={{ transition: 'all 0.25s ease' }} />
             {!collapsed && <span className="font-bold" style={{ transition: 'color 0.25s ease' }}>تسجيل الخروج</span>}

@@ -586,7 +586,7 @@ a:hover {
   gap: 0.5rem;
   padding: 1.25rem 0.85rem;
   scrollbar-width: thin;
-  scrollbar-color: #a78bfa #ede9fe;
+  scrollbar-color: #6d28d9 #f3ecff;
 }
 
 .sidebar-nav::-webkit-scrollbar {
@@ -594,17 +594,17 @@ a:hover {
 }
 
 .sidebar-nav::-webkit-scrollbar-track {
-  background: #ede9fe;
+  background: #f3ecff;
   border-radius: 999px;
 }
 
 .sidebar-nav::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #7c3aed, #a78bfa);
+  background: linear-gradient(180deg, #6d28d9, #7c3aed);
   border-radius: 999px;
 }
 
 .sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6d28d9, #8b5cf6);
+  background: linear-gradient(180deg, #4c1d95, #6d28d9);
 }
 
 .sidebar-header,
@@ -686,11 +686,19 @@ a:hover {
 }
 
 .nav-item.active {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 800;
-  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
-  border-color: rgba(139, 92, 246, 0.7);
-  box-shadow: 0 10px 26px -10px var(--primary-glow);
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
+  border-color: rgba(139, 92, 246, 0.7) !important;
+  box-shadow: 0 10px 26px -10px var(--primary-glow) !important;
+  transform: none !important;
+}
+
+.nav-item.active:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%) !important;
+  border-color: #6d28d9 !important;
+  box-shadow: 0 8px 30px -6px rgba(109,40,217,0.5) !important;
+  transform: translateX(-3px) scale(1.02) !important;
 }
 
 .nav-item.active .nav-item-icon {
@@ -1765,8 +1773,8 @@ a:hover {
   line-height: 1.4;
 }
 
-/* تأثير الوقوف — أوضح بـ !important */
-.nav-item:hover {
+/* تأثير الوقوف — بنفسجي لكل العناصر ما عدا تسجيل الخروج */
+.nav-item:not(.nav-logout):hover {
   color: #ffffff !important;
   background: #6d28d9 !important;
   border-color: #6d28d9 !important;
@@ -1774,14 +1782,32 @@ a:hover {
   transform: translateX(-3px) scale(1.02) !important;
 }
 
-.nav-item:hover span,
-.nav-item:hover .nav-item-icon {
+.nav-item:not(.nav-logout):hover span,
+.nav-item:not(.nav-logout):hover .nav-item-icon {
   color: #ffffff !important;
 }
 
-.nav-item:hover .nav-item-icon {
+.nav-item:not(.nav-logout):hover .nav-item-icon {
   transform: scale(1.15) rotate(5deg) !important;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
+}
+
+/* زر تسجيل الخروج — hover أحمر */
+.nav-logout:hover {
+  color: #ffffff !important;
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 6px 20px -4px rgba(220,38,38,0.35) !important;
+  transform: translateX(-3px) scale(1.02) !important;
+}
+
+.nav-logout:hover svg,
+.nav-logout:hover span {
+  color: #ffffff !important;
+}
+
+.nav-logout:hover svg {
+  transform: scale(1.15) rotate(5deg) !important;
 }
 
 /* الشريط البنفسجي الصغير على يمين العنصر النشط */
