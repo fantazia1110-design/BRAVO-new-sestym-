@@ -37,7 +37,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'لوحة التحكم', href: '/', icon: <LayoutDashboard size={20} />, color: 'text-violet-500' },
+  { label: 'لوحة التحكم', href: '/dashboard', icon: <LayoutDashboard size={20} />, color: 'text-violet-500' },
   { label: 'المواد الخام', href: '/raw-materials', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
   { label: 'الموردون', href: '/suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
   { label: 'التركيبات', href: '/formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
