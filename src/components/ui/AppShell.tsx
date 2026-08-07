@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { usePathname } from 'next/navigation';
 import Sidebar from '@/components/ui/Sidebar';
 import SectionSidebar from '@/components/ui/SectionSidebar';
@@ -35,13 +35,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   // الأقسام المدمجة - قائمة جانبية خاصة بكل قسم
   if (sectionId) {
     return (
-      <div className="min-h-screen app-shell">
-        <SectionSidebar sectionId={sectionId} />
-        <TopBar />
-        <main className="main-content">
-          {children}
-        </main>
-      </div>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <div className="min-h-screen app-shell">
+          <SectionSidebar sectionId={sectionId} />
+          <TopBar />
+          <main className="main-content">
+            {children}
+          </main>
+        </div>
+      </Suspense>
     );
   }
 

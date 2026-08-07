@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   FlaskConical, Package, Beaker, Factory, Truck, ShoppingCart,
   FileText, TrendingUp, AlertTriangle, ChevronLeft, Plus, ArrowDownRight,
@@ -240,7 +240,8 @@ interface SectionPageProps {
 
 export default function SectionPage({ section, rawMaterials, formulas, products, suppliers, recentProduction, lowStockEmojis = {}, formulaEmojis = {} }: SectionPageProps) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState('overview');
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'overview';
   const c = section.color;
   const cl = section.colorLight;
 
@@ -259,26 +260,6 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
     { title: 'المواد الخام', value: formatNumber(rawMaterials.length, 0), subtitle: 'مادة', icon: <FlaskConical size={20} />, color: '#0891b2', colorLight: '#22d3ee' },
     { title: 'الموردين', value: formatNumber(suppliers.length, 0), subtitle: 'مورد', icon: <Truck size={20} />, color: '#d97706', colorLight: '#fbbf24' },
   ];
-
-  // التبويبات
-  const tabs = [
-    { id: 'overview', label: 'نظرة عامة', icon: <TrendingUp size={18} /> },
-    { id: 'raw', label: 'المواد الخام', icon: <FlaskConical size={18} /> },
-    { id: 'formulas', label: 'التركيبات', icon: <Beaker size={18} /> },
-    { id: 'products', label: 'المنتجات', icon: <Package size={18} /> },
-    { id: 'production', label: 'التصنيع', icon: <Factory size={18} /> },
-    { id: 'suppliers', label: 'الموردين', icon: <Truck size={18} /> },
-  ];
-
-  // الاستماع لتبديل التبويبات من القائمة الجانبية
-  React.useEffect(() => {
-    const handler = (e: Event) => {
-      const tab = (e as CustomEvent).detail;
-      if (tab) setActiveTab(tab);
-    };
-    window.addEventListener('section-tab-change', handler);
-    return () => window.removeEventListener('section-tab-change', handler);
-  }, []);
 
   return (
     <div className="space-y-8" data-section={section.id}>
@@ -300,32 +281,6 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '0.5rem', padding: '1.25rem', borderRadius: '1.2rem', border: '2px solid #e2e8f0', background: 'rgba(255,255,255,0.7)' }}>
         {statsData.map((s, i) => (
           <StatCard key={i} title={s.title} value={s.value} subtitle={s.subtitle} icon={s.icon} delay={i+1} color={s.color} colorLight={s.colorLight} />
-        ))}
-      </div>
-
-      {/* التبويبات - بستايل أقسام الداشبورد */}
-      <div style={{
-        display: 'flex', gap: '0.5rem', padding: '0.5rem', borderRadius: '1rem',
-        background: 'rgba(255,255,255,0.7)', border: '2px solid #e2e8f0', flexWrap: 'wrap',
-      }}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            style={{
-              display: 'flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.6rem 1.2rem', borderRadius: '0.75rem',
-              fontWeight: 800, fontSize: '0.9rem',
-              background: activeTab === tab.id ? c : 'transparent',
-              color: activeTab === tab.id ? '#fff' : '#475569',
-              border: activeTab === tab.id ? 'none' : '1.5px solid #e2e8f0',
-              cursor: 'pointer', transition: 'all 0.25s ease',
-              boxShadow: activeTab === tab.id ? `0 4px 14px -2px ${c}44` : 'none',
-            }}
-          >
-            {tab.icon}
-            {tab.label}
-          </button>
         ))}
       </div>
 
@@ -377,7 +332,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
                   </span>
                   آخر التركيبات
                 </h2>
-                <SectionLink label="عرض الكل" color={c} onClick={() => setActiveTab('formulas')} />
+                <SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${window.location.pathname}?tab=formulas`)} />
               </div>
               <div className="card-body p-0">
                 {formulas.slice(0, 4).map((f, i) => (
@@ -403,7 +358,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
                   </span>
                   آخر المنتجات
                 </h2>
-                <SectionLink label="عرض الكل" color={c} onClick={() => setActiveTab('products')} />
+                <SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${window.location.pathname}?tab=products`)} />
               </div>
               <div className="card-body p-0">
                 {products.slice(0, 4).map((p, i) => (

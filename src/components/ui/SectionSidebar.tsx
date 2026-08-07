@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import {
   TrendingUp, FlaskConical, Beaker, Package, Factory, Truck,
   ShoppingCart, FileText, Users, Warehouse, BarChart3, Settings,
@@ -11,19 +11,20 @@ import {
 
 interface NavItem {
   label: string;
-  href: string;
+  tab?: string; // null = overview/base page, string = ?tab=value
+  href?: string; // for external pages like /sales, /invoices etc
   icon: React.ReactNode;
   color: string;
 }
 
 const sectionNavItems: Record<string, NavItem[]> = {
   detergents: [
-    { label: 'نظرة عامة', href: '/detergents', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
-    { label: 'المواد الخام', href: '/detergents?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
-    { label: 'التركيبات', href: '/detergents?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
-    { label: 'المنتجات', href: '/detergents?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
-    { label: 'التصنيع', href: '/detergents?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
-    { label: 'الموردين', href: '/detergents?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'نظرة عامة', tab: undefined, icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', tab: 'raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', tab: 'formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', tab: 'products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', tab: 'production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', tab: 'suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
     { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
     { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
     { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
@@ -32,12 +33,12 @@ const sectionNavItems: Record<string, NavItem[]> = {
     { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
   ],
   cosmetics: [
-    { label: 'نظرة عامة', href: '/cosmetics', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
-    { label: 'المواد الخام', href: '/cosmetics?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
-    { label: 'التركيبات', href: '/cosmetics?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
-    { label: 'المنتجات', href: '/cosmetics?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
-    { label: 'التصنيع', href: '/cosmetics?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
-    { label: 'الموردين', href: '/cosmetics?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'نظرة عامة', tab: undefined, icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', tab: 'raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', tab: 'formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', tab: 'products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', tab: 'production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', tab: 'suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
     { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
     { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
     { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
@@ -46,12 +47,12 @@ const sectionNavItems: Record<string, NavItem[]> = {
     { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-purple-400' },
   ],
   perfumes: [
-    { label: 'نظرة عامة', href: '/perfumes', icon: <TrendingUp size={20} />, color: 'text-violet-500' },
-    { label: 'المواد الخام', href: '/perfumes?tab=raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
-    { label: 'التركيبات', href: '/perfumes?tab=formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
-    { label: 'المنتجات', href: '/perfumes?tab=products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
-    { label: 'التصنيع', href: '/perfumes?tab=production', icon: <Factory size={20} />, color: 'text-purple-500' },
-    { label: 'الموردين', href: '/perfumes?tab=suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
+    { label: 'نظرة عامة', tab: undefined, icon: <TrendingUp size={20} />, color: 'text-violet-500' },
+    { label: 'المواد الخام', tab: 'raw', icon: <FlaskConical size={20} />, color: 'text-violet-400' },
+    { label: 'التركيبات', tab: 'formulas', icon: <Beaker size={20} />, color: 'text-purple-500' },
+    { label: 'المنتجات', tab: 'products', icon: <Package size={20} />, color: 'text-fuchsia-400' },
+    { label: 'التصنيع', tab: 'production', icon: <Factory size={20} />, color: 'text-purple-500' },
+    { label: 'الموردين', tab: 'suppliers', icon: <Truck size={20} />, color: 'text-purple-400' },
     { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-fuchsia-500' },
     { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-purple-400' },
     { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-violet-400' },
@@ -61,20 +62,45 @@ const sectionNavItems: Record<string, NavItem[]> = {
   ],
 };
 
+const sectionBasePaths: Record<string, string> = {
+  detergents: '/detergents',
+  cosmetics: '/cosmetics',
+  perfumes: '/perfumes',
+};
+
 export default function SectionSidebar({ sectionId }: { sectionId: string }) {
   const navItems = sectionNavItems[sectionId] || [];
+  const basePath = sectionBasePaths[sectionId] || '/';
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
-  const isActive = (href: string) => {
-    if (href.includes('?')) {
-      // For tab-based links, check if the base path matches
-      const basePath = href.split('?')[0];
-      return pathname === basePath;
+  const currentTab = searchParams.get('tab') || '';
+
+  const isActive = (item: NavItem) => {
+    // External page items
+    if (item.href) {
+      return pathname.startsWith(item.href);
     }
-    if (href === '/') return pathname === '/';
-    return pathname.startsWith(href);
+    // Section items - match by tab
+    if (item.tab === undefined) {
+      // Overview = no tab param
+      return currentTab === '';
+    }
+    return currentTab === item.tab;
+  };
+
+  const handleNav = (item: NavItem) => {
+    setIsOpen(false);
+    if (item.href) {
+      router.push(item.href);
+    } else if (item.tab) {
+      router.push(`${basePath}?tab=${item.tab}`);
+    } else {
+      router.push(basePath);
+    }
   };
 
   return (
@@ -102,7 +128,7 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
           width: collapsed ? '72px' : undefined,
         }}
       >
-        {/* الشعار - نفس القديم */}
+        {/* الشعار */}
         <div className="sidebar-header" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <Link href="/" className="flex items-center gap-3" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
             <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur" style={{ flexShrink: 0 }}>
@@ -117,7 +143,7 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
           </Link>
         </div>
 
-        {/* زر طي/فتح - نفس القديم */}
+        {/* زر طي/فتح */}
         <div style={{ padding: '0.6rem 0.85rem', display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end' }}>
           <button
             onClick={() => setCollapsed(!collapsed)}
@@ -138,23 +164,15 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
           </button>
         </div>
 
-        {/* القائمة - نفس شكل القديم بالضبط باستخدام نفس الـ CSS classes */}
+        {/* القائمة */}
         <nav className="sidebar-nav">
           {navItems.map((item, index) => {
-            const active = isActive(item.href);
+            const active = isActive(item);
             return (
               <div
                 key={index}
                 className={`nav-item ${active ? 'active' : ''}`}
-                onClick={() => {
-                  setIsOpen(false);
-                  if (item.href.includes('?tab=')) {
-                    const tab = item.href.split('?tab=')[1];
-                    window.dispatchEvent(new CustomEvent('section-tab-change', { detail: tab }));
-                  } else {
-                    window.location.href = item.href;
-                  }
-                }}
+                onClick={() => handleNav(item)}
                 style={{
                   justifyContent: collapsed ? 'center' : 'flex-start',
                   padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',
@@ -172,11 +190,11 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
           })}
         </nav>
 
-        {/* الرجوع للأقسام + تسجيل الخروج - نفس ستايل القديم */}
+        {/* الرجوع للأقسام + تسجيل الخروج */}
         <div className="sidebar-footer" style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <div
             className="nav-item w-full rounded-lg"
-            onClick={() => { setIsOpen(false); window.location.href = '/'; }}
+            onClick={() => { setIsOpen(false); router.push('/'); }}
             style={{
               justifyContent: collapsed ? 'center' : 'flex-start',
               padding: collapsed ? '0.9rem' : '0.85rem 1.1rem',

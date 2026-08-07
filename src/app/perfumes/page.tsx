@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { FlaskConical } from 'lucide-react';
 import SectionPage from '@/components/ui/SectionPage';
 
@@ -60,20 +60,22 @@ const recentProduction = [
 
 export default function PerfumesPage() {
   return (
-    <SectionPage
-      section={SECTION}
-      rawMaterials={rawMaterials}
-      formulas={formulas}
-      products={products}
-      suppliers={suppliers}
-      recentProduction={recentProduction}
-      formulaEmojis={{
-        'عطر الورد الملكي': '🌹',
-        'عود ومسك': '🪵',
-        'لافندر فرانكو': '💜',
-        'بخور العود الفاخر': '🪔',
-        'معطر جو ياسمين': '🌸',
-      }}
-    />
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: '#64748b', fontWeight: 700, fontSize: '1.2rem' }}>جاري التحميل...</div>}>
+      <SectionPage
+        section={SECTION}
+        rawMaterials={rawMaterials}
+        formulas={formulas}
+        products={products}
+        suppliers={suppliers}
+        recentProduction={recentProduction}
+        formulaEmojis={{
+          'عطر الورد الملكي': '🌹',
+          'عود ومسك': '🪵',
+          'لافندر فرانكو': '💜',
+          'بخور العود الفاخر': '🪔',
+          'معطر جو ياسمين': '🌸',
+        }}
+      />
+    </Suspense>
   );
 }

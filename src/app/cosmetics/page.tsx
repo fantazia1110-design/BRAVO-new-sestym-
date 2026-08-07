@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Sparkles } from 'lucide-react';
 import SectionPage from '@/components/ui/SectionPage';
 
@@ -60,21 +60,23 @@ const recentProduction = [
 
 export default function CosmeticsPage() {
   return (
-    <SectionPage
-      section={SECTION}
-      rawMaterials={rawMaterials}
-      formulas={formulas}
-      products={products}
-      suppliers={suppliers}
-      recentProduction={recentProduction}
-      formulaEmojis={{
-        'كريم مرطب بالصبار': '🌿',
-        'سيروم فيتامين C': '🍊',
-        'أحمر شفاه مات': '💋',
-        'ماسك شمع العسل': '🍯',
-        'كريم واقي شمس': '☀️',
-        'تونر حمض الهيالورونيك': '💧',
-      }}
-    />
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: '#64748b', fontWeight: 700, fontSize: '1.2rem' }}>جاري التحميل...</div>}>
+      <SectionPage
+        section={SECTION}
+        rawMaterials={rawMaterials}
+        formulas={formulas}
+        products={products}
+        suppliers={suppliers}
+        recentProduction={recentProduction}
+        formulaEmojis={{
+          'كريم مرطب بالصبار': '🌿',
+          'سيروم فيتامين C': '🍊',
+          'أحمر شفاه مات': '💋',
+          'ماسك شمع العسل': '🍯',
+          'كريم واقي شمس': '☀️',
+          'تونر حمض الهيالورونيك': '💧',
+        }}
+      />
+    </Suspense>
   );
 }
