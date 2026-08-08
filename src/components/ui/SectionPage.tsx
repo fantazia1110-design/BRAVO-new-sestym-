@@ -196,6 +196,50 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
             <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Beaker size={24} /></span>آخر التركيبات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=formulas`)} /></div><div className="card-body p-0">{formulas.slice(0, 4).map((f, i) => (<ListItem key={i} name={f.name} subtitle={`${f.category} • ${f.ingredients} مكون`} badge={f.status} emoji={formulaEmojis[f.name] || '🧪'} color={c} />))}</div></div>
             <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}><div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}><h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}><span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}><Package size={24} /></span>آخر المنتجات</h2><SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=products`)} /></div><div className="card-body p-0">{products.slice(0, 4).map((p, i) => (<ListItem key={i} name={p.name} subtitle={`${p.category} • مخزون: ${p.stock}`} value={formatCurrency(p.price)} emoji="📦" color={c} />))}</div></div>
           </div>
+
+          <div className="two-col-layout">
+            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.85s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}>
+              <div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}>
+                <h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}>
+                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, #10b981, #059669)` }}>
+                    <TrendingUp size={24} />
+                  </span>
+                  الأكثر مبيعا - {section.name}
+                </h2>
+                <SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=sales`)} />
+              </div>
+              <div className="card-body p-0">
+                {topProducts.slice(0,4).map((p,i)=>(
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: `1px solid ${c}10` }} className="group hover:translate-x-1 transition-all">
+                    <div style={{ width: '3rem', height: '3rem', borderRadius: '0.75rem', background: `${c}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem' }}>{p.emoji}</div>
+                    <div style={{ flex: 1 }}><h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }}>{p.name}</h4><p style={{ fontWeight: 600, fontSize: '0.8rem', color: '#64748b', margin: 0 }}>{p.quantity} وحدة مباعة</p></div>
+                    <span style={{ fontWeight: 800, color: c }}>{formatCurrency(p.quantity * 25)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}>
+              <div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}>
+                <h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}>
+                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}>
+                    <Factory size={24} />
+                  </span>
+                  التصنيع الجاري - {section.name}
+                </h2>
+                <SectionLink label="عرض الكل" color={c} onClick={() => router.push(`${pathname}?tab=production`)} />
+              </div>
+              <div className="card-body p-0">
+                {recentProduction.slice(0,4).map((b,i)=>(
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: `1px solid ${c}10` }}>
+                    <div style={{ width: '3rem', height: '3rem', borderRadius: '0.75rem', background: `${c}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: c, fontSize: '0.8rem' }}>{b.batch.split('-').pop()}</div>
+                    <div style={{ flex: 1 }}><h4 style={{ fontWeight: 800, fontSize: '0.9rem', color: '#1e293b', margin: 0 }}>{b.product}</h4><p style={{ fontWeight: 600, fontSize: '0.75rem', color: '#64748b', margin: 0 }}>{b.qty} • {b.progress}%</p></div>
+                    <StatusBadge status={b.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           {rawMaterials.filter(r => r.status === 'منخفض').length > 0 && (
             <div className="card animate-slide-up section-color-red" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: '2px solid rgba(220,38,38,0.3)', borderTop: '4px solid #dc2626' }}>
               <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(220,38,38,0.08), rgba(248,250,252,0.9))' }}>
