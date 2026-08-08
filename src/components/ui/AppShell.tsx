@@ -8,13 +8,15 @@ import TopBar from '@/components/ui/TopBar';
 
 /** 
  * غلاف التطبيق - يخفي القائمة الجانبية في الصفحة الرئيسية
- * ويستخدم قائمة جانبية مدمجة لكل قسم
+ * - الصفحة الرئيسية / : بدون سايدبار
+ * - الأقسام /detergents /cosmetics /perfumes : سايدبار خاص بكل قسم (17 تاب كامل)
+ * - باقي الصفحات : السايدبار العام القديم بكل وظائفه الكاملة
+ * تمت إعادة السايدبار العام حسب الطلب
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLanding = pathname === '/';
 
-  // تحديد القسم من الـ pathname
   const getSectionId = () => {
     if (pathname.startsWith('/detergents')) return 'detergents';
     if (pathname.startsWith('/cosmetics')) return 'cosmetics';
@@ -32,7 +34,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // الأقسام المدمجة - قائمة جانبية خاصة بكل قسم
+  // الأقسام المدمجة - قائمة جانبية خاصة بكل قسم (17 تاب كامل - كل الوظائف)
   if (sectionId) {
     return (
       <Suspense fallback={<div className="min-h-screen" />}>
@@ -47,7 +49,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // باقي الصفحات - القائمة الجانبية العامة
+  // باقي الصفحات - السايدبار العام القديم بكل وظائفه الكاملة (تمت إعادته)
   return (
     <div className="min-h-screen app-shell">
       <Sidebar />
