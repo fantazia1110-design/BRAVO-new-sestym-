@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "[auto] git pull detected - cleaning .next and reinstalling..."
+rm -rf .next
+echo "[auto] Done - please restart npm run dev"
