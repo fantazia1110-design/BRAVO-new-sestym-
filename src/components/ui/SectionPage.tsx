@@ -201,7 +201,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
             <div className="card list-card animate-slide-up" style={{ animationDelay: '0.85s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}>
               <div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}>
                 <h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}>
-                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, #10b981, #059669)` }}>
+                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}>
                     <TrendingUp size={24} />
                   </span>
                   الأكثر مبيعا - {section.name}
