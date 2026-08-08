@@ -139,10 +139,10 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
   const c = section.color; const cl = section.colorLight;
 
   const quickActions = [
-    { label: 'إضافة مادة خام', href: `?tab=raw`, icon: <FlaskConical size={24} />, color: c, colorLight: cl },
-    { label: 'تركيبة جديدة', href: `?tab=formula-lab`, icon: <Beaker size={24} />, color: c, colorLight: '#a78bfa' },
-    { label: 'بدء تصنيع', href: `?tab=production`, icon: <Factory size={24} />, color: c, colorLight: '#22d3ee' },
-    { label: 'فاتورة جديدة', href: `?tab=invoices`, icon: <FileText size={24} />, color: '#ea580c', colorLight: '#f97316' },
+    { label: 'إضافة مادة خام', href: `?tab=raw`, icon: <FlaskConical size={24} />, color: '#4338ca', colorLight: '#6366f1' },
+    { label: 'تركيبة جديدة', href: `?tab=formula-lab`, icon: <Beaker size={24} />, color: '#7c3aed', colorLight: '#a78bfa' },
+    { label: 'بدء تصنيع', href: `?tab=production`, icon: <Factory size={24} />, color: '#0891b2', colorLight: '#22d3ee' },
+    { label: 'فاتورة جديدة', href: `?tab=invoices`, icon: <FileText size={24} />, color: '#be123c', colorLight: '#f43f5e' },
   ];
   const statsData = [
     { title: 'المنتجات', value: formatNumber(products.length, 0), subtitle: 'منتج نهائي', icon: <Package size={20} />, color: c, colorLight: cl },
