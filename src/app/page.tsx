@@ -310,7 +310,7 @@ export default function LandingPage() {
             boxShadow: '0 4px 14px -2px rgba(109,40,217,0.3)',
           }}>
             <FlaskConical size={20} />
-            BRAVO Formula & Factory
+            BRAVO Formula & Factory v2.2 • 17 تاب • 3 أقسام • أزرق/بينك/بنفسجي
           </div>
           <h1 style={{
             fontWeight: 900, fontSize: '3.2rem', lineHeight: 1.2,
