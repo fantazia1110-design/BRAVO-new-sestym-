@@ -146,8 +146,8 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
   ];
   const statsData = [
     { title: 'المنتجات', value: formatNumber(products.length, 0), subtitle: 'منتج نهائي', icon: <Package size={20} />, color: c, colorLight: cl },
-    { title: 'التركيبات', value: formatNumber(formulas.length, 0), subtitle: 'تركيبة', icon: <Beaker size={20} />, color: c, colorLight: '#a78bfa' },
-    { title: 'المواد الخام', value: formatNumber(rawMaterials.length, 0), subtitle: 'مادة', icon: <FlaskConical size={20} />, color: c, colorLight: '#22d3ee' },
+    { title: 'التركيبات', value: formatNumber(formulas.length, 0), subtitle: 'تركيبة', icon: <Beaker size={20} />, color: '#7c3aed', colorLight: '#a78bfa' },
+    { title: 'المواد الخام', value: formatNumber(rawMaterials.length, 0), subtitle: 'مادة', icon: <FlaskConical size={20} />, color: '#0891b2', colorLight: '#22d3ee' },
     { title: 'الموردين', value: formatNumber(suppliers.length, 0), subtitle: 'مورد', icon: <Truck size={20} />, color: '#d97706', colorLight: '#fbbf24' },
   ];
   const salesStats = { todaySales: sales.reduce((s, x) => s + (x.total || 0), 0) || 15600, weekSales: 85000, monthSales: 485000, todayOrders: sales.length || 12, avgOrderValue: sales.length ? Math.round(sales.reduce((s,x)=>s+x.total,0)/sales.length) : 1300, };
