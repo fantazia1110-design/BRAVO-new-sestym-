@@ -198,10 +198,10 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
           </div>
 
           <div className="two-col-layout">
-            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.85s', border: `2px solid ${c}30`, borderTop: `4px solid ${c}` }}>
-              <div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, ${c}08, rgba(248,250,252,0.9))` }}>
-                <h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: c }}>
-                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${cl}, ${c})` }}>
+            <div className="card list-card animate-slide-up" style={{ animationDelay: '0.85s', border: `2px solid #10b98130`, borderTop: `4px solid #10b981` }}>
+              <div className="card-header flex items-center justify-between" style={{ background: `linear-gradient(to bottom, #10b98108, rgba(248,250,252,0.9))` }}>
+                <h2 style={{ fontWeight: 900, fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#10b981' }}>
+                  <span className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg" style={{ background: `linear-gradient(135deg, #34d399, #10b981)` }}>
                     <TrendingUp size={24} />
                   </span>
                   الأكثر مبيعا - {section.name}
