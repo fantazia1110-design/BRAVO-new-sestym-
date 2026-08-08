@@ -210,11 +210,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
               </div>
               <div className="card-body p-0">
                 {topProducts.slice(0,4).map((p,i)=>(
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: `1px solid ${c}10` }} className="group hover:translate-x-1 transition-all">
-                    <div style={{ width: '3rem', height: '3rem', borderRadius: '0.75rem', background: `${c}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem' }}>{p.emoji}</div>
-                    <div style={{ flex: 1 }}><h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }}>{p.name}</h4><p style={{ fontWeight: 600, fontSize: '0.8rem', color: '#64748b', margin: 0 }}>{p.quantity} وحدة مباعة</p></div>
-                    <span style={{ fontWeight: 800, color: c }}>{formatCurrency(p.quantity * 25)}</span>
-                  </div>
+                  <ListItem key={i} name={p.name} subtitle={`${p.quantity} وحدة مباعة`} value={formatCurrency(p.quantity * 25)} emoji={p.emoji} color="#10b981" />
                 ))}
               </div>
             </div>
@@ -231,11 +227,7 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
               </div>
               <div className="card-body p-0">
                 {recentProduction.slice(0,4).map((b,i)=>(
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: `1px solid ${c}10` }}>
-                    <div style={{ width: '3rem', height: '3rem', borderRadius: '0.75rem', background: `${c}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: c, fontSize: '0.8rem' }}>{b.batch.split('-').pop()}</div>
-                    <div style={{ flex: 1 }}><h4 style={{ fontWeight: 800, fontSize: '0.9rem', color: '#1e293b', margin: 0 }}>{b.product}</h4><p style={{ fontWeight: 600, fontSize: '0.75rem', color: '#64748b', margin: 0 }}>{b.qty} • {b.progress}%</p></div>
-                    <StatusBadge status={b.status} />
-                  </div>
+                  <ListItem key={i} name={b.product} subtitle={`${b.qty} • ${b.progress}%`} badge={b.status} emoji={b.batch.split('-').pop() || '🏭'} color="#0891b2" />
                 ))}
               </div>
             </div>
