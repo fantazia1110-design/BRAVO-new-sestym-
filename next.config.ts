@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
 const baseConfig: NextConfig = {
+  allowedDevOrigins: ["*.e2b.app"],
   async headers() {
     // في وضع التطوير: امنع المتصفح من تخزين ملفات الأنماط والسكربتات مؤقتاً،
     // لأن Next يعيد استخدام نفس اسم الملف فلا يلاحظ المتصفح التعديلات.
