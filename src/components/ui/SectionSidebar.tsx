@@ -12,6 +12,7 @@ import {
 interface NavItem {
   label: string;
   tab?: string;
+  href?: string;
   icon: React.ReactNode;
   color: string;
 }
@@ -23,22 +24,22 @@ interface NavItem {
  */
 const fullNavItems: NavItem[] = [
   { label: 'لوحة التحكم', tab: undefined, icon: <LayoutDashboard size={20} />, color: 'text-violet-600' },
-  { label: 'المواد الخام', tab: 'raw', icon: <FlaskConical size={20} />, color: 'text-blue-500' },
-  { label: 'الموردون', tab: 'suppliers', icon: <Truck size={20} />, color: 'text-slate-500' },
-  { label: 'التركيبات', tab: 'formulas', icon: <Beaker size={20} />, color: 'text-purple-600' },
-  { label: 'معمل التركيبات', tab: 'formula-lab', icon: <Sparkles size={20} />, color: 'text-amber-500' },
-  { label: 'المنتجات', tab: 'products', icon: <Package size={20} />, color: 'text-green-500' },
-  { label: 'التصنيع', tab: 'production', icon: <Factory size={20} />, color: 'text-cyan-500' },
-  { label: 'المخزون', tab: 'inventory', icon: <Warehouse size={20} />, color: 'text-orange-500' },
-  { label: 'المبيعات', tab: 'sales', icon: <ShoppingCart size={20} />, color: 'text-emerald-500' },
-  { label: 'الفواتير', tab: 'invoices', icon: <FileText size={20} />, color: 'text-red-500' },
-  { label: 'العملاء', tab: 'customers', icon: <Users size={20} />, color: 'text-blue-400' },
-  { label: 'المديونيات', tab: 'debts', icon: <CreditCard size={20} />, color: 'text-rose-500' },
-  { label: 'المصروفات', tab: 'expenses', icon: <Receipt size={20} />, color: 'text-yellow-500' },
-  { label: 'التقارير', tab: 'reports', icon: <BarChart3 size={20} />, color: 'text-indigo-500' },
-  { label: 'الأكاديمية', tab: 'academy', icon: <GraduationCap size={20} />, color: 'text-pink-500' },
-  { label: 'الكتب الرقمية', tab: 'books', icon: <BookOpen size={20} />, color: 'text-teal-500' },
-  { label: 'الإعدادات', tab: 'settings', icon: <Settings size={20} />, color: 'text-gray-500' },
+  { label: 'المواد الخام', href: '/raw-materials', icon: <FlaskConical size={20} />, color: 'text-blue-500' },
+  { label: 'الموردون', href: '/suppliers', icon: <Truck size={20} />, color: 'text-slate-500' },
+  { label: 'التركيبات', href: '/formulas', icon: <Beaker size={20} />, color: 'text-purple-600' },
+  { label: 'معمل التركيبات', href: '/formula-lab', icon: <Sparkles size={20} />, color: 'text-amber-500' },
+  { label: 'المنتجات', href: '/products', icon: <Package size={20} />, color: 'text-green-500' },
+  { label: 'التصنيع', href: '/production', icon: <Factory size={20} />, color: 'text-cyan-500' },
+  { label: 'المخزون', href: '/inventory', icon: <Warehouse size={20} />, color: 'text-orange-500' },
+  { label: 'المبيعات', href: '/sales', icon: <ShoppingCart size={20} />, color: 'text-emerald-500' },
+  { label: 'الفواتير', href: '/invoices', icon: <FileText size={20} />, color: 'text-red-500' },
+  { label: 'العملاء', href: '/customers', icon: <Users size={20} />, color: 'text-blue-400' },
+  { label: 'المديونيات', href: '/debts', icon: <CreditCard size={20} />, color: 'text-rose-500' },
+  { label: 'المصروفات', href: '/expenses', icon: <Receipt size={20} />, color: 'text-yellow-500' },
+  { label: 'التقارير', href: '/reports', icon: <BarChart3 size={20} />, color: 'text-indigo-500' },
+  { label: 'الأكاديمية', href: '/academy', icon: <GraduationCap size={20} />, color: 'text-pink-500' },
+  { label: 'الكتب الرقمية', href: '/books', icon: <BookOpen size={20} />, color: 'text-teal-500' },
+  { label: 'الإعدادات', href: '/settings', icon: <Settings size={20} />, color: 'text-gray-500' },
 ];
 
 const sectionNavItems: Record<string, NavItem[]> = {
@@ -64,13 +65,18 @@ export default function SectionSidebar({ sectionId }: { sectionId: string }) {
   const currentTab = searchParams.get('tab') || '';
 
   const isActive = (item: NavItem) => {
+    if (item.href) {
+      return false; // href items not active based on tab, they navigate away
+    }
     if (item.tab === undefined) return currentTab === '' || currentTab === 'dashboard';
     return currentTab === item.tab;
   };
 
   const handleNav = (item: NavItem) => {
     setIsOpen(false);
-    if (item.tab) {
+    if (item.href) {
+      router.push(item.href);
+    } else if (item.tab) {
       router.push(`${basePath}?tab=${item.tab}`);
     } else {
       router.push(basePath);
