@@ -151,6 +151,30 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
     { title: 'الموردين', value: formatNumber(suppliers.length, 0), subtitle: 'مورد', icon: <Truck size={20} />, color: '#d97706', colorLight: '#fbbf24' },
   ];
   const salesStats = { todaySales: sales.reduce((s, x) => s + (x.total || 0), 0) || 15600, weekSales: 85000, monthSales: 485000, todayOrders: sales.length || 12, avgOrderValue: sales.length ? Math.round(sales.reduce((s,x)=>s+x.total,0)/sales.length) : 1300, };
+
+  const tabColors: Record<string, { color: string; colorLight: string }> = {
+    overview: { color: c, colorLight: cl },
+    dashboard: { color: c, colorLight: cl },
+    raw: { color: '#3b82f6', colorLight: '#60a5fa' },
+    suppliers: { color: '#64748b', colorLight: '#94a3b8' },
+    formulas: { color: '#9333ea', colorLight: '#a78bfa' },
+    'formula-lab': { color: '#f59e0b', colorLight: '#fbbf24' },
+    products: { color: '#22c55e', colorLight: '#4ade80' },
+    production: { color: '#06b6d4', colorLight: '#22d3ee' },
+    inventory: { color: '#f97316', colorLight: '#fb923c' },
+    sales: { color: '#10b981', colorLight: '#34d399' },
+    invoices: { color: '#ef4444', colorLight: '#f87171' },
+    customers: { color: '#3b82f6', colorLight: '#93c5fd' },
+    debts: { color: '#f43f5e', colorLight: '#fb7185' },
+    expenses: { color: '#eab308', colorLight: '#facc15' },
+    reports: { color: '#6366f1', colorLight: '#818cf8' },
+    academy: { color: '#ec4899', colorLight: '#f472b6' },
+    books: { color: '#14b8a6', colorLight: '#2dd4bf' },
+    settings: { color: '#6b7280', colorLight: '#9ca3af' },
+  };
+  const tc = tabColors[activeTab] || { color: c, colorLight: cl };
+  const tColor = tc.color;
+  const tLight = tc.colorLight;
   const topProducts = products.slice(0, 4).map((p, i) => ({ name: p.name, quantity: 150 - i*20, emoji: ['🧴','🍋','🧼','🌿','💜','🌸','✨','💄'][i] || '📦' }));
   const inventoryData: InventoryRow[] = inventory.length ? inventory : [...rawMaterials.map((r,i) => ({ id: `rm-${i}`, code: `RM-${String(i+1).padStart(3,'0')}`, name: r.name, type: 'raw' as const, current: r.stock, reserved: Math.floor(r.stock*0.2), min: r.min, unit: r.unit, unitPrice: 50 + i*12, totalValue: r.stock * (50 + i*12), status: r.status })), ...products.map((p,i) => ({ id: `pr-${i}`, code: `PR-${String(i+1).padStart(3,'0')}`, name: p.name, type: 'product' as const, current: p.stock, reserved: Math.floor(p.stock*0.15), min: 100, unit: 'قطعة', unitPrice: p.price, totalValue: p.stock * p.price, status: p.stock < 150 ? 'منخفض' : 'متوفر' })),];
   const lowStockCount = inventoryData.filter(x => x.current <= x.min).length;
@@ -290,18 +314,18 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
                 المواد الخام ({rawMaterials.length}) - {section.name}
               </h2>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <div style={{ padding: '0.5rem 1rem', borderRadius: '0.75rem', border: `1.5px solid ${c}25`, background: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>📥 استيراد</div>
-                <div style={{ padding: '0.5rem 1rem', borderRadius: '0.75rem', border: `1.5px solid ${c}25`, background: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>📤 تصدير</div>
-                <AddButton label="إضافة مادة" color={c} colorLight={cl} />
+                <div onClick={()=> alert(`استيراد مواد خام - ${section.name}`)} style={{ padding: '0.5rem 1rem', borderRadius: '0.75rem', border: `1.5px solid ${tColor}25`, background: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background=tColor; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#fff'; e.currentTarget.style.color='#000'}}>📥 استيراد</div>
+                <div onClick={()=> alert(`تصدير مواد خام - ${section.name}: ${rawMaterials.length} مادة`)} style={{ padding: '0.5rem 1rem', borderRadius: '0.75rem', border: `1.5px solid ${tColor}25`, background: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background=tColor; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#fff'; e.currentTarget.style.color='#000'}}>📤 تصدير</div>
+                <div onClick={()=> router.push(`/raw-materials/new`)}><AddButton label="إضافة مادة" color={tColor} colorLight={tLight} /></div>
               </div>
             </div>
             <div className="card-body">
               <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <div style={{ position: 'relative', flex: 1 }}>
                   <Search size={18} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
-                  <input placeholder="🔍 ابحث بالاسم، الكود، الاسم العلمي..." style={{ width: '100%', padding: '0.75rem 2.5rem 0.75rem 1rem', borderRadius: '0.85rem', border: `1.5px solid ${c}20`, fontWeight: 600, outline: 'none' }} />
+                  <input placeholder="🔍 ابحث بالاسم، الكود، الاسم العلمي..." style={{ width: '100%', padding: '0.75rem 2.5rem 0.75rem 1rem', borderRadius: '0.85rem', border: `1.5px solid ${tColor}20`, fontWeight: 600, outline: 'none' }} onChange={(e)=>{/* filter logic */}} />
                 </div>
-                <div style={{ padding: '0.75rem 1.2rem', borderRadius: '0.85rem', border: `1.5px solid ${c}20`, background: '#fff', fontWeight: 700, cursor: 'pointer' }}>🔧 فلترة</div>
+                <div onClick={()=> alert('فلترة مواد خام')} style={{ padding: '0.75rem 1.2rem', borderRadius: '0.85rem', border: `1.5px solid ${tColor}20`, background: '#fff', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background=tColor; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#fff'; e.currentTarget.style.color='#000'}}>🔧 فلترة</div>
               </div>
             </div>
             <div className="card-body p-0">
@@ -338,9 +362,9 @@ export default function SectionPage({ section, rawMaterials, formulas, products,
                       <td><StatusBadge status={r.status} /></td>
                       <td>
                         <div style={{ display: 'flex', gap: '0.25rem' }}>
-                          <span style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>👁️</span>
-                          <span style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>✏️</span>
-                          <span style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>🗑️</span>
+                          <span onClick={()=> router.push(`/raw-materials/${r.name}`)} style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background=tColor; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#f1f5f9'; e.currentTarget.style.color='#000'}}>👁️</span>
+                          <span onClick={()=> router.push(`/raw-materials/${r.name}/edit`)} style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background=tColor; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#f1f5f9'; e.currentTarget.style.color='#000'}}>✏️</span>
+                          <span onClick={()=> {if(confirm(`حذف ${r.name}?`)) alert('تم الحذف')}} style={{ width: '28px', height: '28px', borderRadius: '0.5rem', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e)=>{e.currentTarget.style.background='#dc2626'; e.currentTarget.style.color='#fff'}} onMouseLeave={(e)=>{e.currentTarget.style.background='#fee2e2'; e.currentTarget.style.color='#000'}}>🗑️</span>
                         </div>
                       </td>
                     </TableRowWithHover>
