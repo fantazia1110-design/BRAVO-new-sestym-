@@ -3,14 +3,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "update": "git pull && npm install && npm run clean && npm run verify && next dev",
+    "update": "git pull origin main && rm -rf .next && npm run dev",
     "verify": "node scripts/verify.mjs",
     "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\"",
     "restart": "npm run clean && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "pull": "git pull origin main"
   },
   "dependencies": {
     "@tanstack/react-table": "^8.21.3",
