@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Sidebar from '@/components/ui/Sidebar';
-import TopBar from '@/components/ui/TopBar';
+import AppShell from '@/components/ui/AppShell';
 
 export const metadata: Metadata = {
   title: 'BRAVO FORMULA & FACTORY | نظام إدارة التركيبات والتصنيع',
@@ -22,13 +21,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <div className="min-h-screen app-shell">
-          <Sidebar />
-          <TopBar />
-          <main className="main-content">
-            {children}
-          </main>
-        </div>
+        <AppShell>
+          {children}
+        </AppShell>
       </body>
     </html>
   );

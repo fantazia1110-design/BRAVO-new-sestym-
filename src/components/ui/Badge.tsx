@@ -47,41 +47,43 @@ export function getFormulaStatusBadge(status: string) {
   }
 }
 
-// دالة مساعدة للحصول على لون حالة التصنيع
+// دالة مساعدة للحصول على لون حالة التصنيع — كل حالة بلونها المعبر عنها
 export function getProductionStatusBadge(status: string) {
+  const base = { fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, letterSpacing: '0.02em' };
   switch (status) {
     case 'draft':
-      return <Badge variant="default">مسودة</Badge>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>;
     case 'planned':
-      return <Badge variant="info">مخطط</Badge>;
+      return <span style={{ ...base, background: '#eef2ff', color: '#3730a3', border: '2px solid #818cf8' }}>مخطط</span>;
     case 'in_progress':
-      return <Badge variant="warning">جاري التصنيع</Badge>;
+      return <span style={{ ...base, background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>جاري التصنيع</span>;
     case 'quality_check':
-      return <Badge variant="primary">فحص الجودة</Badge>;
+      return <span style={{ ...base, background: '#eff6ff', color: '#1d4ed8', border: '2px solid #60a5fa' }}>فحص الجودة</span>;
     case 'completed':
-      return <Badge variant="success">مكتمل</Badge>;
+      return <span style={{ ...base, background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>مكتمل</span>;
     case 'cancelled':
-      return <Badge variant="error">ملغي</Badge>;
+      return <span style={{ ...base, background: '#fef2f2', color: '#dc2626', border: '2px solid #f87171' }}>ملغي</span>;
     default:
-      return <Badge>{status}</Badge>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>{status}</span>;
   }
 }
 
-// دالة مساعدة للحصول على لون حالة الفاتورة
+// دالة مساعدة للحصول على لون حالة الفاتورة — كل حالة بلونها المعبر عنها
 export function getInvoiceStatusBadge(status: string) {
+  const base = { fontWeight: 900, fontSize: '0.82rem', padding: '0.35rem 0.9rem', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center' as const, letterSpacing: '0.02em' };
   switch (status) {
     case 'draft':
-      return <Badge variant="default">مسودة</Badge>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>مسودة</span>;
     case 'confirmed':
-      return <Badge variant="info">مؤكدة</Badge>;
+      return <span style={{ ...base, background: '#eff6ff', color: '#1d4ed8', border: '2px solid #60a5fa' }}>مؤكدة</span>;
     case 'paid':
-      return <Badge variant="success">مدفوعة</Badge>;
+      return <span style={{ ...base, background: '#f0fdf4', color: '#15803d', border: '2px solid #4ade80' }}>مدفوعة</span>;
     case 'partially_paid':
-      return <Badge variant="warning">مدفوعة جزئياً</Badge>;
+      return <span style={{ ...base, background: '#fff7ed', color: '#c2410c', border: '2px solid #fb923c' }}>مدفوعة جزئياً</span>;
     case 'cancelled':
-      return <Badge variant="error">ملغية</Badge>;
+      return <span style={{ ...base, background: '#fef2f2', color: '#dc2626', border: '2px solid #f87171' }}>ملغية</span>;
     default:
-      return <Badge>{status}</Badge>;
+      return <span style={{ ...base, background: '#f1f5f9', color: '#475569', border: '2px solid #94a3b8' }}>{status}</span>;
   }
 }
 

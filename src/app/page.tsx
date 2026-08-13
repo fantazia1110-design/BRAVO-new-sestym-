@@ -1,524 +1,349 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-  FlaskConical,
-  Package,
-  Beaker,
-  Warehouse,
-  ShoppingCart,
-  Users,
-  CreditCard,
-  TrendingUp,
-  AlertTriangle,
-  Factory,
-  FileText,
-  ArrowDownRight,
-  Sparkles,
-  Zap,
-  Star,
-  ChevronLeft,
-} from 'lucide-react';
-import StatCard from '@/components/ui/StatCard';
-import CategoryCard from '@/components/ui/CategoryCard';
-import Badge, { getProductionStatusBadge, getInvoiceStatusBadge } from '@/components/ui/Badge';
-import { formatCurrency, formatNumber } from '@/lib/utils';
+import { FlaskConical, Sparkles, Droplets, TrendingUp, Package, Beaker, Factory, ShoppingCart, Settings, ChevronLeft, Truck, FileText, Users, CreditCard } from 'lucide-react';
 
-// بيانات الإحصائيات
-const stats = {
-  rawMaterials: 156,
-  products: 48,
-  formulas: 32,
-  inventoryValue: 850000,
-  todaySales: 15600,
-  monthSales: 485000,
-  totalDebts: 125000,
-  lowStockItems: 8,
-};
-
-// أقسام المنتجات
-const productCategories = [
-  { id: 'detergents', name: 'المنظفات', count: 15, color: 'category-detergents', gradient: 'from-blue-500 to-blue-700' },
-  { id: 'cosmetics', name: 'مستحضرات التجميل', count: 12, color: 'category-cosmetics', gradient: 'from-pink-500 to-rose-600' },
-  { id: 'perfumes', name: 'العطور', count: 8, color: 'category-perfumes', gradient: 'from-purple-500 to-violet-600' },
-  { id: 'soap', name: 'الصابون', count: 10, color: 'category-soap', gradient: 'from-emerald-500 to-green-600' },
-  { id: 'hair', name: 'العناية بالشعر', count: 9, color: 'category-hair-care', gradient: 'from-amber-500 to-orange-600' },
-  { id: 'skin', name: 'العناية بالبشرة', count: 11, color: 'category-skin-care', gradient: 'from-cyan-500 to-teal-600' },
+const sections = [
+  {
+    id: 'detergents',
+    name: 'المنظفات',
+    description: 'منظفات فعالة بتركيبات آمنة ومبتكرة',
+    image: '/icons/real-detergents.jpg',
+    color: '#2563eb',
+    colorLight: '#3b82f6',
+    stats: [
+      { label: 'منتج', value: '8', icon: <Package size={22} /> },
+      { label: 'تركيبة', value: '5', icon: <Beaker size={22} /> },
+      { label: 'مادة خام', value: '12', icon: <FlaskConical size={22} /> },
+    ],
+    details: 'منظفات للأسطح، الأطباق، الملابس، الأرضيات والحمامات. تركيبات فعالة بصيغ آمنة للبيئة.',
+    trending: '+12%',
+    orders: '156 طلب',
+    route: '/detergents',
+  },
+  {
+    id: 'cosmetics',
+    name: 'مستحضرات التجميل',
+    description: 'منتجات تجميلية عالية الجودة بتركيبات طبيعية',
+    image: '/icons/real-cosmetics.jpg',
+    color: '#db2777',
+    colorLight: '#ec4899',
+    stats: [
+      { label: 'منتج', value: '8', icon: <Package size={22} /> },
+      { label: 'تركيبة', value: '5', icon: <Beaker size={22} /> },
+      { label: 'مادة خام', value: '12', icon: <FlaskConical size={22} /> },
+    ],
+    details: 'كريمات، سيرومات، ماسكات، أحمر شفاه ومستحضرات عناية بالبشرة. تركيبات طبيعية وآمنة.',
+    trending: '+18%',
+    orders: '203 طلب',
+    route: '/cosmetics',
+  },
+  {
+    id: 'perfumes',
+    name: 'العطور',
+    description: 'عطور فاخرة بتركيبات فرانكو-عربية فريدة',
+    image: '/icons/real-perfumes.jpg',
+    color: '#7c3aed',
+    colorLight: '#8b5cf6',
+    stats: [
+      { label: 'منتج', value: '8', icon: <Package size={22} /> },
+      { label: 'تركيبة', value: '5', icon: <Beaker size={22} /> },
+      { label: 'مادة خام', value: '12', icon: <FlaskConical size={22} /> },
+    ],
+    details: 'عطور رجالية ونسائية، بخرات، معطرات جو. تركيبات فرانكو-عربية فريدة ومميزة.',
+    trending: '+25%',
+    orders: '89 طلب',
+    route: '/perfumes',
+  },
 ];
 
-// المنتجات الأكثر مبيعاً
-const topProducts = [
-  { name: 'شامبو الكيراتين 250مل', sales: 450, revenue: 15750, emoji: '🧴', trend: 12 },
-  { name: 'سائل أطباق الليمون 500مل', sales: 680, revenue: 12240, emoji: '🍋', trend: 8 },
-  { name: 'كريم مرطب بالصبار 100مل', sales: 320, revenue: 14400, emoji: '🌿', trend: 15 },
-  { name: 'صابون اللافندر الطبيعي', sales: 290, revenue: 8700, emoji: '💜', trend: 5 },
-  { name: 'عطر الورد الدمشقي 50مل', sales: 180, revenue: 16200, emoji: '🌹', trend: 20 },
-];
-
-// آخر التركيبات
-const recentFormulas = [
-  { name: 'شامبو الأرغان الفاخر', status: 'approved', category: 'العناية بالشعر', ingredients: 14, emoji: '🌰' },
-  { name: 'جل استحمام المسك', status: 'testing', category: 'العناية الشخصية', ingredients: 10, emoji: '🚿' },
-  { name: 'منظف زجاج كريستال', status: 'approved', category: 'المنظفات', ingredients: 6, emoji: '✨' },
-  { name: 'كريم اليدين بالعسل', status: 'draft', category: 'العناية بالبشرة', ingredients: 12, emoji: '🍯' },
-];
-
-// آخر عمليات التصنيع
-const recentProduction = [
-  { batchNumber: 'PRD-2026-001', product: 'شامبو الكيراتين', quantity: '500 كجم', status: 'in_progress', progress: 65 },
-  { batchNumber: 'PRD-2026-002', product: 'سائل أطباق الليمون', quantity: '1000 لتر', status: 'completed', progress: 100 },
-  { batchNumber: 'PRD-2026-003', product: 'صابون اللافندر', quantity: '300 قطعة', status: 'quality_check', progress: 90 },
-  { batchNumber: 'PRD-2026-004', product: 'معطر جو الياسمين', quantity: '200 لتر', status: 'planned', progress: 0 },
-];
-
-// آخر الفواتير
-const recentInvoices = [
-  { number: 'INV-2026-0125', customer: 'شركة الأمل للتجارة', total: 12500, status: 'paid' },
-  { number: 'INV-2026-0124', customer: 'مؤسسة النور', total: 8750, status: 'partially_paid' },
-  { number: 'INV-2026-0123', customer: 'سوبر ماركت السلام', total: 5200, status: 'confirmed' },
-  { number: 'INV-2026-0122', customer: 'محلات الوفاء', total: 15800, status: 'paid' },
-];
-
-// المواد منخفضة المخزون
-const lowStockItems = [
-  { name: 'تكسابون SLES', current: 25, min: 50, unit: 'كجم', category: 'مواد فعالة', color: 'from-red-500 to-orange-500' },
-  { name: 'جلسرين نباتي', current: 10, min: 30, unit: 'لتر', category: 'مرطبات', color: 'from-orange-500 to-amber-500' },
-  { name: 'زيت الأرغان', current: 5, min: 15, unit: 'لتر', category: 'زيوت', color: 'from-amber-500 to-yellow-500' },
-  { name: 'عطر اللافندر', current: 3, min: 10, unit: 'كجم', category: 'عطور', color: 'from-purple-500 to-pink-500' },
-];
-
-// الإجراءات السريعة
-const quickActions = [
-  { label: 'إضافة مادة خام', href: '/raw-materials/new', icon: <FlaskConical size={24} />, color: '#4338ca', colorLight: '#6366f1' },
-  { label: 'تركيبة جديدة', href: '/formula-lab', icon: <Beaker size={24} />, color: '#7c3aed', colorLight: '#a78bfa' },
-  { label: 'بدء تصنيع', href: '/production/new', icon: <Factory size={24} />, color: '#0891b2', colorLight: '#22d3ee' },
-  { label: 'فاتورة جديدة', href: '/invoices/new', icon: <FileText size={24} />, color: '#be123c', colorLight: '#f43f5e' },
-];
-
-function hexToRgb(hex: string): [number, number, number] {
-  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [109, 40, 217];
-}
-
-function QuickActionLink({ action, index }: { action: typeof quickActions[number]; index: number }) {
-  const [hov, setHov] = React.useState(false);
+function SectionCard({ section, index }: { section: typeof sections[number]; index: number }) {
+  const [hov, setHov] = useState(false);
   const router = useRouter();
+
   return (
     <div
-      className="group relative flex items-center gap-4 p-5 rounded-2xl overflow-hidden animate-slide-up"
+      className="animate-slide-up"
       style={{
-        animationDelay: `${0.6 + index * 0.1}s`,
-        animationFillMode: 'both' as const,
-        background: hov ? `linear-gradient(145deg, ${action.colorLight}, ${action.color})` : '#ffffff',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease, background 0.35s ease',
-        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+        animationDelay: `${0.2 + index * 0.15}s`,
+        animationFillMode: 'both',
+        display: 'flex',
+        flexDirection: 'column',
+        borderRadius: '2rem',
+        overflow: 'hidden',
+        background: '#ffffff',
+        border: `2.5px solid ${hov ? section.color : '#e2e8f0'}`,
         boxShadow: hov
-          ? '0 0 18px rgba(255,255,255,0.12), 0 14px 28px -6px rgba(0,0,0,0.3)'
-          : '0 4px 14px -4px rgba(0,0,0,0.15)',
-        border: hov ? '1.5px solid rgba(255,255,255,0.3)' : '2px solid rgba(0,0,0,0.06)',
+          ? `0 0 40px ${section.color}33, 0 30px 60px -10px rgba(0,0,0,0.25)`
+          : '0 6px 24px -4px rgba(0,0,0,0.08)',
+        transition: 'all 0.4s cubic-bezier(.34,1.56,.64,1)',
+        transform: hov ? 'translateY(-10px) scale(1.02)' : 'translateY(0) scale(1)',
         cursor: 'pointer',
-        color: hov ? '#ffffff' : '#1f2937',
-        borderTop: hov ? 'none' : `3px solid ${action.color}`,
-      } as React.CSSProperties}
+        position: 'relative',
+      }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      onClick={() => router.push(action.href)}
+      onClick={() => router.push(section.route)}
     >
-      {hov && (
+      {/* الصورة الحقيقية الكبيرة */}
+      <div style={{
+        height: '360px',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <img 
+          src={section.image} 
+          alt={section.name} 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover',
+            transition: 'transform 0.6s cubic-bezier(.34,1.56,.64,1), filter 0.4s ease',
+            transform: hov ? 'scale(1.08)' : 'scale(1)',
+            filter: hov ? 'brightness(1.05)' : 'brightness(0.95)',
+          }} 
+        />
+        {/* تدرج فوق الصورة */}
         <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.18) 62%, transparent 75%)',
-          animation: 'shineSweep 0.75s ease-out forwards',
-          pointerEvents: 'none', zIndex: 1,
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: '50%',
+          background: `linear-gradient(to top, ${section.color}dd, ${section.color}88, transparent)`,
+          pointerEvents: 'none',
         }} />
-      )}
-      <div style={{ position: 'absolute', top: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
-      <div style={{ position: 'absolute', bottom: 0, left: '12%', right: '12%', height: hov ? '2px' : '0px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'height 0.3s ease 0.05s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
-      <div style={{ position: 'absolute', top: '12%', bottom: '12%', right: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.1s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
-      <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: 0, width: hov ? '2px' : '0px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.6), rgba(255,255,255,0.8), rgba(255,255,255,0.6), transparent)', transition: 'width 0.3s ease 0.15s', boxShadow: hov ? '0 0 8px rgba(255,255,255,0.3)' : 'none', zIndex: 1 }} />
-      <div
-        className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300"
-        style={{
-          background: hov ? 'rgba(255,255,255,0.2)' : `linear-gradient(145deg, ${action.colorLight}, ${action.color})`,
-          border: hov ? '1.5px solid rgba(255,255,255,0.2)' : 'none',
-          position: 'relative', zIndex: 2, flexShrink: 0,
-          transform: hov ? 'scale(1.1) rotate(6deg)' : 'scale(1) rotate(0deg)',
-          filter: hov ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.3))' : 'none',
-          color: '#ffffff',
-        }}
-      >
-        {action.icon}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0,
+          height: '30%',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), transparent)',
+          pointerEvents: 'none',
+        }} />
+        
+        {/* شعاع ضوء */}
+        {hov && (
+          <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+            background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.25) 35%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.25) 65%, transparent 80%)',
+            animation: 'shineSweep 0.8s ease-out forwards',
+            pointerEvents: 'none', zIndex: 3,
+          }} />
+        )}
+
+        {/* اسم القسم على الصورة */}
+        <div style={{
+          position: 'absolute', bottom: '1.5rem', right: '1.5rem',
+          zIndex: 4,
+        }}>
+          <h2 style={{
+            fontWeight: 900, fontSize: '2.2rem', color: '#fff',
+            margin: 0, lineHeight: 1.2,
+            textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            letterSpacing: '-0.02em',
+          }}>
+            {section.name}
+          </h2>
+          <p style={{
+            fontWeight: 600, fontSize: '1rem', color: 'rgba(255,255,255,0.85)',
+            margin: '0.3rem 0 0 0', textShadow: '0 1px 6px rgba(0,0,0,0.3)',
+          }}>
+            {section.description}
+          </p>
+        </div>
+
+        {/* Badge الطلب */}
+        <div style={{
+          position: 'absolute', top: '1rem', left: '1rem',
+          background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.3)',
+          borderRadius: '999px', padding: '0.5rem 1.2rem',
+          color: '#fff', fontWeight: 800, fontSize: '0.9rem',
+          display: 'flex', alignItems: 'center', gap: '0.5rem', zIndex: 4,
+        }}>
+          <ShoppingCart size={16} />
+          {section.orders}
+        </div>
+        {/* Badge النمو */}
+        <div style={{
+          position: 'absolute', top: '1rem', right: '1rem',
+          background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.3)',
+          borderRadius: '999px', padding: '0.5rem 1rem',
+          color: '#4ade80', fontWeight: 900, fontSize: '0.9rem',
+          display: 'flex', alignItems: 'center', gap: '0.4rem', zIndex: 4,
+        }}>
+          <TrendingUp size={16} />
+          {section.trending}
+        </div>
       </div>
-      <span style={{
-        fontWeight: 700, fontSize: '1.125rem',
-        color: hov ? '#ffffff' : '#1f2937',
-        textShadow: hov ? '0 1px 3px rgba(0,0,0,0.2)' : 'none',
-        position: 'relative', zIndex: 2,
-        transition: 'color 0.35s ease, transform 0.3s ease, text-shadow 0.35s ease',
-        transform: hov ? 'translateY(-2px)' : 'translateY(0)',
-      }}>{action.label}</span>
+
+      {/* المحتوى */}
+      <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+        {/* التفاصيل */}
+        <p style={{ fontWeight: 600, fontSize: '1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+          {section.details}
+        </p>
+
+        {/* الإحصائيات - كبيرة وواضحة */}
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          {section.stats.map((stat, i) => (
+            <div key={i} style={{
+              flex: 1, padding: '1.2rem 1rem', borderRadius: '1rem',
+              background: `linear-gradient(145deg, ${section.color}08, ${section.color}04)`,
+              border: `1.5px solid ${section.color}20`,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem',
+              transition: 'all 0.3s ease',
+              transform: hov ? 'translateY(-3px)' : 'translateY(0)',
+              boxShadow: hov ? `0 8px 20px -4px ${section.color}22` : 'none',
+            }}>
+              <div style={{
+                width: '3rem', height: '3rem', borderRadius: '0.75rem',
+                background: `linear-gradient(135deg, ${section.colorLight}, ${section.color})`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#fff', flexShrink: 0,
+                boxShadow: `0 4px 14px -2px ${section.color}44`,
+              }}>
+                {stat.icon}
+              </div>
+              <div style={{ fontWeight: 900, fontSize: '2rem', color: section.color, lineHeight: 1 }}>
+                {stat.value}
+              </div>
+              <div style={{ fontWeight: 700, fontSize: '0.85rem', color: '#64748b' }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* زر الدخول */}
+        <div style={{
+          marginTop: '0.5rem', padding: '1rem', borderRadius: '1rem',
+          background: hov ? `linear-gradient(135deg, ${section.colorLight}, ${section.color})` : `${section.color}0a`,
+          border: `2.5px solid ${hov ? section.color : `${section.color}25`}`,
+          color: hov ? '#fff' : section.color,
+          fontWeight: 800, fontSize: '1.15rem', textAlign: 'center',
+          transition: 'all 0.3s ease',
+          boxShadow: hov ? `0 8px 24px -4px ${section.color}55` : 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem',
+          transform: hov ? 'scale(1.02)' : 'scale(1)',
+        }}>
+          دخول القسم
+          <ChevronLeft size={22} />
+        </div>
+      </div>
     </div>
   );
 }
 
-/* Dashboard v2 - quick actions with per-card color hover + shine sweep */
-export default function DashboardPage() {
+export default function LandingPage() {
+  const router = useRouter();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   return (
-    <div className="space-y-8" data-section="dashboard">
-      {/* الترحيب */}
-      <div className="animate-slide-up">
-        <div className="flex items-center gap-5 mb-2">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-purple-500/30 animate-float">
-            <Sparkles className="text-white" size={32} />
-          </div>
-          <div>
-            <h1 className="text-4xl font-extrabold gradient-text">
-              مرحباً بك في BRAVO
-            </h1>
-            <p className="text-[var(--text-secondary)] font-bold text-xl">
-              نظام إدارة التركيبات والتصنيع الاحترافي ✨
-            </p>
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(180deg, #faf7ff 0%, #f4eeff 30%, #faf7ff 100%)',
+      padding: '0',
+      display: 'flex', flexDirection: 'column',
+      position: 'relative',
+    }}>
+      {/* شريط علوي */}
+      <div style={{
+        position: 'sticky', top: 0, zIndex: 100,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '1rem 2rem',
+        background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(109,40,217,0.1)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '0.8rem',
+          padding: '0.5rem 1.2rem', borderRadius: '999px',
+          background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+          color: '#fff', fontWeight: 800, fontSize: '1rem',
+          boxShadow: '0 4px 14px -2px rgba(109,40,217,0.3)',
+          cursor: 'pointer',
+        }} onClick={() => router.push('/dashboard')}>
+          <FlaskConical size={20} />
+          BRAVO
+        </div>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div
+            onClick={() => router.push('/settings')}
+            style={{
+              width: '44px', height: '44px', borderRadius: '12px',
+              background: 'rgba(109,40,217,0.08)', border: '1.5px solid rgba(109,40,217,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', color: '#7c3aed',
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#7c3aed';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'scale(1.1) rotate(30deg)';
+              e.currentTarget.style.boxShadow = '0 4px 14px -2px rgba(109,40,217,0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(109,40,217,0.08)';
+              e.currentTarget.style.color = '#7c3aed';
+              e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <Settings size={22} />
           </div>
         </div>
       </div>
 
-      {/* الإحصائيات */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, minmax(0, 1fr))', gap: '0.5rem' }}>
-        <StatCard
-          title="المواد الخام"
-          value={formatNumber(stats.rawMaterials, 0)}
-          subtitle="نوع مختلف"
-          icon={<FlaskConical size={20} />}
-          delay={1}
-          color="#4338ca"
-          colorLight="#6366f1"
-        />
-        <StatCard
-          title="التركيبات"
-          value={formatNumber(stats.formulas, 0)}
-          subtitle="تركيبة معتمدة"
-          icon={<Beaker size={20} />}
-          delay={2}
-          color="#7c3aed"
-          colorLight="#a78bfa"
-        />
-        <StatCard
-          title="المنتجات"
-          value={formatNumber(stats.products, 0)}
-          subtitle="منتج نهائي"
-          icon={<Package size={20} />}
-          delay={3}
-          color="#0891b2"
-          colorLight="#22d3ee"
-        />
-        <StatCard
-          title="مخزون منخفض"
-          value={formatNumber(stats.lowStockItems, 0)}
-          subtitle="يحتاج إعادة طلب"
-          icon={<AlertTriangle size={20} />}
-          delay={4}
-          color="#991b1b"
-          colorLight="#dc2626"
-        />
-        <StatCard
-          title="مبيعات اليوم"
-          value={formatCurrency(stats.todaySales)}
-          icon={<ShoppingCart size={20} />}
-          trend={{ value: 12, isPositive: true }}
-          delay={5}
-          color="#15803d"
-          colorLight="#4ade80"
-        />
-        <StatCard
-          title="مبيعات الشهر"
-          value={formatCurrency(stats.monthSales)}
-          icon={<TrendingUp size={20} />}
-          trend={{ value: 8, isPositive: true }}
-          delay={6}
-          color="#065f46"
-          colorLight="#10b981"
-        />
-        <StatCard
-          title="قيمة المخزون"
-          value={formatCurrency(stats.inventoryValue)}
-          icon={<Warehouse size={20} />}
-          delay={7}
-          color="#d97706"
-          colorLight="#fbbf24"
-        />
-        <StatCard
-          title="إجمالي المديونيات"
-          value={formatCurrency(stats.totalDebts)}
-          icon={<CreditCard size={20} />}
-          delay={8}
-          color="#be123c"
-          colorLight="#f43f5e"
-        />
-      </div>
-
-      {/* أقسام المنتجات */}
-      <div className="animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-2xl font-extrabold flex items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
-              <Package size={24} />
-            </span>
-            أقسام المنتجات
-          </h2>
-          <Link href="/products" className="btn btn-outline btn-sm group">
-            عرض الكل
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
+      {/* المحتوى الرئيسي */}
+      <div style={{
+        flex: 1,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        padding: '2rem 2rem 1rem 2rem',
+        gap: '2.5rem',
+      }}>
+        {/* العنوان */}
+        <div className="animate-slide-up" style={{ textAlign: 'center', maxWidth: '700px' }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '1rem',
+            marginBottom: '1rem', padding: '0.7rem 1.8rem', borderRadius: '999px',
+            background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+            color: '#fff', fontWeight: 800, fontSize: '1rem',
+            boxShadow: '0 4px 14px -2px rgba(109,40,217,0.3)',
+          }}>
+            <FlaskConical size={20} />
+            BRAVO Formula & Factory
+          </div>
+          <h1 style={{
+            fontWeight: 900, fontSize: '3.2rem', lineHeight: 1.2,
+            background: 'linear-gradient(135deg, #6d28d9, #7c3aed, #8b5cf6)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            margin: '0 0 0.75rem 0',
+          }}>
+            اختر قسمك
+          </h1>
+          <p style={{ fontWeight: 600, fontSize: '1.2rem', color: '#64748b', margin: 0 }}>
+            اختر القسم اللي عايز تدخل منه وابدأ شغلك 🚀
+          </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem' }}>
-          {productCategories.map((category, index) => (
-            <CategoryCard
-              key={category.id}
-              id={category.id}
-              name={category.name}
-              count={category.count}
-              colorClass={category.color}
-              delay={0.4 + index * 0.1}
-            />
+
+        {/* الأقسام الثلاثة */}
+        <div style={{
+          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem',
+          maxWidth: '1400px', width: '100%',
+        }}>
+          {sections.map((section, index) => (
+            <SectionCard key={section.id} section={section} index={index} />
           ))}
         </div>
       </div>
 
-      {/* الإجراءات السريعة */}
-      <div className="card animate-slide-up" style={{ animationDelay: '0.5s', animationFillMode: 'both', border: 'none' }}>
-        <div className="card-header">
-          <h2 className="text-2xl font-extrabold flex items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <Zap size={24} />
-            </span>
-            إجراءات سريعة
-          </h2>
-        </div>
-        <div className="card-body">
-          <div className="grid grid-cols-4 gap-5">
-            {quickActions.map((action, index) => (
-              <QuickActionLink key={action.label} action={action} index={index} />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* المنتجات الأكثر مبيعاً والتركيبات */}
-      <div className="two-col-layout">
-        {/* المنتجات الأكثر مبيعاً */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.7s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #16a34a' }}>
-          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(34,197,94,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
-              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
-                <TrendingUp size={24} />
-              </span>
-              الأكثر مبيعاً
-            </h2>
-            <Link href="/reports" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
-              التقرير الكامل
-              <ChevronLeft size={16} />
-            </Link>
-          </div>
-          <div className="card-body p-0">
-            {topProducts.map((product, index) => (
-              <div 
-                key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'all 0.2s' }}
-                className="group last:border-0 hover:bg-green-50 hover:translate-x-1"
-              >
-                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #dcfce7, #a7f3d0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
-                  {product.emoji}
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-green-700 truncate">{product.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{product.sales} وحدة مباعة</p>
-                </div>
-                <div style={{ textAlign: 'left', flexShrink: 0 }}>
-                  <p style={{ fontWeight: 800, fontSize: '0.95rem', color: '#16a34a', margin: 0 }}>{formatCurrency(product.revenue)}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: '#16a34a', fontWeight: 800 }}>
-                    <TrendingUp size={12} />
-                    +{product.trend}%
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* آخر التركيبات */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #7c3aed' }}>
-          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(139,92,246,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
-              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
-                <Beaker size={24} />
-              </span>
-              آخر التركيبات
-            </h2>
-            <Link href="/formulas" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
-              عرض الكل
-              <ChevronLeft size={16} />
-            </Link>
-          </div>
-          <div className="card-body p-0">
-            {recentFormulas.map((formula, index) => (
-              <div 
-                key={index} 
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', borderBottom: '1px solid #e5e7eb', cursor: 'pointer', transition: 'background 0.2s' }}
-                className="group last:border-0 hover:bg-purple-50 hover:translate-x-1"
-              >
-                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.75rem', background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', flexShrink: 0, transition: 'transform 0.3s' }} className="group-hover:scale-110 group-hover:rotate-6">
-                  {formula.emoji}
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <h4 style={{ fontWeight: 800, fontSize: '0.95rem', color: '#1f2937', margin: 0 }} className="group-hover:text-purple-700 truncate">{formula.name}</h4>
-                  <p style={{ fontWeight: 700, fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>{formula.category} • {formula.ingredients} مكون</p>
-                </div>
-                <div style={{ flexShrink: 0 }}>
-                  {formula.status === 'approved' && <Badge variant="success">معتمدة</Badge>}
-                  {formula.status === 'testing' && <Badge variant="warning">تحت الاختبار</Badge>}
-                  {formula.status === 'draft' && <Badge variant="default">مسودة</Badge>}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* التصنيع والفواتير */}
-      <div className="two-col-layout">
-        {/* آخر عمليات التصنيع */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '0.9s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #0891b2' }}>
-          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(6,182,212,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
-              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
-                <Factory size={24} />
-              </span>
-              التصنيع الجاري
-            </h2>
-            <Link href="/production" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
-              عرض الكل
-              <ChevronLeft size={16} />
-            </Link>
-          </div>
-          <div className="card-body p-0">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th className="font-extrabold">رقم الدفعة</th>
-                  <th className="font-extrabold">المنتج</th>
-                  <th className="font-extrabold">التقدم</th>
-                  <th className="font-extrabold">الحالة</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentProduction.map((batch, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{batch.batchNumber}</td>
-                    <td className="font-extrabold">{batch.product}</td>
-                    <td>
-                      <div className="w-full max-w-[120px]">
-                        <div className="progress-bar h-2">
-                          <div className="progress-fill" style={{ width: `${batch.progress}%` }} />
-                        </div>
-                        <span className="text-xs font-extrabold text-[var(--text-muted)]">{batch.progress}%</span>
-                      </div>
-                    </td>
-                    <td className="font-bold">{getProductionStatusBadge(batch.status)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* آخر الفواتير */}
-        <div className="card list-card animate-slide-up" style={{ animationDelay: '1s', animationFillMode: 'both', border: 'none', borderTop: '4px solid #ea580c' }}>
-          <div className="card-header flex items-center justify-between" style={{ background: 'linear-gradient(to bottom, rgba(249,115,22,0.08), rgba(248,250,252,0.9))' }}>
-            <h2 className="text-2xl font-extrabold flex items-center gap-3">
-              <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
-                <FileText size={24} />
-              </span>
-              آخر الفواتير
-            </h2>
-            <Link href="/invoices" className="text-sm text-[var(--primary)] font-bold hover:underline flex items-center gap-1">
-              عرض الكل
-              <ChevronLeft size={16} />
-            </Link>
-          </div>
-          <div className="card-body p-0">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th className="font-extrabold">رقم الفاتورة</th>
-                  <th className="font-extrabold">العميل</th>
-                  <th className="font-extrabold">المبلغ</th>
-                  <th className="font-extrabold">الحالة</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentInvoices.map((invoice, index) => (
-                  <tr key={index} className="group">
-                    <td className="font-mono font-extrabold text-sm text-[var(--primary)]">{invoice.number}</td>
-                    <td className="font-extrabold">{invoice.customer}</td>
-                    <td className="font-extrabold text-green-600">{formatCurrency(invoice.total)}</td>
-                    <td className="font-bold">{getInvoiceStatusBadge(invoice.status)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      {/* المواد منخفضة المخزون */}
-      <div className="card animate-slide-up" style={{ animationDelay: '1.1s', animationFillMode: 'both', border: 'none' }}>
-        <div className="card-header flex items-center justify-between">
-          <h2 className="text-2xl font-extrabold flex items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg animate-pulse">
-              <AlertTriangle size={24} />
-            </span>
-            ⚠️ تنبيه: مخزون منخفض
-          </h2>
-          <Link href="/inventory" className="btn btn-outline btn-sm group" style={{ borderColor: '#dc2626', color: '#dc2626' }}>
-            إدارة المخزون
-            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          </Link>
-        </div>
-        <div className="card-body">
-          <div className="grid grid-cols-4 gap-5">
-            {lowStockItems.map((item, index) => (
-              <div
-                key={index}
-                className="relative p-5 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${1.2 + index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
-                <div className="relative">
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-orange-800">{item.name}</h4>
-                    <Badge variant="warning">{item.category}</Badge>
-                  </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <ArrowDownRight className="text-orange-600" size={20} />
-                    <span className="text-3xl font-extrabold text-orange-700">{item.current}</span>
-                    <span className="text-orange-600 font-bold">{item.unit}</span>
-                  </div>
-                  <div className="text-sm text-orange-600 font-bold mb-3">
-                    الحد الأدنى: {item.min} {item.unit}
-                  </div>
-                  <div className="progress-bar bg-orange-200 h-3">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-500"
-                      style={{ width: `${Math.min((item.current / item.min) * 100, 100)}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* أسفل */}
+      <div style={{
+        textAlign: 'center', padding: '1.5rem 2rem',
+        borderTop: '1px solid rgba(109,40,217,0.08)',
+      }}>
+        <p style={{ fontWeight: 600, fontSize: '0.9rem', color: '#94a3b8', margin: 0 }}>
+          © 2026 BRAVO — نظام إدارة التركيبات والتصنيع
+        </p>
       </div>
     </div>
   );

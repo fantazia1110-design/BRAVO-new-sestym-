@@ -43,7 +43,7 @@ const sampleBatches: ProductionBatch[] = [
     id: '1',
     batchNumber: 'PRD-2026-001',
     product: { ar: 'شامبو العناية بالشعر' },
-    formulaVersion: 'v2.1',
+    formulaVersion: '',
     plannedQuantity: '500',
     actualQuantity: '485',
     unit: 'كجم',
